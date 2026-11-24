@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel - 50 Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Noto+Sans+Sinhala:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="kids-list-section" class="list-section">
+        <div class="list-header">
+            <h2>🌟 ආදර්ශවත් කෙටි කතා 50 🌟</h2>
+            <p>මෙතැන ඇත්තේ කෙටි කතා 50 පමණි. කැමති කතාවක් ඔබා කියවන්න.</p>
+        </div>
+        <div id="story-grid" class="grid-50"></div>
+        <div class="bottom-nav-area">
+            <button type="button" id="btn-go-top" class="end-top-btn kids-top-btn">⬆ ඉහළට යන්න</button>
+        </div>
+    </section>
+
+    <section id="reader-section">
+        <div class="reader-box">
+            <h2 id="reader-title" class="reader-title"></h2>
+            <div id="reader-text" class="reader-text"></div>
+            <button type="button" id="btn-back-list" class="reader-back-btn">⬅ කතා ලැයිස්තුවට ආපසු</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        initStoryPage('kids');
+
+        // Notify parent index to play n.mp3 if opened inside iframe, or play directly if opened standalone
+        const standaloneAudio = new Audio('n.mp3');
+        standaloneAudio.loop = true;
+
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'PLAY_AUDIO', key: 'novel' }, '*');
+        } else {
+            standaloneAudio.play().catch(() => {});
+        }
+
+        document.getElementById('btn-go-top').addEventListener('click', () => {
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({ type: 'GO_HOME' }, '*');
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
