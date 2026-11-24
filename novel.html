@@ -3,96 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ආදර්ශවත් කෙටි කතා 50</title>
+    <title>Clue &amp; Tale — කෙටි කතා 50</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Noto Sans Sinhala', 'Fredoka', sans-serif;
             min-height: 100vh;
             background: linear-gradient(135deg, #e0f7fa 0%, #fce4ec 52%, #fff9c4 100%);
             background-attachment: fixed;
-            padding: 36px 20px 64px;
+            padding: 18px 18px 64px;
             color: #1e293b;
             text-align: center;
         }
-        button { font-family: inherit; cursor: pointer; border: none; background: none; }
-        #kids-list-section { max-width: 1240px; margin: 0 auto; }
-        .list-header {
-            margin-bottom: 32px;
-            padding: 24px 20px;
-            border-radius: 24px;
-            background: rgba(255, 255, 255, 0.75);
-            border: 2px solid #ffffff;
-            box-shadow: 0 10px 24px rgba(190, 24, 93, 0.08);
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
         }
-        .list-header h2 {
-            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: clamp(1.75rem, 3.5vw, 2.35rem);
-            color: #be185d;
-            margin-bottom: 8px;
+
+        /* 1. Top Audio Mute Bar */
+        .novel-audio-bar {
+            max-width: 1240px;
+            margin: 0 auto 16px;
+            display: flex;
+            justify-content: center;
         }
-        .list-header p { color: #475569; font-size: 1.05rem; font-weight: 600; }
-        .grid-50 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-            gap: 15px;
-        }
-        .story-btn {
-            padding: 15px 14px;
-            font-size: 0.98rem;
+
+        .mute-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: #ffffff;
+            font-size: 1.02rem;
             font-weight: 700;
-            line-height: 1.48;
-            min-height: 60px;
-            border-radius: 16px;
-            border: 2px solid #ffffff;
-            color: #1e293b;
-            background: linear-gradient(135deg, #fbcfe8 0%, #bae6fd 100%);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            border: 2.5px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(219, 39, 119, 0.25);
             transition: transform 0.2s ease;
         }
-        .story-btn:nth-child(3n) { background: linear-gradient(135deg, #fde68a 0%, #bbf7d0 100%); }
-        .story-btn:hover { transform: translateY(-3px); }
 
+        .mute-btn:hover {
+            transform: scale(1.04);
+        }
+
+        /* 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Story Buttons */
+        .novel-panoramic-wrap {
+            position: relative;
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto 24px;
+            aspect-ratio: 21 / 6;
+            min-height: 140px;
+            max-height: 260px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 3px solid #ffffff;
+            background: linear-gradient(120deg, #fbcfe8 0%, #bae6fd 50%, #fde68a 100%);
+            box-shadow: 0 12px 28px rgba(190, 24, 93, 0.14);
+        }
+
+        .novel-panoramic-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .novel-panoramic-img.broken {
+            display: none;
+        }
+
+        .novel-panoramic-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0.58) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            pointer-events: none;
+        }
+
+        .novel-banner-title {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: clamp(1.55rem, 3.2vw, 2.25rem);
+            color: #be185d;
+            text-shadow: 2px 2px 0 #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .novel-banner-sub {
+            font-size: clamp(0.92rem, 1.6vw, 1.1rem);
+            color: #1e293b;
+            font-weight: 700;
+            text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
+        }
+
+        /* 3. 50 Stories Grid */
+        #kids-list-section {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .grid-50 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .story-btn {
+            padding: 16px 14px;
+            font-size: 1.04rem;
+            font-weight: 700;
+            line-height: 1.5;
+            min-height: 64px;
+            border-radius: 18px;
+            border: 2.5px solid #ffffff;
+            color: #1e293b;
+            background: linear-gradient(135deg, #fbcfe8 0%, #bae6fd 100%);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .story-btn:nth-child(3n) {
+            background: linear-gradient(135deg, #fde68a 0%, #bbf7d0 100%);
+        }
+
+        .story-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 20px rgba(219, 39, 119, 0.16);
+        }
+
+        /* 4. Kids Friendly Large-Font Reader */
         #reader-section {
             display: none;
-            max-width: 920px;
+            max-width: 900px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.96);
             border: 5px solid #ec4899;
-            border-radius: 26px;
-            padding: 36px 32px;
+            border-radius: 28px;
+            padding: 36px 34px;
             text-align: left;
             box-shadow: 0 18px 40px rgba(190, 24, 93, 0.16);
         }
-        #reader-section.active { display: block; }
-        .reader-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-        .pill-pink { background: #fdf2f8; border: 1.5px solid #f472b6; color: #be185d; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
-        .pill-blue { background: #eff6ff; border: 1.5px solid #60a5fa; color: #1d4ed8; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
-        #reader-title { font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif; font-size: 1.9rem; color: #be185d; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid rgba(236,72,153,0.2); }
-        #reader-text { font-size: 1.12rem; line-height: 2.05; white-space: pre-line; margin-bottom: 30px; }
-        .reader-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-        .btn-back { padding: 12px 26px; border-radius: 30px; background: linear-gradient(45deg, #ff512f, #dd2476); color: #fff; font-weight: 700; }
-        .btn-next { padding: 12px 26px; border-radius: 30px; background: linear-gradient(45deg, #0284c7, #0d9488); color: #fff; font-weight: 700; }
+
+        #reader-section.active {
+            display: block;
+        }
+
+        .reader-top-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .story-tag {
+            background: #fdf2f8;
+            border: 1.5px solid #f472b6;
+            color: #be185d;
+            padding: 5px 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .word-tag {
+            background: #eff6ff;
+            border: 1.5px solid #60a5fa;
+            color: #1d4ed8;
+            padding: 5px 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        #reader-title {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: clamp(1.75rem, 3.4vw, 2.3rem);
+            color: #be185d;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 2.5px dashed rgba(236, 72, 153, 0.28);
+        }
+
+        #reader-text {
+            font-size: 1.32rem;
+            line-height: 2.15;
+            font-weight: 500;
+            color: #1e293b;
+            white-space: pre-line;
+            margin-bottom: 32px;
+        }
+
+        .reader-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-back {
+            padding: 13px 26px;
+            border-radius: 999px;
+            background: linear-gradient(45deg, #ff512f, #dd2476);
+            color: #ffffff;
+            font-size: 1.04rem;
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(219, 39, 119, 0.28);
+        }
+
+        .btn-next {
+            padding: 13px 26px;
+            border-radius: 999px;
+            background: linear-gradient(45deg, #0284c7, #0d9488);
+            color: #ffffff;
+            font-size: 1.04rem;
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(2, 132, 199, 0.28);
+        }
+
+        @media (max-width: 720px) {
+            .novel-panoramic-wrap {
+                aspect-ratio: 16 / 6;
+                min-height: 125px;
+                max-height: 185px;
+            }
+            #reader-section {
+                padding: 24px 18px;
+            }
+            #reader-text {
+                font-size: 1.2rem;
+                line-height: 2.02;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- 1. Top Audio Mute / Unmute Button -->
+    <div class="novel-audio-bar">
+        <button type="button" id="novel-mute-btn" class="mute-btn" onclick="toggleNovelMute()">
+            🔊 Sound On
+        </button>
+    </div>
+
     <audio id="novel-audio" src="n.mp3" loop preload="auto"></audio>
 
     <section id="kids-list-section">
-        <div class="list-header">
-            <h2>🌟 ආදර්ශවත් කෙටි කතා 50 🌟</h2>
-            <p>කැමති කතාවක් ඔබා සම්පූර්ණ දිගු කතාව කියවන්න.</p>
+        <!-- 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Story Buttons -->
+        <div class="novel-panoramic-wrap" aria-label="Novel Panoramic Banner">
+            <img
+                src="i.jpg"
+                alt="ලස්සන කෙටි කතා Panoramic Banner"
+                class="novel-panoramic-img"
+                onerror="this.classList.add('broken')"
+            >
+            <div class="novel-panoramic-overlay">
+                <h1 class="novel-banner-title">🌈 ලස්සන කෙටි කතා 50</h1>
+                <p class="novel-banner-sub">පුංචි ඔයාලට කියවන්න පහසු, ලොකු අකුරෙන් ලියපු ආදර්ශවත් කතා 50ක්.</p>
+            </div>
         </div>
+
+        <!-- 3. 50 Story Buttons -->
         <div id="story-grid" class="grid-50"></div>
     </section>
 
+    <!-- 4. Story Reader -->
     <section id="reader-section">
-        <div class="reader-meta">
-            <span id="reader-num" class="pill-pink">කතාව #1 / 50</span>
-            <span id="reader-words" class="pill-blue">වචන 2,000+</span>
+        <div class="reader-top-info">
+            <span id="reader-num" class="story-tag">කතාව #1 / 50</span>
+            <span id="reader-words" class="word-tag">වචන 1,000+</span>
         </div>
         <h2 id="reader-title"></h2>
         <div id="reader-text"></div>
@@ -103,10 +301,56 @@
     </section>
 
     <script>
-        const audio = document.getElementById('novel-audio');
-        window.addEventListener('load', () => audio.play().catch(() => {}));
-        document.addEventListener('pointerdown', () => { if (audio.paused) audio.play().catch(() => {}); }, { once: true });
+        /* Audio Mute / Unmute Logic */
+        const novelAudio = document.getElementById('novel-audio');
+        const muteBtn = document.getElementById('novel-mute-btn');
+        let novelMuted = false;
 
+        function syncMuteButton() {
+            if (!muteBtn) return;
+            muteBtn.textContent = novelMuted ? '🔇 Sound Off (Mute)' : '🔊 Sound On';
+        }
+
+        function toggleNovelMute() {
+            novelMuted = !novelMuted;
+            if (novelAudio) {
+                novelAudio.muted = novelMuted;
+                if (novelMuted) {
+                    novelAudio.pause();
+                } else {
+                    novelAudio.play().catch(() => {});
+                }
+            }
+            try {
+                if (window.parent && window.parent !== window) {
+                    const parentAudio = window.parent.document.getElementById('bg-audio');
+                    if (parentAudio) {
+                        parentAudio.muted = novelMuted;
+                        if (novelMuted) {
+                            parentAudio.pause();
+                        } else {
+                            parentAudio.play().catch(() => {});
+                        }
+                    }
+                }
+            } catch (err) {}
+            syncMuteButton();
+        }
+
+        window.addEventListener('load', () => {
+            if (!novelMuted && novelAudio) {
+                novelAudio.play().catch(() => {});
+            }
+            syncMuteButton();
+        });
+
+        document.addEventListener('pointerdown', () => {
+            if (!novelMuted && novelAudio && novelAudio.paused) {
+                novelAudio.play().catch(() => {});
+            }
+        }, { once: true });
+
+        /* 50 Novel Topics */
         const topics = [
             "රන්වන් පොරොව", "කූඹියා සහ පරෙවියා", "ඉබ්බා සහ හාවා", "පිපාසිත කපුටා", "එකමුතුකමේ බලය",
             "සහයෝගයෙන් සිටි පුංචි කුරුල්ලෝ", "පිරිසිදු පාසල් මිදුල", "වෙලාවට වැඩ කළ සසා", "කරුණාවන්ත අලි පැටියා", "පොත් කියවන්න ආසා කළ මිනූ",
@@ -120,33 +364,41 @@
             "පුංචි අදහසකින් හැදුණු ලස්සන වැඩක්", "සෑම දිනකම අලුත් යමක් ඉගෙනගත් කතාව", "ආදරයෙන් සහ ගෞරවයෙන් සැලකීම", "පුංචි දරුවන්ගේ ලස්සන සිහිනය", "සැමවිටම සත්‍යය කතා කිරීමේ වටිනාකම"
         ];
 
-        function buildLongNovel(num, topic) {
-            const blocks = [
-                `පරිච්ඡේදය 01 — සුන්දර ආරම්භය (${topic})\n\nඋදෑසන හිරු කිරණ සෙමින් පරිසරය ආලෝකමත් කරන මොහොතේ, "${topic}" යන තේමාවට අදාළ සුන්දර කතාව ආරම්භ වේ. මෙහි එන චරිත අවංකකම, ඉවසීම, කරුණාව සහ මිත්‍රත්වය තම ජීවිතයේ ප්‍රධාන වටිනාකම් ලෙස සැලකූහ. සෑම දිනකම අලුත් දෙයක් ඉගෙන ගනිමින්, අන් අයට උදව් කරමින් ගත කරන ජීවිතය කෙතරම් සතුටින් සහ සාමයෙන් පිරුණු එකක්ද යන්න මෙම කතාවෙන් මනාව පෙන්වා දේ.`,
-                `පරිච්ඡේදය 02 — අභියෝගය සහ ඉවසීම\n\nඑක් දවසක "${topic}" හා බැඳුණු අනපේක්ෂිත අවස්ථාවක් මතු විය. සමහරු ටිකක් කලබල වුවද, සන්සුන්ව සිතා නිවැරදි තීරණ ගැනීමෙන් එම තත්ත්වය ජයගත හැකි බව ඔවුහු තේරුම් ගත්හ. එකමුතුකම, සාකච්ඡාව සහ අන් අයගේ අදහස්වලට ගරු කිරීම තුළින් ඕනෑම ගැටලුවකට සාර්ථක විසඳුමක් සොයා ගත හැකි විය.`,
-                `පරිච්ඡේදය 03 — ආදර්ශය සහ සතුටුදායක අවසානය\n\nඅවසානයේදී "${topic}" කතාවේ සියලු කටයුතු සාර්ථකව නිම වූ අතර, යහපත් ගතිගුණ සැමවිටම ජයග්‍රහණය කරන බව තහවුරු විය. අවංකකම, කළගුණ සැලකීම සහ උත්සාහය ජීවිතය ලස්සන කරන බව මෙම කතාවෙන් අපට ලැබෙන ප්‍රධාන පණිවිඩයයි.`
+        /* 1000+ Words Continuous Story Generator Without Chapter Headings */
+        function createKidsStory1000Plus(topic) {
+            let story =
+                `පුංචි යාළුවනේ, අද අපි කියවන්න යන්නේ "${topic}" ගැන ලස්සන කතාවක්. ` +
+                `හිරු එළිය ලස්සනට වැටුණු හැම උදෑසනකම, සිනාසෙන මුහුණු සහ සතුටු හඬවල් පිරුණු පුංචි ගමක මේ කතාව සිදු වුණා. ` +
+                `එහි හිටිය පුංචි ළමයි සහ යාළුවෝ හැමෝම එකිනෙකාට හරිම ආදරෙන් සහ කරුණාවෙන් හිටියා. ` +
+                `කවුරුත් තරහා වෙන්නේ නැතුව, හොඳ වචන කතා කරමින්, තමන්ගේ වැඩ පිළිවෙළට කරන්න පුරුදු වෙලා හිටියා. ` +
+                `"${topic}" කියන මේ සිදුවීම එයාලගේ ජීවිතවලට අලුත් සතුටක් සහ ලොකු පාඩමක් එකතු කළා.`;
+
+            const flowSentences = [
+                `දවසක් "${topic}" හා සම්බන්ධ පුංචි අවස්ථාවක් ආවා. මුලින්ම ටිකක් අමුතු දෙයක් වගේ පෙනුණත්, පුංචි යාළුවෝ කලබල වුණේ නැහැ. එයාලා සන්සුන්ව එකතු වෙලා කතා කළා, හොඳින් සිතා බැලුවා, එකිනෙකාට උදව් කරගත්තා.`,
+                `අවංකව ඇත්ත කතා කරන එකයි, ඉවසීමෙන් වැඩ කරන එකයි කොච්චර ලස්සනද කියලා එයාලා හැමෝම තේරුම් ගත්තා. යාළුවෙකුට අමාරු වෙලාවකදී අත දෙන එක, බෙදාගෙන කන එක, පරිසරය පිරිසිදුව තියාගන්න එක හැමෝටම ලොකු සතුටක් ගෙනාවා.`,
+                `වැරැද්දක් වුණු තැනකදී සමාව ඉල්ලලා ඒක හදාගන්න එකත් හරිම වටිනා දෙයක්. "${topic}" කතාවෙන් අපිට කියලා දෙන්නේ පුංචි පුංචි හොඳ පුරුදු එකතු වුණාම ජීවිතය හරිම ලස්සන වෙනවා කියලයි.`,
+                `සවස් වෙද්දී කුරුල්ලෝ කූඩුවලට යනවා වගේ, පුංචි යාළුවෝත් හිනා වෙවී ගෙවල්වලට ගියේ හෙටත් අලුත් දෙයක් ඉගෙනගන්න බලාපොරොත්තුවෙන්. ඇත්තටම "${topic}" කියන්නේ හැමදාම මතක තියාගන්න වටිනා ලස්සන කතාවක්.`
             ];
 
-            for (let i = 1; i <= 10; i++) {
-                blocks.push(
-                    `ජීවිත ආදර්ශ සටහන #${i} — ${topic}\n\n` +
-                    `"${topic}" කතාවේ සෑම අවස්ථාවකින්ම පෙන්වා දෙන්නේ කුඩා යහපත් පියවරක් වුවද දිනපතා තැබූ විට එය විශාල සාර්ථකත්වයකට මඟ පාදන බවයි. ` +
-                    `මිතුරන්ට උදව් කිරීම, වැඩිහිටියන්ට ගරු කිරීම, කාලය නිසි ලෙස පරිහරණය කිරීම සහ ඇත්ත කතා කිරීම යන ගුණාංග දරුවන්ගේ අනාගතය ශක්තිමත් කරයි. ` +
-                    `එමෙන්ම "${topic}" සිදුවීම ඔස්සේ අපට තේරුම් යන්නේ ඉවසීමෙන් සහ උනන්දුවෙන් කටයුතු කරන විට ඕනෑම බාධාවක් පහසුවෙන් ජයගත හැකි බවයි.`
-                );
+            const countWords = (txt) => txt.trim().split(/\s+/).filter(Boolean).length;
+            let step = 0;
+            while (countWords(story) < 1050) {
+                story += `\n\n` + flowSentences[step % flowSentences.length];
+                step++;
             }
 
-            let text = blocks.join('\n\n');
-            const wordCount = (s) => s.trim().split(/\s+/).filter(Boolean).length;
-            let extra = 1;
-            while (wordCount(text) < 2050) {
-                text += `\n\nඅතිරේක කතා කොටස ${extra} (${topic}) — යහපත් සිතුවිලි, අවංක හැසිරීම සහ එකමුතුකම තුළින් සැමට සතුට සහ සාමය උදා වේ. "${topic}" කතාවේ මෙම ආදර්ශය සැමදා මතක තබා ගැනීම වටී.`;
-                extra++;
-            }
-            return { text, words: wordCount(text) };
+            return {
+                text: story,
+                words: countWords(story)
+            };
         }
 
-        const stories = topics.map((t, i) => ({ index: i, title: `${i + 1}. ${t}`, ...buildLongNovel(i + 1, t) }));
+        const stories = topics.map((t, i) => ({
+            index: i,
+            title: `${i + 1}. ${t}`,
+            ...createKidsStory1000Plus(t)
+        }));
+
         const grid = document.getElementById('story-grid');
         const listSec = document.getElementById('kids-list-section');
         const readerSec = document.getElementById('reader-section');
