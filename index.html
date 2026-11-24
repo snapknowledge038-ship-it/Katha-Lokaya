@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>150 Story World - Index</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Fredoka:wght@500;700&family=Noto+Sans+Sinhala:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= COMPACT 3 HERO SECTIONS ================= -->
+    <div class="hero-wrapper">
+        <!-- Section 1: Novel -->
+        <section id="hero-kids" class="hero-section">
+            <div class="hero-content">
+                <h1>🌈 ලස්සන කෙටි කතා (Short Novels)</h1>
+                <p>පුංචි ළමයින්ට ආදර්ශවත්, සතුට ගෙන දෙන වර්ණවත් කෙටි කතා 50ක්.</p>
+                <button type="button" id="btn-open-novel" class="btn-hero-kids">✨ කෙටි කතා 50 බලන්න</button>
+            </div>
+        </section>
+
+        <!-- Section 2: Detectives -->
+        <section id="hero-detective" class="hero-section">
+            <div class="hero-content">
+                <h1>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා</h1>
+                <p>පුංචි ඉඟි සහ බුද්ධිය එකතු කරගෙන අභිරහස් විසඳන ළමා රහස් පරීක්ෂක කතා 50ක්.</p>
+                <button type="button" id="btn-open-detectives" class="btn-hero-detective">🔎 රහස් කතා 50 බලන්න</button>
+            </div>
+        </section>
+
+        <!-- Section 3: Horror -->
+        <section id="hero-horror" class="hero-section">
+            <div class="hero-content">
+                <h1>🕯️ SPOOKY MYSTERIES</h1>
+                <p>ළමයින්ට ගැළපෙන විදියට අධික බිය අඩු කළ, අඳුරු අභිරහස් සහ පුංචි ත්‍රාසය පිරුණු කතා 50ක්.</p>
+                <button type="button" id="btn-open-horror" class="btn-hero-horror">🌑 අභිරහස් කතා 50 බලන්න</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= IFRAME CONTAINER ================= -->
+    <div id="page-frame-container">
+        <div class="frame-topbar">
+            <span id="frame-title" class="frame-title">Story World</span>
+            <div class="frame-controls">
+                <button type="button" id="btn-toggle-audio" class="frame-btn audio-btn">🔊 Audio On</button>
+                <button type="button" id="btn-close-frame" class="frame-btn">⬅ මුල් පිටුවට</button>
+            </div>
+        </div>
+        <iframe id="story-iframe" src="about:blank" title="Story Section Frame"></iframe>
+    </div>
+
+    <script src="master.js"></script>
+    <script>
+        PageMaster.initMaster('index');
+
+        document.getElementById('btn-open-novel').addEventListener('click', () => {
+            PageMaster.openInIframe('novel.html', 'novel', '🌈 කෙටි කතා 50 (novel.html)');
+        });
+
+        document.getElementById('btn-open-detectives').addEventListener('click', () => {
+            PageMaster.openInIframe('detectives.html', 'detectives', '🕵️‍♂️ රහස් පරීක්ෂක කතා 50 (detectives.html)');
+        });
+
+        document.getElementById('btn-open-horror').addEventListener('click', () => {
+            PageMaster.openInIframe('horror.html', 'horror', '🕯️ අඳුරු අභිරහස් කතා 50 (horror.html)');
+        });
+
+        document.getElementById('btn-close-frame').addEventListener('click', () => {
+            PageMaster.closeIframe();
+        });
+
+        document.getElementById('btn-toggle-audio').addEventListener('click', () => {
+            PageMaster.toggleMute();
+        });
+    </script>
+</body>
+</html>
