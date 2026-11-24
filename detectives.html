@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detectives - 50 Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Noto+Sans+Sinhala:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="detective-list-section" class="list-section">
+        <div class="list-header">
+            <h2>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50 🔎</h2>
+            <p>මෙතැන ඇත්තේ ළමා රහස් පරීක්ෂක කතා 50 පමණි. කැමති කතාවක් ඔබා කියවන්න.</p>
+        </div>
+        <div id="story-grid" class="grid-50"></div>
+        <div class="bottom-nav-area">
+            <button type="button" id="btn-go-top" class="end-top-btn detective-top-btn">⬆ ඉහළට යන්න</button>
+        </div>
+    </section>
+
+    <section id="reader-section">
+        <div class="reader-box">
+            <h2 id="reader-title" class="reader-title"></h2>
+            <div id="reader-text" class="reader-text"></div>
+            <button type="button" id="btn-back-list" class="reader-back-btn">⬅ කතා ලැයිස්තුවට ආපසු</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        initStoryPage('detective');
+
+        // Audio d.mp3 trigger (and optional d.html embed support if needed)
+        const detectiveAudio = new Audio('d.mp3');
+        detectiveAudio.loop = true;
+
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'PLAY_AUDIO', key: 'detectives' }, '*');
+        } else {
+            detectiveAudio.play().catch(() => {});
+        }
+
+        document.getElementById('btn-go-top').addEventListener('click', () => {
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({ type: 'GO_HOME' }, '*');
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
