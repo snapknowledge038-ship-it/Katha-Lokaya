@@ -3,50 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horror - 50 Stories</title>
+    <title>අඳුරු අභිරහස් කතා 50</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Sans+Sinhala:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #090000 0%, #2a0000 50%, #050000 100%);
+            padding: 36px 20px;
+            text-align: center;
+            color: #e5d5d5;
+        }
+        h1 {
+            font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
+            color: #f87171;
+            font-size: 2rem;
+            margin-bottom: 8px;
+            text-shadow: 0 0 14px rgba(220, 38, 38, 0.7);
+        }
+        .sub {
+            color: #d6c5c5;
+            margin-bottom: 26px;
+        }
+        .grid-50 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .story-btn {
+            padding: 14px 12px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            border-radius: 8px;
+            border: 1px solid #991b1b;
+            background: linear-gradient(145deg, #1f0000, #3b0000);
+            color: #fecaca;
+            cursor: pointer;
+            box-shadow: inset 0 0 10px #000000, 0 4px 10px rgba(153, 27, 27, 0.35);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .story-btn:hover {
+            background: #7f1d1d;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        #reader {
+            display: none;
+            max-width: 840px;
+            margin: 0 auto;
+            background: #0d0101;
+            border: 2px solid #b91c1c;
+            border-radius: 10px;
+            padding: 32px;
+            text-align: left;
+            box-shadow: 0 0 30px rgba(185, 28, 28, 0.5);
+        }
+        #reader.active { display: block; }
+        #reader-title {
+            color: #f87171;
+            font-size: 1.65rem;
+            margin-bottom: 16px;
+        }
+        #reader-body {
+            font-size: 1.1rem;
+            line-height: 1.95;
+            white-space: pre-line;
+            margin-bottom: 24px;
+            color: #e5d5d5;
+        }
+        .back-btn {
+            padding: 11px 24px;
+            border: 1px solid #f87171;
+            border-radius: 8px;
+            background: #991b1b;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <section id="horror-list-section" class="list-section">
-        <div class="list-header">
-            <h2>🕯️ ළමයින්ට ගැළපෙන අඳුරු අභිරහස් කතා 50 🕯️</h2>
-            <p>මෙතැන ඇත්තේ මෙම කොටසේ කතා 50 පමණි. කැමති කතාවක් ඔබා කියවන්න.</p>
-        </div>
-        <div id="story-grid" class="grid-50"></div>
-        <div class="bottom-nav-area">
-            <button type="button" id="btn-go-top" class="end-top-btn horror-top-btn">⬆ ඉහළට යන්න</button>
-        </div>
-    </section>
 
-    <section id="reader-section">
-        <div class="reader-box">
-            <h2 id="reader-title" class="reader-title"></h2>
-            <div id="reader-text" class="reader-text"></div>
-            <button type="button" id="btn-back-list" class="reader-back-btn">⬅ කතා ලැයිස්තුවට ආපසු</button>
-        </div>
-    </section>
+    <audio id="horror-music" src="h.mp3" autoplay loop></audio>
 
-    <script src="script.js"></script>
+    <div id="list-view">
+        <h1>🕯️ ළමයින්ට ගැළපෙන අඳුරු අභිරහස් කතා 50 🕯️</h1>
+        <p class="sub">කැමති කතාවක් ඔබා කියවන්න.</p>
+        <div id="grid" class="grid-50"></div>
+    </div>
+
+    <div id="reader">
+        <h2 id="reader-title"></h2>
+        <div id="reader-body"></div>
+        <button type="button" class="back-btn" onclick="closeStory()">⬅ ලැයිස්තුවට</button>
+    </div>
+
     <script>
-        initStoryPage('horror');
+        const music = document.getElementById('horror-music');
+        window.addEventListener('load', () => music.play().catch(() => {}));
+        document.addEventListener('click', () => { if (music.paused) music.play().catch(() => {}); }, { once: true });
 
-        const horrorAudio = new Audio('h.mp3');
-        horrorAudio.loop = true;
+        const topics = [
+            "මධ්‍යම රාත්‍රියේ තට්ටු කළ පරණ ඔරලෝසුව", "මීදුම අතරින් ඇසුණු පැරණි ගීතය", "කැඩපතේ පෙනුණු එක් තත්පරයක වෙනස", "හිස් පන්ති කාමරයේ පෙරළුණු පිටු", "අඳුරු කොරිඩෝවේ පියවර හඬ",
+            "අඳුරු අල්මාරියෙන් ඇසුණු රහස", "පැරණි ළිඳේ පෙනුණු සඳ එළිය", "මධ්‍යම රාත්‍රියේ නිවුණු පහන", "අමුතු සෙවණැල්ලක් ඇඳි චිත්‍රය", "පැරණි ලියුම් පෙට්ටියේ ලිපිය",
+            "මීදුම වැටුණු වත්තේ සුදු මල", "රාත්‍රී 11ට නාද වූ පැරණි සීනුව", "අඳුරු පඩිපෙළේ අමුතු සලකුණ", "පැරණි කුඩයේ සැඟවුණු ඉඟිය", "හිස් කාමරයේ ඇසුණු කටහඬ",
+            "පැරණි දිනපොතේ මැකුණු පිටුව", "අඳුරු වනාන්තරයේ දිලිසුණු ඇස්", "පැරණි යතුරු කැරැල්ලේ රහස", "රාත්‍රියේ සෙලවුණු පැරණි තිරය", "අමුතු හැඩයක් ගත් මීදුම් වලාකුළ",
+            "පැරණි ඔරලෝසු කාමරයේ අභිරහස", "අඳුරු ගෙවත්තේ පා සටහන්", "පැරණි මුද්දේ සැඟවුණු සංකේතය", "රාත්‍රියේ ඇසුණු දුරස්ථ සීනු හඬ", "පැරණි පුටුවේ සැඟවුණු සටහන",
+            "අඳුරු කොරිඩෝවේ සීතල සුළඟ", "පැරණි කැඩපතේ අමුතු රූපය", "රාත්‍රියේ දැල්වුණු පැරණි ලාම්පුව", "අමුතු සිතියමක සඳහන් ස්ථානය", "පැරණි පෙට්ටියේ තිබුණු අභිරහස් යතුර",
+            "අඳුරු රාත්‍රියේ ඇසුණු පියවර", "පැරණි ගසේ කොටා තිබුණු සලකුණ", "රාත්‍රියේ ඇසුණු සිහින් මුමුණුව", "පැරණි පොතක සැඟවුණු පණිවිඩය", "අඳුරු නිවසේ අමුතු කාමරය",
+            "පැරණි සීනුවේ අවසන් හඬ", "රාත්‍රියේ පෙනුණු අමුතු සෙවණැල්ල", "පැරණි ලියවිල්ලේ අබිරහස", "අඳුරු මාවතේ මඟ පෙන්වූ ආලෝකය", "පැරණි කාමරයේ නතර වූ ඔරලෝසුව",
+            "රාත්‍රියේ ඇසුණු පැරණි ගීතය", "පැරණි වත්තේ අමුතු සලකුණ", "අඳුරු කොරිඩෝවේ අවසන් දොර", "පැරණි ඡායාරූපයේ අමුතු වෙනස", "රාත්‍රියේ ඇසුණු සිහින් තට්ටු කිරීම",
+            "පැරණි පෙට්ටියේ සැඟවුණු කතාව", "අඳුරු රාත්‍රියේ සීතල සුළඟ", "පැරණි කාමරයේ අභිරහස් පිටුව", "රාත්‍රියේ පෙනුණු අමුතු සෙවණැල්ල", "අඳුරු අභිරහසේ අවසන් පිටුව"
+        ];
 
-        if (window.parent && window.parent !== window) {
-            window.parent.postMessage({ type: 'PLAY_AUDIO', key: 'horror' }, '*');
-        } else {
-            horrorAudio.play().catch(() => {});
-        }
+        const grid = document.getElementById('grid');
+        const listView = document.getElementById('list-view');
+        const reader = document.getElementById('reader');
+        const readerTitle = document.getElementById('reader-title');
+        const readerBody = document.getElementById('reader-body');
 
-        document.getElementById('btn-go-top').addEventListener('click', () => {
-            if (window.parent && window.parent !== window) {
-                window.parent.postMessage({ type: 'GO_HOME' }, '*');
-            } else {
-                window.location.href = 'index.html';
-            }
+        topics.forEach((t, i) => {
+            const title = `${i + 1}. ${t}`;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'story-btn';
+            btn.textContent = title;
+            btn.onclick = () => {
+                readerTitle.textContent = title;
+                readerBody.textContent = `"${t}" කතාවේ සවස් යාමයේ මඳ අඳුර සමඟ පුංචි ත්‍රාසයක් සහ කුතුහලයක් ඇති වුණත්, ධෛර්යයෙන් සොයා බලද්දී ඒ පිටුපස තිබුණු අපූරු රහස හෙළි වුණා.`;
+                listView.style.display = 'none';
+                reader.classList.add('active');
+            };
+            grid.appendChild(btn);
         });
+
+        function closeStory() {
+            reader.classList.remove('active');
+            listView.style.display = 'block';
+        }
     </script>
 </body>
 </html>
