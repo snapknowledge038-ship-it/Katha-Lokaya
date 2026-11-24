@@ -8,46 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Fredoka:wght@500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ==========================================================================
-           1. THEME VARIABLES & ROOT SETTINGS
-           ========================================================================== */
-        :root {
-            --kids-bg-1: #ff9a9e;
-            --kids-bg-2: #fecfef;
-            --kids-bg-3: #a1c4fd;
-            --kids-bg-4: #c2e9fb;
-            --kids-title: #be185d;
-            --kids-btn-1: #ff512f;
-            --kids-btn-2: #dd2476;
-
-            --det-bg-1: #1d4ed8;
-            --det-bg-2: #0284c7;
-            --det-bg-3: #0d9488;
-            --det-title: #e0f2fe;
-            --det-btn-1: #fbbf24;
-            --det-btn-2: #f97316;
-
-            --hor-bg-1: #3b0000;
-            --hor-bg-2: #140000;
-            --hor-bg-3: #050000;
-            --hor-title: #ef4444;
-            --hor-btn-1: #7f1d1d;
-            --hor-btn-2: #240000;
-
-            --dark-bar: #0b0614;
-            --white: #ffffff;
-            --text-dark: #1e293b;
-            --text-light: #f8fafc;
-            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* ==========================================================================
-           2. GLOBAL RESET & BASE RULES
-           ========================================================================== */
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -55,7 +16,6 @@
 
         html {
             scroll-behavior: smooth;
-            font-size: 16px;
             background-color: #050000;
         }
 
@@ -63,9 +23,8 @@
             font-family: 'Noto Sans Sinhala', 'Fredoka', sans-serif;
             overflow-x: hidden;
             background-color: #050000;
-            color: var(--text-dark);
+            color: #1e293b;
             min-height: 100vh;
-            position: relative;
         }
 
         button {
@@ -75,23 +34,15 @@
             background: none;
         }
 
-        button:focus-visible {
-            outline: 3px solid #38bdf8;
-            outline-offset: 2px;
-        }
-
-        /* ==========================================================================
-           3. TOP AUDIO CONTROL BAR (PLACED ABOVE EVERYTHING)
-           ========================================================================== */
+        /* Top Audio Bar */
         .top-audio-bar {
             position: sticky;
             top: 0;
-            z-index: 120;
+            z-index: 150;
             width: 100%;
             padding: 9px 16px;
             background: rgba(10, 5, 18, 0.92);
             backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.14);
             display: flex;
             align-items: center;
@@ -110,19 +61,14 @@
             color: #ffffff;
             font-size: 0.95rem;
             font-weight: 700;
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
             border: 1.5px solid rgba(255, 255, 255, 0.45);
-            transition: transform 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out), filter 0.2s ease;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+            transition: transform 0.2s ease, filter 0.2s ease;
         }
 
         .top-audio-btn:hover {
-            transform: translateY(-1px) scale(1.03);
-            box-shadow: 0 10px 26px rgba(236, 72, 153, 0.55);
+            transform: scale(1.03);
             filter: brightness(1.06);
-        }
-
-        .top-audio-btn:active {
-            transform: scale(0.98);
         }
 
         .eq-wave {
@@ -137,7 +83,6 @@
             height: 5px;
             border-radius: 999px;
             background: #ffffff;
-            transition: height 0.2s ease;
         }
 
         .eq-wave.active span:nth-child(1) { animation: wavePulse 0.7s ease-in-out infinite; }
@@ -150,11 +95,8 @@
             50% { height: 15px; }
         }
 
-        /* ==========================================================================
-           4. COMPACT 3 HERO SECTIONS WITH SOFT BLUR BLEND
-           ========================================================================== */
+        /* 3 Compact Hero Sections */
         .hero-wrapper {
-            position: relative;
             min-height: calc(100vh - 52px);
             display: flex;
             flex-direction: column;
@@ -171,7 +113,6 @@
             padding: 36px 20px;
             position: relative;
             overflow: hidden;
-            transition: filter 0.35s var(--ease-smooth);
         }
 
         .hero-section::after {
@@ -190,30 +131,10 @@
             position: relative;
             z-index: 20;
             max-width: 780px;
-            animation: floatUpContent 0.85s var(--ease-out) both;
         }
 
-        @keyframes floatUpContent {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* -------- Section 1: Colorful Kids / Novel -------- */
         #hero-kids {
-            background: linear-gradient(135deg, var(--kids-bg-1) 0%, var(--kids-bg-2) 38%, var(--kids-bg-3) 75%, var(--kids-bg-4) 100%);
-            background-size: 200% 200%;
-            animation: shiftGradientKids 14s ease-in-out infinite alternate;
-        }
-
-        @keyframes shiftGradientKids {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 38%, #a1c4fd 75%, #c2e9fb 100%);
         }
 
         #hero-kids::after {
@@ -223,55 +144,35 @@
         #hero-kids h1 {
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
             font-size: 2.35rem;
-            color: var(--kids-title);
-            text-shadow: 2px 2px 0px var(--white), 0 8px 24px rgba(190, 24, 93, 0.22);
+            color: #be185d;
+            text-shadow: 2px 2px 0px #ffffff;
             margin-bottom: 8px;
-            letter-spacing: 0.3px;
         }
 
         #hero-kids p {
-            font-size: 1.06rem;
-            color: var(--text-dark);
+            font-size: 1.05rem;
+            color: #1e293b;
             font-weight: 600;
             margin-bottom: 18px;
         }
 
         .btn-hero-kids {
-            background: linear-gradient(45deg, var(--kids-btn-1), var(--kids-btn-2));
-            color: var(--white);
+            background: linear-gradient(45deg, #ff512f, #dd2476);
+            color: #ffffff;
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
             font-size: 1.12rem;
             font-weight: 700;
-            padding: 13px 34px;
-            border: 3px solid var(--white);
+            padding: 13px 32px;
+            border: 3px solid #ffffff;
             border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 24px rgba(221, 36, 118, 0.38);
-            position: relative;
-            z-index: 30;
-            transition: transform 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out), filter 0.2s ease;
+            box-shadow: 0 10px 22px rgba(221, 36, 118, 0.35);
+            transition: transform 0.2s ease;
         }
 
-        .btn-hero-kids:hover {
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 16px 32px rgba(221, 36, 118, 0.52);
-            filter: brightness(1.05);
-        }
+        .btn-hero-kids:hover { transform: scale(1.04); }
 
-        .btn-hero-kids:active {
-            transform: scale(0.98);
-        }
-
-        /* -------- Section 2: Detective -------- */
         #hero-detective {
-            background: linear-gradient(135deg, var(--det-bg-1) 0%, var(--det-bg-2) 50%, var(--det-bg-3) 100%);
-            background-size: 200% 200%;
-            animation: shiftGradientDet 16s ease-in-out infinite alternate;
-        }
-
-        @keyframes shiftGradientDet {
-            0% { background-position: 0% 25%; }
-            100% { background-position: 100% 75%; }
+            background: linear-gradient(135deg, #1d4ed8 0%, #0284c7 50%, #0d9488 100%);
         }
 
         #hero-detective::after {
@@ -281,62 +182,34 @@
         #hero-detective h1 {
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
             font-size: 2.35rem;
-            color: var(--det-title);
-            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.42);
+            color: #e0f2fe;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
             margin-bottom: 8px;
-            letter-spacing: 0.4px;
         }
 
         #hero-detective p {
-            font-size: 1.06rem;
+            font-size: 1.05rem;
             color: #f0f9ff;
-            font-weight: 500;
             margin-bottom: 18px;
         }
 
         .btn-hero-detective {
-            background: linear-gradient(45deg, var(--det-btn-1), var(--det-btn-2));
+            background: linear-gradient(45deg, #fbbf24, #f97316);
             color: #111827;
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
             font-size: 1.12rem;
             font-weight: 700;
-            padding: 13px 34px;
+            padding: 13px 32px;
             border: 3px solid #fef3c7;
             border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
-            position: relative;
-            z-index: 30;
-            transition: transform 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out), filter 0.2s ease;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
         }
 
-        .btn-hero-detective:hover {
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 16px 32px rgba(251, 191, 36, 0.45);
-            filter: brightness(1.05);
-        }
+        .btn-hero-detective:hover { transform: scale(1.04); }
 
-        .btn-hero-detective:active {
-            transform: scale(0.98);
-        }
-
-        /* -------- Section 3: Kid-Friendly Horror -------- */
         #hero-horror {
-            background: radial-gradient(circle at center, var(--hor-bg-1) 0%, var(--hor-bg-2) 65%, var(--hor-bg-3) 100%);
-        }
-
-        #hero-horror::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.14), transparent 68%);
-            animation: horrorPulseGlow 4.5s ease-in-out infinite alternate;
-            pointer-events: none;
-        }
-
-        @keyframes horrorPulseGlow {
-            0% { opacity: 0.45; transform: scale(0.96); }
-            100% { opacity: 1; transform: scale(1.04); }
+            background: radial-gradient(circle at center, #3b0000 0%, #140000 65%, #050000 100%);
         }
 
         #hero-horror::after {
@@ -346,70 +219,34 @@
         #hero-horror h1 {
             font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
             font-size: 2.3rem;
-            color: var(--hor-title);
-            text-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 4px 12px rgba(0, 0, 0, 0.9);
+            color: #ef4444;
+            text-shadow: 0 0 18px rgba(239, 68, 68, 0.75);
             letter-spacing: 2px;
             margin-bottom: 8px;
         }
 
         #hero-horror p {
-            font-size: 1.04rem;
+            font-size: 1.03rem;
             color: #e5d4d4;
             margin-bottom: 18px;
         }
 
         .btn-hero-horror {
-            background: linear-gradient(180deg, var(--hor-btn-1), var(--hor-btn-2));
+            background: linear-gradient(180deg, #7f1d1d, #240000);
             color: #fee2e2;
             font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
             font-size: 1.1rem;
             font-weight: 700;
-            padding: 13px 36px;
+            padding: 13px 34px;
             border: 2px solid #ef4444;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 0 24px rgba(220, 38, 38, 0.65);
-            position: relative;
-            z-index: 30;
-            transition: transform 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out), background 0.2s ease;
+            border-radius: 10px;
+            box-shadow: 0 0 22px rgba(220, 38, 38, 0.65);
+            transition: transform 0.2s ease;
         }
 
-        .btn-hero-horror:hover {
-            transform: translateY(-3px) scale(1.03);
-            background: linear-gradient(180deg, #991b1b, #360000);
-            box-shadow: 0 0 34px rgba(239, 68, 68, 0.88);
-        }
+        .btn-hero-horror:hover { transform: scale(1.04); }
 
-        .btn-hero-horror:active {
-            transform: scale(0.98);
-        }
-
-        /* ==========================================================================
-           5. DECORATIVE FLOATING MOTIFS INSIDE SECTIONS
-           ========================================================================== */
-        .motif-layer {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 4;
-            overflow: hidden;
-        }
-
-        .motif-dot {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.35;
-            animation: floatDot 9s ease-in-out infinite alternate;
-        }
-
-        @keyframes floatDot {
-            0% { transform: translateY(0px) scale(1); }
-            100% { transform: translateY(-14px) scale(1.12); }
-        }
-
-        /* ==========================================================================
-           6. IFRAME VIEWER OVERLAY
-           ========================================================================== */
+        /* Iframe Overlay */
         #page-frame-container {
             display: none;
             position: fixed;
@@ -417,16 +254,10 @@
             z-index: 200;
             background: #06030d;
             flex-direction: column;
-            animation: fadeFrameIn 0.24s var(--ease-smooth);
         }
 
         #page-frame-container.active {
             display: flex;
-        }
-
-        @keyframes fadeFrameIn {
-            from { opacity: 0; transform: scale(0.99); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         .frame-topbar {
@@ -440,20 +271,9 @@
             gap: 12px;
         }
 
-        .frame-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .frame-title {
             font-size: 1rem;
             font-weight: 700;
-        }
-
-        .frame-status-bulb {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #22c55e;
-            box-shadow: 0 0 10px #22c55e;
         }
 
         .frame-controls {
@@ -464,340 +284,162 @@
 
         .frame-btn {
             padding: 8px 16px;
-            border: none;
             border-radius: 999px;
             font-size: 0.9rem;
             font-weight: 700;
-            cursor: pointer;
             background: #ef4444;
             color: #ffffff;
-            transition: transform 0.2s var(--ease-out), filter 0.2s ease;
-        }
-
-        .frame-btn:hover {
-            transform: scale(1.04);
-            filter: brightness(1.08);
         }
 
         .frame-btn.sound-btn {
             background: linear-gradient(135deg, #6366f1, #ec4899);
         }
 
-        .frame-stage {
-            position: relative;
+        #story-iframe {
             flex: 1;
             width: 100%;
             height: 100%;
-            background: #080512;
-        }
-
-        .frame-loader {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: rgba(8, 5, 18, 0.88);
-            color: #f1f5f9;
-            z-index: 6;
-            transition: opacity 0.25s ease;
-        }
-
-        .frame-loader.hide {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader-spin {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.16);
-            border-top-color: #f472b6;
-            border-radius: 50%;
-            animation: spinLoader 0.8s linear infinite;
-        }
-
-        @keyframes spinLoader {
-            to { transform: rotate(360deg); }
-        }
-
-        #story-iframe {
-            width: 100%;
-            height: 100%;
             border: none;
-            display: block;
             background: #ffffff;
         }
 
-        /* ==========================================================================
-           7. RESPONSIVE MEDIA QUERIES
-           ========================================================================== */
-        @media (max-width: 768px) {
-            #hero-kids h1,
-            #hero-detective h1,
-            #hero-horror h1 {
-                font-size: 1.88rem;
-            }
-            .hero-section {
-                padding: 28px 16px;
-            }
-            .btn-hero-kids,
-            .btn-hero-detective,
-            .btn-hero-horror {
-                font-size: 1rem;
-                padding: 12px 26px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #hero-kids h1,
-            #hero-detective h1,
-            #hero-horror h1 {
-                font-size: 1.58rem;
-            }
-            .top-audio-btn {
-                padding: 7px 18px;
-                font-size: 0.88rem;
-            }
-            .frame-topbar {
-                padding: 9px 12px;
-            }
-            .frame-btn {
-                padding: 7px 12px;
-                font-size: 0.82rem;
-            }
+        @media (max-width: 650px) {
+            #hero-kids h1, #hero-detective h1, #hero-horror h1 { font-size: 1.82rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Audio Button Bar (Placed Above Everything, No Audio File Names Shown) -->
     <div class="top-audio-bar">
         <button type="button" id="top-audio-btn" class="top-audio-btn" onclick="toggleAudio()">
             <span id="top-eq" class="eq-wave">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span><span></span>
             </span>
             <span id="top-audio-text">🔊 Music</span>
         </button>
     </div>
 
-    <!-- Compact 3 Hero Sections -->
     <div class="hero-wrapper">
-
-        <!-- Section 1: Novel -->
         <section id="hero-kids" class="hero-section">
-            <div class="motif-layer" id="motif-kids" aria-hidden="true"></div>
             <div class="hero-content">
                 <h1>🌈 ලස්සන කෙටි කතා</h1>
                 <p>පුංචි ළමයින්ට ආදර්ශවත්, සතුට ගෙන දෙන වර්ණවත් කෙටි කතා 50ක්.</p>
-                <button type="button" class="btn-hero-kids" onclick="openSection('novel.html', 'n.mp3', '🌈 ලස්සන කෙටි කතා 50')">
+                <button type="button" class="btn-hero-kids" onclick="openPage('novel.html', 'n.mp3', '🌈 ලස්සන කෙටි කතා 50')">
                     ✨ කෙටි කතා 50 බලන්න
                 </button>
             </div>
         </section>
 
-        <!-- Section 2: Detectives -->
         <section id="hero-detective" class="hero-section">
-            <div class="motif-layer" id="motif-detective" aria-hidden="true"></div>
             <div class="hero-content">
                 <h1>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා</h1>
                 <p>පුංචි ඉඟි සහ බුද්ධිය එකතු කරගෙන අභිරහස් විසඳන ළමා රහස් පරීක්ෂක කතා 50ක්.</p>
-                <button type="button" class="btn-hero-detective" onclick="openSection('detectives.html', 'd.mp3', '🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">
+                <button type="button" class="btn-hero-detective" onclick="openPage('detectives.html', 'd.mp3', '🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">
                     🔎 රහස් කතා 50 බලන්න
                 </button>
             </div>
         </section>
 
-        <!-- Section 3: Horror -->
         <section id="hero-horror" class="hero-section">
-            <div class="motif-layer" id="motif-horror" aria-hidden="true"></div>
             <div class="hero-content">
                 <h1>🕯️ SPOOKY MYSTERIES</h1>
                 <p>ළමයින්ට ගැළපෙන විදියට අධික බිය අඩු කළ, අඳුරු අභිරහස් සහ පුංචි ත්‍රාසය පිරුණු කතා 50ක්.</p>
-                <button type="button" class="btn-hero-horror" onclick="openSection('horror.html', 'h.mp3', '🕯️ අඳුරු අභිරහස් කතා 50')">
+                <button type="button" class="btn-hero-horror" onclick="openPage('horror.html', 'h.mp3', '🕯️ අඳුරු අභිරහස් කතා 50')">
                     🌑 අභිරහස් කතා 50 බලන්න
                 </button>
             </div>
         </section>
-
     </div>
 
-    <!-- Iframe Overlay Container -->
     <div id="page-frame-container">
         <div class="frame-topbar">
-            <div class="frame-brand">
-                <span class="frame-status-bulb" aria-hidden="true"></span>
-                <span id="frame-title">කතා ලෝකය 150</span>
-            </div>
+            <span id="frame-title" class="frame-title">කතා ලෝකය 150</span>
             <div class="frame-controls">
                 <button type="button" id="frame-audio-btn" class="frame-btn sound-btn" onclick="toggleAudio()">🔊 Music</button>
-                <button type="button" class="frame-btn" onclick="closeSection()">⬅ මුල් පිටුවට</button>
+                <button type="button" class="frame-btn" onclick="closePage()">⬅ මුල් පිටුවට</button>
             </div>
         </div>
-        <div class="frame-stage">
-            <div id="frame-loader" class="frame-loader">
-                <div class="loader-spin"></div>
-                <span>පිටුව විවෘත වෙමින් පවතී...</span>
-            </div>
-            <iframe id="story-iframe" src="about:blank" title="Story Section"></iframe>
-        </div>
+        <iframe id="story-iframe" src="about:blank" title="Story Page"></iframe>
     </div>
 
-    <!-- Audio Player (Tracks Switched Silently Without Displaying Filenames) -->
     <audio id="bg-audio" src="i.mp3" loop preload="auto"></audio>
 
     <script>
-        /* ======================================================================
-           1. SUBTLE DECORATIVE FLOATING MOTIFS
-           ====================================================================== */
-        (function populateSectionMotifs() {
-            const configs = [
-                { id: 'motif-kids', colors: ['#ffffff', '#fde047', '#f472b6'], count: 10 },
-                { id: 'motif-detective', colors: ['#e0f2fe', '#99f6e4', '#fde68a'], count: 10 },
-                { id: 'motif-horror', colors: ['#ef4444', '#7f1d1d', '#fca5a5'], count: 10 }
-            ];
-
-            configs.forEach((cfg) => {
-                const container = document.getElementById(cfg.id);
-                if (!container) return;
-
-                for (let i = 0; i < cfg.count; i++) {
-                    const dot = document.createElement('span');
-                    dot.className = 'motif-dot';
-                    const size = Math.floor(Math.random() * 10) + 5;
-                    dot.style.width = `${size}px`;
-                    dot.style.height = `${size}px`;
-                    dot.style.left = `${Math.floor(Math.random() * 94) + 3}%`;
-                    dot.style.top = `${Math.floor(Math.random() * 84) + 8}%`;
-                    dot.style.backgroundColor = cfg.colors[i % cfg.colors.length];
-                    dot.style.animationDelay = `${(i * 0.45).toFixed(2)}s`;
-                    dot.style.animationDuration = `${(Math.random() * 4 + 7).toFixed(2)}s`;
-                    container.appendChild(dot);
-                }
-            });
-        })();
-
-        /* ======================================================================
-           2. AUDIO CONTROLLER (i.mp3 / n.mp3 / d.mp3 / h.mp3)
-           ====================================================================== */
         const bgAudio = document.getElementById('bg-audio');
         const topEq = document.getElementById('top-eq');
         const topAudioText = document.getElementById('top-audio-text');
         const frameAudioBtn = document.getElementById('frame-audio-btn');
+        const frameContainer = document.getElementById('page-frame-container');
+        const storyIframe = document.getElementById('story-iframe');
+        const frameTitle = document.getElementById('frame-title');
 
-        let activeTrack = 'i.mp3';
+        let currentTrack = 'i.mp3';
         let isMuted = false;
 
-        function syncAudioIndicator(playing) {
-            const shouldAnimate = Boolean(playing && !isMuted);
-            if (topEq) {
-                topEq.classList.toggle('active', shouldAnimate);
-            }
-            if (topAudioText) {
-                topAudioText.textContent = shouldAnimate ? '🔊 Music On' : '🔇 Music Off';
-            }
-            if (frameAudioBtn) {
-                frameAudioBtn.textContent = shouldAnimate ? '🔊 Music On' : '🔇 Music Off';
-            }
+        function updateUI(playing) {
+            const active = Boolean(playing && !isMuted);
+            if (topEq) topEq.classList.toggle('active', active);
+            if (topAudioText) topAudioText.textContent = active ? '🔊 Music On' : '🔇 Music Off';
+            if (frameAudioBtn) frameAudioBtn.textContent = active ? '🔊 Music On' : '🔇 Music Off';
         }
 
-        function setTrackAndPlay(trackName) {
-            activeTrack = trackName || 'i.mp3';
-            if (bgAudio.getAttribute('src') !== activeTrack) {
-                bgAudio.src = activeTrack;
+        function playTrack(track) {
+            currentTrack = track || 'i.mp3';
+            if (bgAudio.getAttribute('src') !== currentTrack) {
+                bgAudio.src = currentTrack;
                 bgAudio.load();
             }
-            syncAudioIndicator(false);
-
-            if (isMuted) return;
-
-            bgAudio.play()
-                .then(() => syncAudioIndicator(true))
-                .catch(() => syncAudioIndicator(false));
+            if (isMuted) {
+                updateUI(false);
+                return;
+            }
+            bgAudio.play().then(() => updateUI(true)).catch(() => updateUI(false));
         }
 
         function toggleAudio() {
             isMuted = !isMuted;
             if (isMuted) {
                 bgAudio.pause();
-                syncAudioIndicator(false);
+                updateUI(false);
             } else {
-                setTrackAndPlay(activeTrack);
+                playTrack(currentTrack);
             }
         }
 
-        bgAudio.addEventListener('play', () => syncAudioIndicator(true));
-        bgAudio.addEventListener('pause', () => syncAudioIndicator(false));
+        bgAudio.addEventListener('play', () => updateUI(true));
+        bgAudio.addEventListener('pause', () => updateUI(false));
 
-        window.addEventListener('DOMContentLoaded', () => {
-            setTrackAndPlay('i.mp3');
-        });
-
+        window.addEventListener('DOMContentLoaded', () => playTrack('i.mp3'));
         window.addEventListener('load', () => {
-            if (bgAudio.paused && !isMuted) {
-                setTrackAndPlay(activeTrack);
-            }
+            if (bgAudio.paused && !isMuted) playTrack(currentTrack);
         });
 
-        function unlockOnFirstTap() {
-            if (!isMuted && bgAudio.paused) {
-                setTrackAndPlay(activeTrack);
-            }
-            document.removeEventListener('pointerdown', unlockOnFirstTap);
-            document.removeEventListener('keydown', unlockOnFirstTap);
-        }
+        const unlockOnce = () => {
+            if (!isMuted && bgAudio.paused) playTrack(currentTrack);
+            document.removeEventListener('pointerdown', unlockOnce);
+            document.removeEventListener('keydown', unlockOnce);
+        };
+        document.addEventListener('pointerdown', unlockOnce);
+        document.addEventListener('keydown', unlockOnce);
 
-        document.addEventListener('pointerdown', unlockOnFirstTap);
-        document.addEventListener('keydown', unlockOnFirstTap);
-
-        /* ======================================================================
-           3. IFRAME PAGE SWITCHER
-           ====================================================================== */
-        const frameContainer = document.getElementById('page-frame-container');
-        const storyIframe = document.getElementById('story-iframe');
-        const frameTitle = document.getElementById('frame-title');
-        const frameLoader = document.getElementById('frame-loader');
-
-        function openSection(pageFile, trackFile, headingLabel) {
-            if (frameTitle && headingLabel) {
-                frameTitle.textContent = headingLabel;
-            }
-            if (frameLoader) {
-                frameLoader.classList.remove('hide');
-            }
-
+        function openPage(pageFile, trackFile, title) {
+            if (frameTitle && title) frameTitle.textContent = title;
             frameContainer.classList.add('active');
             document.body.style.overflow = 'hidden';
-
-            setTrackAndPlay(trackFile);
+            playTrack(trackFile);
             storyIframe.src = pageFile;
         }
 
-        function closeSection() {
+        function closePage() {
             frameContainer.classList.remove('active');
             document.body.style.overflow = '';
             storyIframe.src = 'about:blank';
-
-            setTrackAndPlay('i.mp3');
+            playTrack('i.mp3');
         }
 
-        storyIframe.addEventListener('load', () => {
-            const src = storyIframe.getAttribute('src') || '';
-            if (src && src !== 'about:blank' && frameLoader) {
-                setTimeout(() => {
-                    frameLoader.classList.add('hide');
-                }, 160);
-            }
-        });
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && frameContainer.classList.contains('active')) {
-                closeSection();
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && frameContainer.classList.contains('active')) {
+                closePage();
             }
         });
     </script>
