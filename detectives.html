@@ -3,51 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detectives - 50 Stories</title>
+    <title>ළමා රහස් පරීක්ෂක කතා 50</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Noto+Sans+Sinhala:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f2fe 0%, #e0e7ff 52%, #ccfbf1 100%);
+            padding: 36px 20px;
+            text-align: center;
+            color: #0f172a;
+        }
+        h1 {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            color: #0369a1;
+            font-size: 2.1rem;
+            margin-bottom: 8px;
+        }
+        .sub {
+            color: #334155;
+            margin-bottom: 26px;
+        }
+        .grid-50 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .story-btn {
+            padding: 14px 12px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            border-radius: 16px;
+            border: 2px solid #ffffff;
+            background: linear-gradient(135deg, #93c5fd 0%, #99f6e4 100%);
+            color: #0f172a;
+            cursor: pointer;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
+        }
+        .story-btn:nth-child(3n) {
+            background: linear-gradient(135deg, #c7d2fe 0%, #a5f3fc 100%);
+        }
+        .story-btn:hover { transform: translateY(-3px); }
+        #reader {
+            display: none;
+            max-width: 840px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 4px solid #0284c7;
+            border-radius: 24px;
+            padding: 32px;
+            text-align: left;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+        }
+        #reader.active { display: block; }
+        #reader-title {
+            color: #0369a1;
+            font-size: 1.7rem;
+            margin-bottom: 16px;
+        }
+        #reader-body {
+            font-size: 1.1rem;
+            line-height: 1.95;
+            white-space: pre-line;
+            margin-bottom: 24px;
+        }
+        .back-btn {
+            padding: 11px 24px;
+            border: none;
+            border-radius: 25px;
+            background: #0284c7;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <section id="detective-list-section" class="list-section">
-        <div class="list-header">
-            <h2>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50 🔎</h2>
-            <p>මෙතැන ඇත්තේ ළමා රහස් පරීක්ෂක කතා 50 පමණි. කැමති කතාවක් ඔබා කියවන්න.</p>
-        </div>
-        <div id="story-grid" class="grid-50"></div>
-        <div class="bottom-nav-area">
-            <button type="button" id="btn-go-top" class="end-top-btn detective-top-btn">⬆ ඉහළට යන්න</button>
-        </div>
-    </section>
 
-    <section id="reader-section">
-        <div class="reader-box">
-            <h2 id="reader-title" class="reader-title"></h2>
-            <div id="reader-text" class="reader-text"></div>
-            <button type="button" id="btn-back-list" class="reader-back-btn">⬅ කතා ලැයිස්තුවට ආපසු</button>
-        </div>
-    </section>
+    <audio id="detective-music" src="d.mp3" autoplay loop></audio>
 
-    <script src="script.js"></script>
+    <div id="list-view">
+        <h1>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50 🔎</h1>
+        <p class="sub">කැමති කතාවක් ඔබා කියවන්න.</p>
+        <div id="grid" class="grid-50"></div>
+    </div>
+
+    <div id="reader">
+        <h2 id="reader-title"></h2>
+        <div id="reader-body"></div>
+        <button type="button" class="back-btn" onclick="closeStory()">⬅ ලැයිස්තුවට</button>
+    </div>
+
     <script>
-        initStoryPage('detective');
+        const music = document.getElementById('detective-music');
+        window.addEventListener('load', () => music.play().catch(() => {}));
+        document.addEventListener('click', () => { if (music.paused) music.play().catch(() => {}); }, { once: true });
 
-        // Audio d.mp3 trigger (and optional d.html embed support if needed)
-        const detectiveAudio = new Audio('d.mp3');
-        detectiveAudio.loop = true;
+        const topics = [
+            "නැති වුණු පාසල් සීනුව", "පුස්තකාලයේ රහස් පිටුව", "අතුරුදහන් වූ රෝබෝ ආකෘතිය", "මල් වත්තේ රහස් පා සටහන්", "අබිරහස් ලිපි මාලාව",
+            "නැති වුණු විද්‍යා ප්‍රශ්න පත්‍රය", "පාසල් උයනේ අමුතු හඬ", "අතුරුදහන් වූ ගණිත පුවරුව", "නැති වුණු පාපන්දුව", "අබිරහස් ටයි පටිය",
+            "පරිගණක කාමරයේ යතුරු පුවරුව", "නැති වුණු ශිෂ්‍ය නායක ලාංඡනය", "සඟරාවේ නැති වුණු කවි පිටුව", "ගිනි නිවන උපකරණයේ කැඩුණු සීල් එක", "අබිරහස් පාසල් බෙරයේ හඬ",
+            "ත්‍යාග කුසලානයේ නම් තහඩුව", "නැති වුණු චිත්‍ර පොත", "පාසල් බෑගයේ හුවමාරුව", "අබිරහස් පා සටහන් රේඛාව", "නැති වුණු විද්‍යා සටහන් පොත",
+            "පාසල් ගෙවත්තේ නැති වුණු පෝච්චිය", "අතුරුදහන් වූ ක්‍රීඩා අත්වැසුම්", "නැති වුණු ශබ්ද විකාශන කේබලය", "අබිරහස් පාසල් දිනපොත", "නැති වුණු භූගෝල සිතියම",
+            "පාසල් ශාලාවේ නැති වුණු පුටුව", "අතුරුදහන් වූ පාට පෙට්ටිය", "නැති වුණු කාල සටහන් පුවරුව", "අබිරහස් ගණිත සටහන් කොළය", "නැති වුණු පාසල් කොඩිය",
+            "පාසල් පුස්තකාලයේ නැති වුණු කාඩ්පත", "අතුරුදහන් වූ පුංචි බටනලාව", "නැති වුණු මිනුම් පටිය", "අබිරහස් පාසල් තැපැල් පෙට්ටිය", "නැති වුණු විද්‍යා කාචය",
+            "පාසල් උද්‍යානයේ නැති වුණු පුවරුව", "අතුරුදහන් වූ ක්‍රීඩා ලකුණු පොත", "නැති වුණු සංගීත ස්වර පිටුව", "අබිරහස් පාසල් මුද්‍රාව", "නැති වුණු පරිගණක මවුසය",
+            "පාසල් කලාගාරයේ නැති වුණු පින්සල", "අතුරුදහන් වූ කාල මාපකය", "නැති වුණු පාසල් නිල ඇඳුම් බොත්තම", "අබිරහස් පාසල් සැලැස්ම", "නැති වුණු විද්‍යා පරීක්ෂණ සටහන",
+            "පාසල් වත්තේ නැති වුණු ජල බටය", "අතුරුදහන් වූ ක්‍රීඩා තොප්පිය", "නැති වුණු පාසල් සඟරා පිටපත", "අබිරහස් කාමර යතුර", "නැති වුණු අවසන් ඉඟියේ සටහන"
+        ];
 
-        if (window.parent && window.parent !== window) {
-            window.parent.postMessage({ type: 'PLAY_AUDIO', key: 'detectives' }, '*');
-        } else {
-            detectiveAudio.play().catch(() => {});
-        }
+        const grid = document.getElementById('grid');
+        const listView = document.getElementById('list-view');
+        const reader = document.getElementById('reader');
+        const readerTitle = document.getElementById('reader-title');
+        const readerBody = document.getElementById('reader-body');
 
-        document.getElementById('btn-go-top').addEventListener('click', () => {
-            if (window.parent && window.parent !== window) {
-                window.parent.postMessage({ type: 'GO_HOME' }, '*');
-            } else {
-                window.location.href = 'index.html';
-            }
+        topics.forEach((t, i) => {
+            const title = `${i + 1}. ${t}`;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'story-btn';
+            btn.textContent = title;
+            btn.onclick = () => {
+                readerTitle.textContent = title;
+                readerBody.textContent = `"${t}" පරීක්ෂණයේදී තරුණ රහස් පරීක්ෂකයන් පුංචි ඉඟි හොඳින් නිරීක්ෂණය කරලා, සාක්ෂි එකතු කරලා, අවසානයේ සැබෑ හේතුව බුද්ධිමත්ව සොයාගත්තා.`;
+                listView.style.display = 'none';
+                reader.classList.add('active');
+            };
+            grid.appendChild(btn);
         });
+
+        function closeStory() {
+            reader.classList.remove('active');
+            listView.style.display = 'block';
+        }
     </script>
 </body>
 </html>
