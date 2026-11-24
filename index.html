@@ -3,55 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>කතා ලෝකය 150 | Story World Portal</title>
-    <meta name="description" content="ආදර්ශවත් කෙටි කතා 50ක්, ළමා රහස් පරීක්ෂක කතා 50ක් සහ අඳුරු අභිරහස් කතා 50ක් ඇතුළත් සම්පූර්ණ ඩිජිටල් කතා portal එක.">
+    <title>කතා ලෝකය 150</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Fredoka:wght@500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================================
-           1. CSS CUSTOM PROPERTIES & THEME VARIABLES
+           1. THEME VARIABLES & ROOT SETTINGS
            ========================================================================== */
         :root {
-            --bg-void: #05020a;
-            --bg-deep: #0b0716;
-            --bg-panel: rgba(16, 12, 30, 0.78);
-            --bg-panel-solid: #120d24;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
+            --kids-bg-1: #ff9a9e;
+            --kids-bg-2: #fecfef;
+            --kids-bg-3: #a1c4fd;
+            --kids-bg-4: #c2e9fb;
+            --kids-title: #be185d;
+            --kids-btn-1: #ff512f;
+            --kids-btn-2: #dd2476;
 
-            --kids-a: #ff6b9d;
-            --kids-b: #ffd166;
-            --kids-c: #4cc9f0;
-            --kids-glow: rgba(255, 107, 157, 0.45);
+            --det-bg-1: #1d4ed8;
+            --det-bg-2: #0284c7;
+            --det-bg-3: #0d9488;
+            --det-title: #e0f2fe;
+            --det-btn-1: #fbbf24;
+            --det-btn-2: #f97316;
 
-            --det-a: #38bdf8;
-            --det-b: #2dd4bf;
-            --det-c: #818cf8;
-            --det-glow: rgba(56, 189, 248, 0.45);
+            --hor-bg-1: #3b0000;
+            --hor-bg-2: #140000;
+            --hor-bg-3: #050000;
+            --hor-title: #ef4444;
+            --hor-btn-1: #7f1d1d;
+            --hor-btn-2: #240000;
 
-            --hor-a: #ef4444;
-            --hor-b: #991b1b;
-            --hor-c: #f87171;
-            --hor-glow: rgba(239, 68, 68, 0.55);
-
-            --border-subtle: rgba(255, 255, 255, 0.12);
-            --border-strong: rgba(255, 255, 255, 0.24);
-            --radius-xl: 28px;
-            --radius-lg: 20px;
-            --radius-md: 14px;
-            --radius-sm: 10px;
-            --radius-pill: 999px;
-
-            --shadow-card: 0 24px 60px rgba(0, 0, 0, 0.55);
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
-            --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+            --dark-bar: #0b0614;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
             --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* ==========================================================================
-           2. RESET & BASE DOCUMENT STYLES
+           2. GLOBAL RESET & BASE RULES
            ========================================================================== */
         *,
         *::before,
@@ -64,877 +56,470 @@
         html {
             scroll-behavior: smooth;
             font-size: 16px;
-            background-color: var(--bg-void);
+            background-color: #050000;
         }
 
         body {
             font-family: 'Noto Sans Sinhala', 'Fredoka', sans-serif;
-            background: radial-gradient(circle at 20% 10%, #190c33 0%, #090512 45%, #040208 100%);
-            color: var(--text-primary);
-            min-height: 100vh;
             overflow-x: hidden;
-            line-height: 1.65;
+            background-color: #050000;
+            color: var(--text-dark);
+            min-height: 100vh;
             position: relative;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #070410;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #6366f1, #ec4899);
-            border-radius: 999px;
-            border: 2px solid #070410;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #818cf8, #f472b6);
-        }
-
-        button,
-        input,
-        select,
-        textarea {
-            font-family: inherit;
         }
 
         button {
+            font-family: inherit;
+            cursor: pointer;
             border: none;
             background: none;
-            color: inherit;
-            cursor: pointer;
         }
 
-        button:focus-visible,
-        a:focus-visible {
-            outline: 2px solid #38bdf8;
-            outline-offset: 3px;
+        button:focus-visible {
+            outline: 3px solid #38bdf8;
+            outline-offset: 2px;
         }
 
         /* ==========================================================================
-           3. AMBIENT COSMIC BACKGROUND & CANVAS PARTICLES
+           3. TOP AUDIO CONTROL BAR (PLACED ABOVE EVERYTHING)
            ========================================================================== */
-        .ambient-layer {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        #starfield-canvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .nebula-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(95px);
-            opacity: 0.34;
-            animation: driftNebula 18s ease-in-out infinite alternate;
-        }
-
-        .nebula-orb.orb-1 {
-            width: 460px;
-            height: 460px;
-            top: -110px;
-            left: -120px;
-            background: radial-gradient(circle, #ec4899, #7c3aed);
-            animation-duration: 20s;
-        }
-
-        .nebula-orb.orb-2 {
-            width: 520px;
-            height: 520px;
-            top: 34%;
-            right: -150px;
-            background: radial-gradient(circle, #06b6d4, #2563eb);
-            animation-duration: 24s;
-            animation-delay: -5s;
-        }
-
-        .nebula-orb.orb-3 {
-            width: 500px;
-            height: 500px;
-            bottom: -140px;
-            left: 18%;
-            background: radial-gradient(circle, #dc2626, #450a0a);
-            animation-duration: 22s;
-            animation-delay: -9s;
-        }
-
-        .grid-overlay {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-            background-size: 48px 48px;
-            mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
-        }
-
-        @keyframes driftNebula {
-            0% {
-                transform: translate3d(0, 0, 0) scale(1);
-            }
-            50% {
-                transform: translate3d(38px, -28px, 0) scale(1.08);
-            }
-            100% {
-                transform: translate3d(-26px, 32px, 0) scale(0.96);
-            }
-        }
-
-        /* ==========================================================================
-           4. TOP AUDIO BAR & NAVIGATION HEADER
-           ========================================================================== */
-        .site-header {
+        .top-audio-bar {
             position: sticky;
             top: 0;
-            z-index: 60;
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            background: rgba(8, 5, 18, 0.8);
-            border-bottom: 1px solid var(--border-subtle);
-            transition: background 0.3s var(--ease-smooth);
-        }
-
-        .header-inner {
-            max-width: 1320px;
-            margin: 0 auto;
-            padding: 10px 24px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        /* Top-most Audio Bar */
-        .audio-top-row {
+            z-index: 120;
             width: 100%;
+            padding: 9px 16px;
+            background: rgba(10, 5, 18, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
         }
 
-        .audio-widget {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(90deg, rgba(99, 102, 241, 0.16), rgba(236, 72, 153, 0.16));
-            border: 1px solid var(--border-strong);
-            padding: 7px 16px;
-            border-radius: var(--radius-pill);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-        }
-
-        .eq-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 18px;
-            width: 24px;
-        }
-
-        .eq-bar {
-            flex: 1;
-            height: 5px;
-            border-radius: 999px;
-            background: linear-gradient(180deg, #38bdf8, #f472b6);
-            transition: height 0.2s ease;
-        }
-
-        .eq-bars.playing .eq-bar:nth-child(1) { animation: eqAnim 0.75s ease-in-out infinite; }
-        .eq-bars.playing .eq-bar:nth-child(2) { animation: eqAnim 0.55s ease-in-out infinite 0.15s; }
-        .eq-bars.playing .eq-bar:nth-child(3) { animation: eqAnim 0.85s ease-in-out infinite 0.28s; }
-        .eq-bars.playing .eq-bar:nth-child(4) { animation: eqAnim 0.65s ease-in-out infinite 0.1s; }
-
-        @keyframes eqAnim {
-            0%, 100% { height: 4px; }
-            50% { height: 18px; }
-        }
-
-        .audio-track-label {
-            font-size: 0.82rem;
-            color: #e2e8f0;
-            font-weight: 700;
-        }
-
-        .audio-toggle-btn {
-            padding: 6px 16px;
-            border-radius: var(--radius-pill);
-            background: linear-gradient(135deg, #6366f1, #ec4899);
-            color: #ffffff;
-            font-size: 0.82rem;
-            font-weight: 700;
-            transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
-        }
-
-        .audio-toggle-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 16px rgba(236, 72, 153, 0.5);
-        }
-
-        /* Second Row: Brand & Category Pills */
-        .header-main-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .brand-emblem {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #f43f5e, #8b5cf6, #06b6d4);
-            display: grid;
-            place-items: center;
-            font-size: 1.35rem;
-            box-shadow: 0 0 24px rgba(139, 92, 246, 0.55);
-            animation: pulseEmblem 3.6s ease-in-out infinite;
-        }
-
-        @keyframes pulseEmblem {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.05) rotate(3deg); }
-        }
-
-        .brand-text-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-title {
-            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #ffffff, #f9a8d4, #67e8f9);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 0.4px;
-        }
-
-        .brand-subtitle {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 0.6px;
-        }
-
-        .nav-pills {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 6px;
-            border-radius: var(--radius-pill);
-            border: 1px solid var(--border-subtle);
-        }
-
-        .nav-pill-btn {
-            padding: 7px 15px;
-            border-radius: var(--radius-pill);
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: all 0.25s var(--ease-spring);
-        }
-
-        .nav-pill-btn:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-1px);
-        }
-
-        /* ==========================================================================
-           5. MAIN HERO BANNER & STATS RIBBON
-           ========================================================================== */
-        .main-container {
-            position: relative;
-            z-index: 10;
-            max-width: 1320px;
-            margin: 0 auto;
-            padding: 36px 24px 80px;
-        }
-
-        .hero-banner {
-            text-align: center;
-            padding: 34px 24px 44px;
-            border-radius: var(--radius-xl);
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-soft);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 42px;
-        }
-
-        .hero-banner::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 15%;
-            right: 15%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #f472b6, #38bdf8, #f87171, transparent);
-        }
-
-        .hero-badge {
+        .top-audio-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            border-radius: var(--radius-pill);
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #fde68a;
-            margin-bottom: 16px;
-        }
-
-        .hero-main-title {
-            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: clamp(2.1rem, 4.6vw, 3.55rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 14px;
-            background: linear-gradient(120deg, #ffffff 10%, #fbcfe8 45%, #7dd3fc 75%, #fca5a5 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero-main-desc {
-            max-width: 760px;
-            margin: 0 auto 28px;
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-            gap: 14px;
-            max-width: 920px;
-            margin: 0 auto;
-        }
-
-        .stat-chip {
-            padding: 14px 18px;
-            border-radius: var(--radius-md);
-            background: rgba(9, 6, 20, 0.65);
-            border: 1px solid var(--border-subtle);
-            transition: transform 0.25s var(--ease-spring), border-color 0.25s ease;
-        }
-
-        .stat-chip:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-strong);
-        }
-
-        .stat-number {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.65rem;
-            font-weight: 700;
+            justify-content: center;
+            gap: 10px;
+            padding: 8px 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #ec4899, #6366f1, #06b6d4);
             color: #ffffff;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        /* ==========================================================================
-           6. THREE STORY REALM CARDS (NOVEL / DETECTIVES / HORROR)
-           ========================================================================== */
-        .realms-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 26px;
-            margin-bottom: 56px;
-        }
-
-        @media (max-width: 1024px) {
-            .realms-grid {
-                grid-template-columns: 1fr;
-                max-width: 680px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        .realm-card {
-            position: relative;
-            border-radius: var(--radius-xl);
-            padding: 32px 26px 28px;
-            background: var(--bg-panel);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-            transition: transform 0.35s var(--ease-spring), border-color 0.3s ease, box-shadow 0.35s ease;
-        }
-
-        .realm-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .realm-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            opacity: 0.14;
-            pointer-events: none;
-            transition: opacity 0.35s ease;
-        }
-
-        .realm-card:hover::before {
-            opacity: 0.24;
-        }
-
-        /* ---- Novel Card Theme ---- */
-        .realm-card.card-novel {
-            border-color: rgba(255, 107, 157, 0.35);
-        }
-
-        .realm-card.card-novel::before {
-            background: radial-gradient(circle at top right, var(--kids-a), var(--kids-b), transparent 70%);
-        }
-
-        .realm-card.card-novel:hover {
-            border-color: var(--kids-a);
-            box-shadow: 0 24px 60px var(--kids-glow);
-        }
-
-        .card-novel .realm-tag {
-            background: rgba(255, 107, 157, 0.16);
-            color: #fbcfe8;
-            border: 1px solid rgba(255, 107, 157, 0.35);
-        }
-
-        .card-novel .realm-title {
-            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            background: linear-gradient(90deg, #ff9a9e, #fecfef, #fde68a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .btn-open-novel {
-            width: 100%;
-            padding: 15px 22px;
-            border-radius: var(--radius-pill);
-            background: linear-gradient(135deg, #ff512f, #dd2476);
-            color: #ffffff;
+            font-size: 0.95rem;
             font-weight: 700;
-            font-size: 1.02rem;
-            border: 2px solid rgba(255, 255, 255, 0.65);
-            box-shadow: 0 12px 26px rgba(221, 36, 118, 0.38);
-            transition: transform 0.25s var(--ease-spring), filter 0.2s ease;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+            border: 1.5px solid rgba(255, 255, 255, 0.45);
+            transition: transform 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out), filter 0.2s ease;
         }
 
-        .btn-open-novel:hover {
-            transform: scale(1.02);
-            filter: brightness(1.08);
-        }
-
-        /* ---- Detective Card Theme ---- */
-        .realm-card.card-detective {
-            border-color: rgba(56, 189, 248, 0.35);
-        }
-
-        .realm-card.card-detective::before {
-            background: radial-gradient(circle at top right, var(--det-a), var(--det-b), transparent 70%);
-        }
-
-        .realm-card.card-detective:hover {
-            border-color: var(--det-a);
-            box-shadow: 0 24px 60px var(--det-glow);
-        }
-
-        .card-detective .realm-tag {
-            background: rgba(56, 189, 248, 0.16);
-            color: #bae6fd;
-            border: 1px solid rgba(56, 189, 248, 0.35);
-        }
-
-        .card-detective .realm-title {
-            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            background: linear-gradient(90deg, #7dd3fc, #5eead4, #a5b4fc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .btn-open-detective {
-            width: 100%;
-            padding: 15px 22px;
-            border-radius: var(--radius-pill);
-            background: linear-gradient(135deg, #fbbf24, #f97316);
-            color: #0f172a;
-            font-weight: 800;
-            font-size: 1.02rem;
-            border: 2px solid #fef3c7;
-            box-shadow: 0 12px 26px rgba(249, 115, 22, 0.34);
-            transition: transform 0.25s var(--ease-spring), filter 0.2s ease;
-        }
-
-        .btn-open-detective:hover {
-            transform: scale(1.02);
+        .top-audio-btn:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 10px 26px rgba(236, 72, 153, 0.55);
             filter: brightness(1.06);
         }
 
-        /* ---- Horror Card Theme ---- */
-        .realm-card.card-horror {
-            background: linear-gradient(165deg, rgba(32, 4, 8, 0.88), rgba(10, 2, 4, 0.94));
-            border-color: rgba(239, 68, 68, 0.38);
+        .top-audio-btn:active {
+            transform: scale(0.98);
         }
 
-        .realm-card.card-horror::before {
-            background: radial-gradient(circle at top center, rgba(220, 38, 38, 0.65), transparent 72%);
+        .eq-wave {
+            display: inline-flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 15px;
         }
 
-        .realm-card.card-horror:hover {
-            border-color: var(--hor-a);
-            box-shadow: 0 24px 65px var(--hor-glow);
+        .eq-wave span {
+            width: 3px;
+            height: 5px;
+            border-radius: 999px;
+            background: #ffffff;
+            transition: height 0.2s ease;
         }
 
-        .card-horror .realm-tag {
-            background: rgba(239, 68, 68, 0.18);
-            color: #fecaca;
-            border: 1px solid rgba(239, 68, 68, 0.45);
+        .eq-wave.active span:nth-child(1) { animation: wavePulse 0.7s ease-in-out infinite; }
+        .eq-wave.active span:nth-child(2) { animation: wavePulse 0.5s ease-in-out infinite 0.14s; }
+        .eq-wave.active span:nth-child(3) { animation: wavePulse 0.8s ease-in-out infinite 0.26s; }
+        .eq-wave.active span:nth-child(4) { animation: wavePulse 0.6s ease-in-out infinite 0.08s; }
+
+        @keyframes wavePulse {
+            0%, 100% { height: 4px; }
+            50% { height: 15px; }
         }
 
-        .card-horror .realm-title {
-            font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
-            color: #f87171;
-            text-shadow: 0 0 18px rgba(239, 68, 68, 0.6);
-        }
-
-        .btn-open-horror {
-            width: 100%;
-            padding: 15px 22px;
-            border-radius: var(--radius-md);
-            background: linear-gradient(180deg, #991b1b, #3b0000);
-            color: #fee2e2;
-            font-weight: 700;
-            font-size: 1.02rem;
-            border: 1.5px solid #ef4444;
-            box-shadow: 0 10px 26px rgba(185, 28, 28, 0.45);
-            transition: transform 0.25s var(--ease-spring), background 0.2s ease;
-        }
-
-        .btn-open-horror:hover {
-            transform: scale(1.02);
-            background: linear-gradient(180deg, #b91c1c, #450a0a);
-        }
-
-        /* ---- Shared Card Inner Elements ---- */
-        .realm-top-row {
+        /* ==========================================================================
+           4. COMPACT 3 HERO SECTIONS WITH SOFT BLUR BLEND
+           ========================================================================== */
+        .hero-wrapper {
+            position: relative;
+            min-height: calc(100vh - 52px);
             display: flex;
+            flex-direction: column;
+        }
+
+        .hero-section {
+            flex: 1;
+            min-height: 33.34vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            gap: 10px;
+            text-align: center;
+            padding: 36px 20px;
+            position: relative;
+            overflow: hidden;
+            transition: filter 0.35s var(--ease-smooth);
+        }
+
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            left: -12%;
+            right: -12%;
+            bottom: -60px;
+            height: 120px;
+            filter: blur(36px);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 20;
+            max-width: 780px;
+            animation: floatUpContent 0.85s var(--ease-out) both;
+        }
+
+        @keyframes floatUpContent {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* -------- Section 1: Colorful Kids / Novel -------- */
+        #hero-kids {
+            background: linear-gradient(135deg, var(--kids-bg-1) 0%, var(--kids-bg-2) 38%, var(--kids-bg-3) 75%, var(--kids-bg-4) 100%);
+            background-size: 200% 200%;
+            animation: shiftGradientKids 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes shiftGradientKids {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        #hero-kids::after {
+            background: linear-gradient(180deg, rgba(161, 196, 253, 0.96), rgba(29, 78, 216, 0.96));
+        }
+
+        #hero-kids h1 {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: 2.35rem;
+            color: var(--kids-title);
+            text-shadow: 2px 2px 0px var(--white), 0 8px 24px rgba(190, 24, 93, 0.22);
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        #hero-kids p {
+            font-size: 1.06rem;
+            color: var(--text-dark);
+            font-weight: 600;
             margin-bottom: 18px;
         }
 
-        .realm-icon-box {
-            width: 56px;
-            height: 56px;
-            border-radius: 18px;
-            display: grid;
-            place-items: center;
-            font-size: 1.75rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-        }
-
-        .realm-tag {
-            padding: 5px 12px;
-            border-radius: var(--radius-pill);
-            font-size: 0.76rem;
+        .btn-hero-kids {
+            background: linear-gradient(45deg, var(--kids-btn-1), var(--kids-btn-2));
+            color: var(--white);
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: 1.12rem;
             font-weight: 700;
+            padding: 13px 34px;
+            border: 3px solid var(--white);
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(221, 36, 118, 0.38);
+            position: relative;
+            z-index: 30;
+            transition: transform 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out), filter 0.2s ease;
         }
 
-        .realm-title {
-            font-size: 1.65rem;
+        .btn-hero-kids:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 16px 32px rgba(221, 36, 118, 0.52);
+            filter: brightness(1.05);
+        }
+
+        .btn-hero-kids:active {
+            transform: scale(0.98);
+        }
+
+        /* -------- Section 2: Detective -------- */
+        #hero-detective {
+            background: linear-gradient(135deg, var(--det-bg-1) 0%, var(--det-bg-2) 50%, var(--det-bg-3) 100%);
+            background-size: 200% 200%;
+            animation: shiftGradientDet 16s ease-in-out infinite alternate;
+        }
+
+        @keyframes shiftGradientDet {
+            0% { background-position: 0% 25%; }
+            100% { background-position: 100% 75%; }
+        }
+
+        #hero-detective::after {
+            background: linear-gradient(180deg, rgba(13, 148, 136, 0.96), rgba(45, 0, 0, 0.98));
+        }
+
+        #hero-detective h1 {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: 2.35rem;
+            color: var(--det-title);
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.42);
+            margin-bottom: 8px;
+            letter-spacing: 0.4px;
+        }
+
+        #hero-detective p {
+            font-size: 1.06rem;
+            color: #f0f9ff;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .btn-hero-detective {
+            background: linear-gradient(45deg, var(--det-btn-1), var(--det-btn-2));
+            color: #111827;
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: 1.12rem;
             font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.3;
+            padding: 13px 34px;
+            border: 3px solid #fef3c7;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+            position: relative;
+            z-index: 30;
+            transition: transform 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out), filter 0.2s ease;
         }
 
-        .realm-desc {
-            color: var(--text-secondary);
-            font-size: 0.96rem;
-            margin-bottom: 20px;
+        .btn-hero-detective:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 16px 32px rgba(251, 191, 36, 0.45);
+            filter: brightness(1.05);
         }
 
-        .realm-highlights {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 26px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        .btn-hero-detective:active {
+            transform: scale(0.98);
         }
 
-        .realm-highlights li {
-            font-size: 0.86rem;
-            color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        /* -------- Section 3: Kid-Friendly Horror -------- */
+        #hero-horror {
+            background: radial-gradient(circle at center, var(--hor-bg-1) 0%, var(--hor-bg-2) 65%, var(--hor-bg-3) 100%);
         }
 
-        .realm-highlights li span.dot {
-            width: 7px;
-            height: 7px;
+        #hero-horror::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.14), transparent 68%);
+            animation: horrorPulseGlow 4.5s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes horrorPulseGlow {
+            0% { opacity: 0.45; transform: scale(0.96); }
+            100% { opacity: 1; transform: scale(1.04); }
+        }
+
+        #hero-horror::after {
+            display: none;
+        }
+
+        #hero-horror h1 {
+            font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
+            font-size: 2.3rem;
+            color: var(--hor-title);
+            text-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 4px 12px rgba(0, 0, 0, 0.9);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        #hero-horror p {
+            font-size: 1.04rem;
+            color: #e5d4d4;
+            margin-bottom: 18px;
+        }
+
+        .btn-hero-horror {
+            background: linear-gradient(180deg, var(--hor-btn-1), var(--hor-btn-2));
+            color: #fee2e2;
+            font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 13px 36px;
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 24px rgba(220, 38, 38, 0.65);
+            position: relative;
+            z-index: 30;
+            transition: transform 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out), background 0.2s ease;
+        }
+
+        .btn-hero-horror:hover {
+            transform: translateY(-3px) scale(1.03);
+            background: linear-gradient(180deg, #991b1b, #360000);
+            box-shadow: 0 0 34px rgba(239, 68, 68, 0.88);
+        }
+
+        .btn-hero-horror:active {
+            transform: scale(0.98);
+        }
+
+        /* ==========================================================================
+           5. DECORATIVE FLOATING MOTIFS INSIDE SECTIONS
+           ========================================================================== */
+        .motif-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 4;
+            overflow: hidden;
+        }
+
+        .motif-dot {
+            position: absolute;
             border-radius: 50%;
-            background: currentColor;
-            opacity: 0.85;
-            flex-shrink: 0;
+            opacity: 0.35;
+            animation: floatDot 9s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatDot {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-14px) scale(1.12); }
         }
 
         /* ==========================================================================
-           7. QUICK PREVIEW & GUIDE SECTION
+           6. IFRAME VIEWER OVERLAY
            ========================================================================== */
-        .guide-panel {
-            border-radius: var(--radius-xl);
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-subtle);
-            padding: 32px 28px;
-            margin-bottom: 44px;
-        }
-
-        .guide-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .guide-title {
-            font-size: 1.45rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .guide-caption {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        .guide-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 18px;
-        }
-
-        .guide-step-card {
-            padding: 20px;
-            border-radius: var(--radius-lg);
-            background: rgba(10, 7, 22, 0.72);
-            border: 1px solid var(--border-subtle);
-        }
-
-        .step-num {
-            display: inline-grid;
-            place-items: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #38bdf8, #a855f7);
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-
-        .step-heading {
-            font-size: 1.02rem;
-            font-weight: 700;
-            color: #f8fafc;
-            margin-bottom: 6px;
-        }
-
-        .step-text {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-        }
-
-        /* ==========================================================================
-           8. FOOTER
-           ========================================================================== */
-        .site-footer {
-            text-align: center;
-            padding: 26px 16px;
-            border-top: 1px solid var(--border-subtle);
-            color: var(--text-muted);
-            font-size: 0.86rem;
-        }
-
-        .site-footer strong {
-            color: #e2e8f0;
-        }
-
-        /* ==========================================================================
-           9. FULLSCREEN IFRAME VIEWER MODAL
-           ========================================================================== */
-        #iframe-modal {
+        #page-frame-container {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 200;
-            background: #040208;
+            background: #06030d;
             flex-direction: column;
-            animation: fadeInModal 0.25s var(--ease-smooth);
+            animation: fadeFrameIn 0.24s var(--ease-smooth);
         }
 
-        #iframe-modal.active {
+        #page-frame-container.active {
             display: flex;
         }
 
-        @keyframes fadeInModal {
-            from { opacity: 0; transform: scale(0.985); }
+        @keyframes fadeFrameIn {
+            from { opacity: 0; transform: scale(0.99); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        .modal-topbar {
+        .frame-topbar {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            padding: 10px 18px;
+            background: #10091f;
+            color: #f9fafb;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
             gap: 12px;
-            padding: 12px 20px;
-            background: rgba(13, 10, 26, 0.96);
-            border-bottom: 1px solid var(--border-strong);
-            flex-wrap: wrap;
         }
 
-        .modal-left {
+        .frame-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            font-size: 1rem;
+            font-weight: 700;
         }
 
-        .status-dot {
-            width: 10px;
-            height: 10px;
+        .frame-status-bulb {
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
             background: #22c55e;
             box-shadow: 0 0 10px #22c55e;
         }
 
-        .modal-page-name {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .modal-audio-tag {
-            font-size: 0.78rem;
-            padding: 4px 10px;
-            border-radius: var(--radius-pill);
-            background: rgba(255, 255, 255, 0.08);
-            color: #cbd5e1;
-        }
-
-        .modal-actions {
+        .frame-controls {
             display: flex;
-            align-items: center;
             gap: 10px;
+            align-items: center;
         }
 
-        .modal-btn {
+        .frame-btn {
             padding: 8px 16px;
-            border-radius: var(--radius-pill);
-            font-size: 0.86rem;
+            border: none;
+            border-radius: 999px;
+            font-size: 0.9rem;
             font-weight: 700;
-            transition: transform 0.2s var(--ease-spring), opacity 0.2s ease;
-        }
-
-        .modal-btn:hover {
-            transform: scale(1.04);
-        }
-
-        .modal-btn.btn-sound {
-            background: #0284c7;
-            color: #ffffff;
-        }
-
-        .modal-btn.btn-reload {
-            background: rgba(255, 255, 255, 0.12);
-            color: #f8fafc;
-        }
-
-        .modal-btn.btn-back {
+            cursor: pointer;
             background: #ef4444;
             color: #ffffff;
+            transition: transform 0.2s var(--ease-out), filter 0.2s ease;
         }
 
-        .iframe-stage {
+        .frame-btn:hover {
+            transform: scale(1.04);
+            filter: brightness(1.08);
+        }
+
+        .frame-btn.sound-btn {
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+        }
+
+        .frame-stage {
             position: relative;
             flex: 1;
             width: 100%;
             height: 100%;
-            background: #090612;
+            background: #080512;
         }
 
-        .iframe-loader {
+        .frame-loader {
             position: absolute;
             inset: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 14px;
-            background: rgba(8, 5, 18, 0.9);
-            color: #e2e8f0;
-            z-index: 5;
-            transition: opacity 0.3s ease;
+            gap: 12px;
+            background: rgba(8, 5, 18, 0.88);
+            color: #f1f5f9;
+            z-index: 6;
+            transition: opacity 0.25s ease;
         }
 
-        .iframe-loader.hidden {
+        .frame-loader.hide {
             opacity: 0;
             pointer-events: none;
         }
 
-        .spinner-ring {
-            width: 44px;
-            height: 44px;
-            border: 4px solid rgba(255, 255, 255, 0.15);
-            border-top-color: #38bdf8;
+        .loader-spin {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.16);
+            border-top-color: #f472b6;
             border-radius: 50%;
-            animation: spinRing 0.85s linear infinite;
+            animation: spinLoader 0.8s linear infinite;
         }
 
-        @keyframes spinRing {
+        @keyframes spinLoader {
             to { transform: rotate(360deg); }
         }
 
@@ -947,515 +532,274 @@
         }
 
         /* ==========================================================================
-           10. TOAST NOTIFICATION
+           7. RESPONSIVE MEDIA QUERIES
            ========================================================================== */
-        .toast-banner {
-            position: fixed;
-            bottom: 22px;
-            right: 22px;
-            z-index: 300;
-            padding: 12px 18px;
-            border-radius: var(--radius-md);
-            background: rgba(17, 13, 34, 0.94);
-            border: 1px solid var(--border-strong);
-            color: #f8fafc;
-            font-size: 0.88rem;
-            font-weight: 600;
-            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
-            transform: translateY(24px);
-            opacity: 0;
-            pointer-events: none;
-            transition: transform 0.28s var(--ease-spring), opacity 0.28s ease;
+        @media (max-width: 768px) {
+            #hero-kids h1,
+            #hero-detective h1,
+            #hero-horror h1 {
+                font-size: 1.88rem;
+            }
+            .hero-section {
+                padding: 28px 16px;
+            }
+            .btn-hero-kids,
+            .btn-hero-detective,
+            .btn-hero-horror {
+                font-size: 1rem;
+                padding: 12px 26px;
+            }
         }
 
-        .toast-banner.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* ==========================================================================
-           11. RESPONSIVE ADJUSTMENTS
-           ========================================================================== */
-        @media (max-width: 720px) {
-            .header-inner {
-                padding: 10px 14px 12px;
+        @media (max-width: 480px) {
+            #hero-kids h1,
+            #hero-detective h1,
+            #hero-horror h1 {
+                font-size: 1.58rem;
             }
-            .nav-pills {
-                width: 100%;
-                justify-content: center;
-                overflow-x: auto;
+            .top-audio-btn {
+                padding: 7px 18px;
+                font-size: 0.88rem;
             }
-            .main-container {
-                padding: 22px 14px 64px;
+            .frame-topbar {
+                padding: 9px 12px;
             }
-            .realm-card {
-                padding: 24px 20px;
-            }
-            .modal-topbar {
-                padding: 10px 14px;
+            .frame-btn {
+                padding: 7px 12px;
+                font-size: 0.82rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Stars, Nebulae & Subtle Grid -->
-    <div class="ambient-layer" aria-hidden="true">
-        <canvas id="starfield-canvas"></canvas>
-        <div class="nebula-orb orb-1"></div>
-        <div class="nebula-orb orb-2"></div>
-        <div class="nebula-orb orb-3"></div>
-        <div class="grid-overlay"></div>
+    <!-- Top Audio Button Bar (Placed Above Everything, No Audio File Names Shown) -->
+    <div class="top-audio-bar">
+        <button type="button" id="top-audio-btn" class="top-audio-btn" onclick="toggleAudio()">
+            <span id="top-eq" class="eq-wave">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+            <span id="top-audio-text">🔊 Music</span>
+        </button>
     </div>
 
-    <!-- Top Header with Audio Bar at the Very Top -->
-    <header class="site-header">
-        <div class="header-inner">
+    <!-- Compact 3 Hero Sections -->
+    <div class="hero-wrapper">
 
-            <!-- Top Row: Audio Controls Above Everything -->
-            <div class="audio-top-row">
-                <div class="audio-widget" title="Background Audio Status">
-                    <div id="eq-visualizer" class="eq-bars">
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
-                        <span class="eq-bar"></span>
-                    </div>
-                    <span id="audio-track-label" class="audio-track-label">i.mp3</span>
-                    <button type="button" id="btn-audio-toggle" class="audio-toggle-btn" onclick="toggleMute()">🔊 Play</button>
-                </div>
-            </div>
-
-            <!-- Second Row: Brand & Category Pills -->
-            <div class="header-main-row">
-                <a href="#top" class="brand-logo" onclick="scrollToSection('top'); return false;">
-                    <div class="brand-emblem">📚</div>
-                    <div class="brand-text-group">
-                        <span class="brand-title">කතා ලෝකය 150</span>
-                        <span class="brand-subtitle">STORY WORLD PORTAL</span>
-                    </div>
-                </a>
-
-                <nav class="nav-pills" aria-label="Story Categories">
-                    <button type="button" class="nav-pill-btn" onclick="openRealm('novel.html', 'n.mp3', '🌈 ආදර්ශවත් කෙටි කතා 50')">🌈 Novels (50)</button>
-                    <button type="button" class="nav-pill-btn" onclick="openRealm('detectives.html', 'd.mp3', '🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">🕵️‍♂️ Detectives (50)</button>
-                    <button type="button" class="nav-pill-btn" onclick="openRealm('horror.html', 'h.mp3', '🕯️ අඳුරු අභිරහස් කතා 50')">🕯️ Horror (50)</button>
-                </nav>
-            </div>
-
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main id="top" class="main-container">
-
-        <!-- Hero Banner -->
-        <section class="hero-banner">
-            <div class="hero-badge">✨ 150 Curated Stories • 3 Distinct Worlds • Soundtracks</div>
-            <h1 class="hero-main-title">කතා ලෝකය 150 — විශ්වයට පිවිසෙන්න</h1>
-            <p class="hero-main-desc">
-                ආදර්ශවත් කෙටි කතා 50ක්, බුද්ධිමත් ළමා රහස් පරීක්ෂක කතා 50ක් සහ ළමයින්ට ගැළපෙන අඳුරු අභිරහස් කතා 50ක්—සියල්ල එකම තැනකින්, අදාළ පසුබිම් සංගීතය සමඟ කියවන්න.
-            </p>
-
-            <div class="stats-row">
-                <div class="stat-chip">
-                    <span class="stat-number" data-target="150">150</span>
-                    <span class="stat-label">මුළු කතා ගණන</span>
-                </div>
-                <div class="stat-chip">
-                    <span class="stat-number">3 × 50</span>
-                    <span class="stat-label">විශේෂ කතා කාණ්ඩ</span>
-                </div>
-                <div class="stat-chip">
-                    <span class="stat-number">4 MP3</span>
-                    <span class="stat-label">i.mp3 • n.mp3 • d.mp3 • h.mp3</span>
-                </div>
-                <div class="stat-chip">
-                    <span class="stat-number">iFrame</span>
-                    <span class="stat-label">පහසු පිටු මාරුව</span>
-                </div>
+        <!-- Section 1: Novel -->
+        <section id="hero-kids" class="hero-section">
+            <div class="motif-layer" id="motif-kids" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1>🌈 ලස්සන කෙටි කතා</h1>
+                <p>පුංචි ළමයින්ට ආදර්ශවත්, සතුට ගෙන දෙන වර්ණවත් කෙටි කතා 50ක්.</p>
+                <button type="button" class="btn-hero-kids" onclick="openSection('novel.html', 'n.mp3', '🌈 ලස්සන කෙටි කතා 50')">
+                    ✨ කෙටි කතා 50 බලන්න
+                </button>
             </div>
         </section>
 
-        <!-- 3 Story Realm Cards -->
-        <section id="realms" class="realms-grid" aria-label="Story Realms">
-
-            <!-- Card 1: Novel -->
-            <article class="realm-card card-novel">
-                <div>
-                    <div class="realm-top-row">
-                        <div class="realm-icon-box">🌈</div>
-                        <span class="realm-tag">50 STORIES • n.mp3</span>
-                    </div>
-                    <h2 class="realm-title">ආදර්ශවත් කෙටි කතා</h2>
-                    <p class="realm-desc">
-                        අවංකකම, ඉවසීම, මිත්‍රත්වය, කළගුණ සැලකීම සහ යහපත් පුරුදු කියා දෙන වර්ණවත් හා සුන්දර කෙටි කතා 50ක එකතුව.
-                    </p>
-                    <ul class="realm-highlights">
-                        <li><span class="dot"></span>ජීවිත ආදර්ශ සහ හොඳ පුරුදු පාඩම්</li>
-                        <li><span class="dot"></span>පහසුවෙන් කියවිය හැකි සිංහල කතා</li>
-                        <li><span class="dot"></span>විවෘත කළ විට <strong>n.mp3</strong> සංගීතය</li>
-                    </ul>
-                </div>
-                <button type="button" class="btn-open-novel" onclick="openRealm('novel.html', 'n.mp3', '🌈 ආදර්ශවත් කෙටි කතා 50')">
-                    ✨ කෙටි කතා 50 විවෘත කරන්න
+        <!-- Section 2: Detectives -->
+        <section id="hero-detective" class="hero-section">
+            <div class="motif-layer" id="motif-detective" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා</h1>
+                <p>පුංචි ඉඟි සහ බුද්ධිය එකතු කරගෙන අභිරහස් විසඳන ළමා රහස් පරීක්ෂක කතා 50ක්.</p>
+                <button type="button" class="btn-hero-detective" onclick="openSection('detectives.html', 'd.mp3', '🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">
+                    🔎 රහස් කතා 50 බලන්න
                 </button>
-            </article>
-
-            <!-- Card 2: Detectives -->
-            <article class="realm-card card-detective">
-                <div>
-                    <div class="realm-top-row">
-                        <div class="realm-icon-box">🕵️‍♂️</div>
-                        <span class="realm-tag">50 STORIES • d.mp3</span>
-                    </div>
-                    <h2 class="realm-title">ළමා රහස් පරීක්ෂක කතා</h2>
-                    <p class="realm-desc">
-                        සැඟවුණු ඉඟි, පා සටහන්, සාක්ෂි සහ තර්කානුකූල සිතුවිලි ඔස්සේ අභිරහස් විසඳන තරුණ රහස් පරීක්ෂක කතා 50ක්.
-                    </p>
-                    <ul class="realm-highlights">
-                        <li><span class="dot"></span>නිරීක්ෂණය සහ බුද්ධිමත් විසඳුම්</li>
-                        <li><span class="dot"></span>පාසල් සහ ගමේ අභිරහස් පරීක්ෂණ</li>
-                        <li><span class="dot"></span>විවෘත කළ විට <strong>d.mp3</strong> සංගීතය</li>
-                    </ul>
-                </div>
-                <button type="button" class="btn-open-detective" onclick="openRealm('detectives.html', 'd.mp3', '🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">
-                    🔎 රහස් පරීක්ෂක කතා 50 විවෘත කරන්න
-                </button>
-            </article>
-
-            <!-- Card 3: Horror -->
-            <article class="realm-card card-horror">
-                <div>
-                    <div class="realm-top-row">
-                        <div class="realm-icon-box">🕯️</div>
-                        <span class="realm-tag">50 STORIES • h.mp3</span>
-                    </div>
-                    <h2 class="realm-title">අඳුරු අභිරහස් කතා</h2>
-                    <p class="realm-desc">
-                        මැදියම් රැයේ ඔරලෝසු, මීදුම් සෙවණැලි සහ අමුතු රහස් පිරුණු—ළමයින්ට ගැළපෙන විදියට අධික බිය අඩු කළ අඳුරු අභිරහස් කතා 50ක්.
-                    </p>
-                    <ul class="realm-highlights">
-                        <li><span class="dot"></span>කුතුහලය සහ පුංචි ත්‍රාසය පිරුණු අවසන්</li>
-                        <li><span class="dot"></span>Dark Crimson &amp; Gothic Atmosphere</li>
-                        <li><span class="dot"></span>විවෘත කළ විට <strong>h.mp3</strong> සංගීතය</li>
-                    </ul>
-                </div>
-                <button type="button" class="btn-open-horror" onclick="openRealm('horror.html', 'h.mp3', '🕯️ අඳුරු අභිරහස් කතා 50')">
-                    🌑 අඳුරු අභිරහස් කතා 50 විවෘත කරන්න
-                </button>
-            </article>
-
-        </section>
-
-        <!-- How It Works Panel -->
-        <section class="guide-panel" aria-label="Portal Guide">
-            <div class="guide-header">
-                <h2 class="guide-title">🧭 Portal එක ක්‍රියාත්මක වන ආකාරය</h2>
-                <span class="guide-caption">Keyboard Shortcut: <strong>ESC</strong> ඔබා iframe එක වසන්න</span>
-            </div>
-            <div class="guide-steps">
-                <div class="guide-step-card">
-                    <div class="step-num">1</div>
-                    <h3 class="step-heading">Index &amp; i.mp3 Music</h3>
-                    <p class="step-text">මුල් පිටුව විවෘත වන විට <strong>i.mp3</strong> සංගීතය play වීමට සූදානම් වේ (browser autoplay restriction තිබේ නම් ඕනෑම click එකකදී වහාම play වේ).</p>
-                </div>
-                <div class="guide-step-card">
-                    <div class="step-num">2</div>
-                    <h3 class="step-heading">iFrame Page Switcher</h3>
-                    <p class="step-text">කැමති button එකක් එබූ විට අදාළ HTML පිටුව (<code>novel.html</code>, <code>detectives.html</code>, <code>horror.html</code>) smooth <code><iframe></code> එකක load වේ.</p>
-                </div>
-                <div class="guide-step-card">
-                    <div class="step-num">3</div>
-                    <h3 class="step-heading">Matched Page Audio</h3>
-                    <p class="step-text">Novel සඳහා <strong>n.mp3</strong>, Detectives සඳහා <strong>d.mp3</strong>, සහ Horror සඳහා <strong>h.mp3</strong> ස්වයංක්‍රීයව switch වේ.</p>
-                </div>
             </div>
         </section>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <p><strong>කතා ලෝකය 150 (Story World Portal)</strong> • <code>index.html</code> • <code>novel.html</code> • <code>detectives.html</code> • <code>horror.html</code></p>
-    </footer>
-
-    <!-- Fullscreen Iframe Modal -->
-    <div id="iframe-modal" role="dialog" aria-modal="true" aria-labelledby="modal-page-name">
-        <div class="modal-topbar">
-            <div class="modal-left">
-                <span class="status-dot" aria-hidden="true"></span>
-                <span id="modal-page-name" class="modal-page-name">Story Page</span>
-                <span id="modal-audio-tag" class="modal-audio-tag">🎵 i.mp3</span>
+        <!-- Section 3: Horror -->
+        <section id="hero-horror" class="hero-section">
+            <div class="motif-layer" id="motif-horror" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1>🕯️ SPOOKY MYSTERIES</h1>
+                <p>ළමයින්ට ගැළපෙන විදියට අධික බිය අඩු කළ, අඳුරු අභිරහස් සහ පුංචි ත්‍රාසය පිරුණු කතා 50ක්.</p>
+                <button type="button" class="btn-hero-horror" onclick="openSection('horror.html', 'h.mp3', '🕯️ අඳුරු අභිරහස් කතා 50')">
+                    🌑 අභිරහස් කතා 50 බලන්න
+                </button>
             </div>
-            <div class="modal-actions">
-                <button type="button" id="modal-sound-btn" class="modal-btn btn-sound" onclick="toggleMute()">🔊 Sound On</button>
-                <button type="button" class="modal-btn btn-reload" onclick="reloadCurrentFrame()">🔄 Reload</button>
-                <button type="button" class="modal-btn btn-back" onclick="closeRealm()">⬅ මුල් පිටුවට</button>
+        </section>
+
+    </div>
+
+    <!-- Iframe Overlay Container -->
+    <div id="page-frame-container">
+        <div class="frame-topbar">
+            <div class="frame-brand">
+                <span class="frame-status-bulb" aria-hidden="true"></span>
+                <span id="frame-title">කතා ලෝකය 150</span>
+            </div>
+            <div class="frame-controls">
+                <button type="button" id="frame-audio-btn" class="frame-btn sound-btn" onclick="toggleAudio()">🔊 Music</button>
+                <button type="button" class="frame-btn" onclick="closeSection()">⬅ මුල් පිටුවට</button>
             </div>
         </div>
-        <div class="iframe-stage">
-            <div id="iframe-loader" class="iframe-loader">
-                <div class="spinner-ring"></div>
-                <span id="iframe-loader-text">පිටුව Load වෙමින් පවතී...</span>
+        <div class="frame-stage">
+            <div id="frame-loader" class="frame-loader">
+                <div class="loader-spin"></div>
+                <span>පිටුව විවෘත වෙමින් පවතී...</span>
             </div>
-            <iframe id="story-iframe" src="about:blank" title="Story Section Viewer"></iframe>
+            <iframe id="story-iframe" src="about:blank" title="Story Section"></iframe>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast-banner" class="toast-banner" role="status" aria-live="polite"></div>
-
-    <!-- Master Audio Element -->
-    <audio id="master-audio" src="i.mp3" loop preload="auto"></audio>
+    <!-- Audio Player (Tracks Switched Silently Without Displaying Filenames) -->
+    <audio id="bg-audio" src="i.mp3" loop preload="auto"></audio>
 
     <script>
         /* ======================================================================
-           1. STARFIELD & COSMIC PARTICLE ENGINE
+           1. SUBTLE DECORATIVE FLOATING MOTIFS
            ====================================================================== */
-        (function initStarfield() {
-            const canvas = document.getElementById('starfield-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            let width = 0;
-            let height = 0;
-            let stars = [];
+        (function populateSectionMotifs() {
+            const configs = [
+                { id: 'motif-kids', colors: ['#ffffff', '#fde047', '#f472b6'], count: 10 },
+                { id: 'motif-detective', colors: ['#e0f2fe', '#99f6e4', '#fde68a'], count: 10 },
+                { id: 'motif-horror', colors: ['#ef4444', '#7f1d1d', '#fca5a5'], count: 10 }
+            ];
 
-            const STAR_COUNT = 120;
+            configs.forEach((cfg) => {
+                const container = document.getElementById(cfg.id);
+                if (!container) return;
 
-            function resizeCanvas() {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            }
-
-            function createStars() {
-                stars = [];
-                for (let i = 0; i < STAR_COUNT; i++) {
-                    stars.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        r: Math.random() * 1.8 + 0.4,
-                        vx: (Math.random() - 0.5) * 0.22,
-                        vy: (Math.random() - 0.5) * 0.22,
-                        alpha: Math.random() * 0.75 + 0.2,
-                        twinkleSpeed: Math.random() * 0.025 + 0.008,
-                        phase: Math.random() * Math.PI * 2
-                    });
+                for (let i = 0; i < cfg.count; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = 'motif-dot';
+                    const size = Math.floor(Math.random() * 10) + 5;
+                    dot.style.width = `${size}px`;
+                    dot.style.height = `${size}px`;
+                    dot.style.left = `${Math.floor(Math.random() * 94) + 3}%`;
+                    dot.style.top = `${Math.floor(Math.random() * 84) + 8}%`;
+                    dot.style.backgroundColor = cfg.colors[i % cfg.colors.length];
+                    dot.style.animationDelay = `${(i * 0.45).toFixed(2)}s`;
+                    dot.style.animationDuration = `${(Math.random() * 4 + 7).toFixed(2)}s`;
+                    container.appendChild(dot);
                 }
-            }
-
-            function drawStars() {
-                ctx.clearRect(0, 0, width, height);
-                for (let i = 0; i < stars.length; i++) {
-                    const s = stars[i];
-                    s.x += s.vx;
-                    s.y += s.vy;
-                    s.phase += s.twinkleSpeed;
-
-                    if (s.x < 0) s.x = width;
-                    if (s.x > width) s.x = 0;
-                    if (s.y < 0) s.y = height;
-                    if (s.y > height) s.y = 0;
-
-                    const dynamicAlpha = Math.max(0.08, Math.min(1, s.alpha + Math.sin(s.phase) * 0.25));
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${dynamicAlpha.toFixed(3)})`;
-                    ctx.fill();
-                }
-                requestAnimationFrame(drawStars);
-            }
-
-            resizeCanvas();
-            createStars();
-            drawStars();
-
-            window.addEventListener('resize', () => {
-                resizeCanvas();
-                createStars();
             });
         })();
 
         /* ======================================================================
-           2. AUDIO MANAGER (i.mp3 / n.mp3 / d.mp3 / h.mp3)
+           2. AUDIO CONTROLLER (i.mp3 / n.mp3 / d.mp3 / h.mp3)
            ====================================================================== */
-        const audioEl = document.getElementById('master-audio');
-        const eqVisualizer = document.getElementById('eq-visualizer');
-        const audioTrackLabel = document.getElementById('audio-track-label');
-        const headerAudioBtn = document.getElementById('btn-audio-toggle');
-        const modalAudioTag = document.getElementById('modal-audio-tag');
-        const modalSoundBtn = document.getElementById('modal-sound-btn');
+        const bgAudio = document.getElementById('bg-audio');
+        const topEq = document.getElementById('top-eq');
+        const topAudioText = document.getElementById('top-audio-text');
+        const frameAudioBtn = document.getElementById('frame-audio-btn');
 
-        let currentTrack = 'i.mp3';
+        let activeTrack = 'i.mp3';
         let isMuted = false;
 
-        function updateAudioUI(isPlaying) {
-            if (eqVisualizer) {
-                eqVisualizer.classList.toggle('playing', Boolean(isPlaying && !isMuted));
+        function syncAudioIndicator(playing) {
+            const shouldAnimate = Boolean(playing && !isMuted);
+            if (topEq) {
+                topEq.classList.toggle('active', shouldAnimate);
             }
-            if (audioTrackLabel) {
-                audioTrackLabel.textContent = currentTrack;
+            if (topAudioText) {
+                topAudioText.textContent = shouldAnimate ? '🔊 Music On' : '🔇 Music Off';
             }
-            if (modalAudioTag) {
-                modalAudioTag.textContent = `🎵 ${currentTrack}`;
-            }
-            if (isMuted || !isPlaying) {
-                if (headerAudioBtn) headerAudioBtn.textContent = '🔇 Play';
-                if (modalSoundBtn) modalSoundBtn.textContent = '🔇 Sound Off';
-            } else {
-                if (headerAudioBtn) headerAudioBtn.textContent = '🔊 Playing';
-                if (modalSoundBtn) modalSoundBtn.textContent = '🔊 Sound On';
+            if (frameAudioBtn) {
+                frameAudioBtn.textContent = shouldAnimate ? '🔊 Music On' : '🔇 Music Off';
             }
         }
 
-        function playTrack(trackFile, showNotice = false) {
-            currentTrack = trackFile || 'i.mp3';
-            if (audioEl.getAttribute('src') !== currentTrack) {
-                audioEl.src = currentTrack;
-                audioEl.load();
+        function setTrackAndPlay(trackName) {
+            activeTrack = trackName || 'i.mp3';
+            if (bgAudio.getAttribute('src') !== activeTrack) {
+                bgAudio.src = activeTrack;
+                bgAudio.load();
             }
-            updateAudioUI(false);
+            syncAudioIndicator(false);
 
             if (isMuted) return;
 
-            audioEl.play()
-                .then(() => {
-                    updateAudioUI(true);
-                    if (showNotice) {
-                        showToast(`🎵 Playing ${currentTrack}`);
-                    }
-                })
-                .catch(() => {
-                    updateAudioUI(false);
-                });
+            bgAudio.play()
+                .then(() => syncAudioIndicator(true))
+                .catch(() => syncAudioIndicator(false));
         }
 
-        function toggleMute() {
+        function toggleAudio() {
             isMuted = !isMuted;
             if (isMuted) {
-                audioEl.pause();
-                updateAudioUI(false);
-                showToast('🔇 Audio muted');
+                bgAudio.pause();
+                syncAudioIndicator(false);
             } else {
-                playTrack(currentTrack, true);
+                setTrackAndPlay(activeTrack);
             }
         }
 
-        audioEl.addEventListener('play', () => updateAudioUI(true));
-        audioEl.addEventListener('pause', () => updateAudioUI(false));
+        bgAudio.addEventListener('play', () => syncAudioIndicator(true));
+        bgAudio.addEventListener('pause', () => syncAudioIndicator(false));
 
         window.addEventListener('DOMContentLoaded', () => {
-            playTrack('i.mp3', false);
+            setTrackAndPlay('i.mp3');
         });
 
         window.addEventListener('load', () => {
-            if (audioEl.paused && !isMuted) {
-                playTrack(currentTrack, false);
+            if (bgAudio.paused && !isMuted) {
+                setTrackAndPlay(activeTrack);
             }
         });
 
-        function unlockAudioOnFirstGesture() {
-            if (!isMuted && audioEl.paused) {
-                playTrack(currentTrack, false);
+        function unlockOnFirstTap() {
+            if (!isMuted && bgAudio.paused) {
+                setTrackAndPlay(activeTrack);
             }
-            document.removeEventListener('pointerdown', unlockAudioOnFirstGesture);
-            document.removeEventListener('keydown', unlockAudioOnFirstGesture);
+            document.removeEventListener('pointerdown', unlockOnFirstTap);
+            document.removeEventListener('keydown', unlockOnFirstTap);
         }
 
-        document.addEventListener('pointerdown', unlockAudioOnFirstGesture);
-        document.addEventListener('keydown', unlockAudioOnFirstGesture);
+        document.addEventListener('pointerdown', unlockOnFirstTap);
+        document.addEventListener('keydown', unlockOnFirstTap);
 
         /* ======================================================================
-           3. IFRAME CONTROLLER & NAVIGATION
+           3. IFRAME PAGE SWITCHER
            ====================================================================== */
-        const iframeModal = document.getElementById('iframe-modal');
+        const frameContainer = document.getElementById('page-frame-container');
         const storyIframe = document.getElementById('story-iframe');
-        const modalPageName = document.getElementById('modal-page-name');
-        const iframeLoader = document.getElementById('iframe-loader');
-        const iframeLoaderText = document.getElementById('iframe-loader-text');
+        const frameTitle = document.getElementById('frame-title');
+        const frameLoader = document.getElementById('frame-loader');
 
-        let activePageFile = '';
-
-        function openRealm(pageFile, trackFile, displayTitle) {
-            activePageFile = pageFile;
-            if (modalPageName) {
-                modalPageName.textContent = displayTitle || pageFile;
+        function openSection(pageFile, trackFile, headingLabel) {
+            if (frameTitle && headingLabel) {
+                frameTitle.textContent = headingLabel;
             }
-            if (iframeLoaderText) {
-                iframeLoaderText.textContent = `${pageFile} Load වෙමින් පවතී...`;
-            }
-            if (iframeLoader) {
-                iframeLoader.classList.remove('hidden');
+            if (frameLoader) {
+                frameLoader.classList.remove('hide');
             }
 
-            iframeModal.classList.add('active');
+            frameContainer.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            // Switch to corresponding mp3 (n.mp3, d.mp3, h.mp3)
-            playTrack(trackFile, true);
-
+            setTrackAndPlay(trackFile);
             storyIframe.src = pageFile;
         }
 
-        function closeRealm() {
-            iframeModal.classList.remove('active');
+        function closeSection() {
+            frameContainer.classList.remove('active');
             document.body.style.overflow = '';
             storyIframe.src = 'about:blank';
-            activePageFile = '';
 
-            // Return to index music i.mp3
-            playTrack('i.mp3', true);
-        }
-
-        function reloadCurrentFrame() {
-            if (!activePageFile) return;
-            if (iframeLoader) {
-                iframeLoader.classList.remove('hidden');
-            }
-            storyIframe.src = 'about:blank';
-            setTimeout(() => {
-                storyIframe.src = activePageFile;
-            }, 60);
-            showToast(`🔄 Reloading ${activePageFile}`);
+            setTrackAndPlay('i.mp3');
         }
 
         storyIframe.addEventListener('load', () => {
-            const currentSrc = storyIframe.getAttribute('src') || '';
-            if (currentSrc && currentSrc !== 'about:blank' && iframeLoader) {
+            const src = storyIframe.getAttribute('src') || '';
+            if (src && src !== 'about:blank' && frameLoader) {
                 setTimeout(() => {
-                    iframeLoader.classList.add('hidden');
-                }, 180);
+                    frameLoader.classList.add('hide');
+                }, 160);
             }
         });
 
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && iframeModal.classList.contains('active')) {
-                closeRealm();
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && frameContainer.classList.contains('active')) {
+                closeSection();
             }
         });
-
-        /* ======================================================================
-           4. TOAST HELPER
-           ====================================================================== */
-        const toastBanner = document.getElementById('toast-banner');
-        let toastTimer = null;
-
-        function showToast(message) {
-            if (!toastBanner) return;
-            toastBanner.textContent = message;
-            toastBanner.classList.add('show');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => {
-                toastBanner.classList.remove('show');
-            }, 2400);
-        }
     </script>
 </body>
 </html>
