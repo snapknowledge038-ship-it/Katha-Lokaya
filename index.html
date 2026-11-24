@@ -116,7 +116,6 @@
             border-radius: 8px;
         }
 
-        /* Iframe Overlay */
         #frame-box {
             display: none;
             position: fixed;
@@ -160,24 +159,24 @@
 </head>
 <body>
 
-    <audio id="bg-music" src="i.mp3" autoplay loop></audio>
+    <audio id="index-music" src="i.mp3" autoplay loop></audio>
 
     <section class="part part-1">
         <h2>🌈 කෙටි කතා (Novels)</h2>
         <p>ආදර්ශවත් කෙටි කතා 50</p>
-        <button type="button" class="btn btn-novel" onclick="openPage('novel.html', 'n.mp3')">කෙටි කතා බලන්න</button>
+        <button type="button" class="btn btn-novel" onclick="openPage('novel.html', '🌈 කෙටි කතා 50')">කෙටි කතා බලන්න</button>
     </section>
 
     <section class="part part-2">
         <h2>🕵️‍♂️ රහස් පරීක්ෂක කතා (Detectives)</h2>
         <p>ළමා රහස් පරීක්ෂක කතා 50</p>
-        <button type="button" class="btn btn-detective" onclick="openPage('detectives.html', 'd.mp3')">රහස් කතා බලන්න</button>
+        <button type="button" class="btn btn-detective" onclick="openPage('detectives.html', '🕵️‍♂️ රහස් පරීක්ෂක කතා 50')">රහස් කතා බලන්න</button>
     </section>
 
     <section class="part part-3">
         <h2>🕯️ අඳුරු අභිරහස් කතා (Horror)</h2>
         <p>ළමයින්ට ගැළපෙන අඳුරු අභිරහස් කතා 50</p>
-        <button type="button" class="btn btn-horror" onclick="openPage('horror.html', 'h.mp3')">අභිරහස් කතා බලන්න</button>
+        <button type="button" class="btn btn-horror" onclick="openPage('horror.html', '🕯️ අඳුරු අභිරහස් කතා 50')">අභිරහස් කතා බලන්න</button>
     </section>
 
     <div id="frame-box">
@@ -189,38 +188,35 @@
     </div>
 
     <script>
-        const music = document.getElementById('bg-music');
+        const indexMusic = document.getElementById('index-music');
         const frameBox = document.getElementById('frame-box');
         const pageFrame = document.getElementById('page-frame');
         const frameLabel = document.getElementById('frame-label');
 
-        function playSong(file) {
-            music.src = file;
-            music.play().catch(() => {});
+        function playIndexMusic() {
+            indexMusic.src = 'i.mp3';
+            indexMusic.play().catch(() => {});
         }
 
-        // Page open වුණු ගමන් i.mp3 play කරන්න උත්සාහ කරයි; browser block කළොත් පළමු click එකේදී play වේ
-        window.addEventListener('load', () => {
-            music.play().catch(() => {});
-        });
+        window.addEventListener('load', playIndexMusic);
 
         document.addEventListener('click', () => {
-            if (music.paused) {
-                music.play().catch(() => {});
+            if (!frameBox.classList.contains('open') && indexMusic.paused) {
+                indexMusic.play().catch(() => {});
             }
         }, { once: true });
 
-        function openPage(pageFile, songFile) {
-            frameLabel.textContent = pageFile;
+        function openPage(pageFile, labelText) {
+            indexMusic.pause();
+            frameLabel.textContent = labelText;
             pageFrame.src = pageFile;
             frameBox.classList.add('open');
-            playSong(songFile);
         }
 
         function closePage() {
             frameBox.classList.remove('open');
             pageFrame.src = '';
-            playSong('i.mp3');
+            playIndexMusic();
         }
     </script>
 </body>
