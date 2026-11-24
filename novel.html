@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clue &amp; Tale — කෙටි කතා 50</title>
+    <title>Once Upon a Time — කෙටි කතා 50</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
             background: none;
         }
 
-        /* 1. Top Audio Mute Bar */
+        /* 1. Single Audio Mute Bar */
         .novel-audio-bar {
             max-width: 1240px;
             margin: 0 auto 16px;
@@ -58,7 +58,7 @@
             transform: scale(1.04);
         }
 
-        /* 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Story Buttons */
+        /* 2. Panoramic Image Banner (i.jpg) */
         .novel-panoramic-wrap {
             position: relative;
             max-width: 1240px;
@@ -89,7 +89,7 @@
         .novel-panoramic-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0.58) 100%);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.22) 50%, rgba(255, 255, 255, 0.62) 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -148,7 +148,7 @@
             box-shadow: 0 12px 20px rgba(219, 39, 119, 0.16);
         }
 
-        /* 4. Kids Friendly Large-Font Reader */
+        /* 4. Storytelling Large-Font Reader */
         #reader-section {
             display: none;
             max-width: 900px;
@@ -204,8 +204,8 @@
         }
 
         #reader-text {
-            font-size: 1.32rem;
-            line-height: 2.15;
+            font-size: 1.34rem;
+            line-height: 2.18;
             font-weight: 500;
             color: #1e293b;
             white-space: pre-line;
@@ -250,15 +250,15 @@
                 padding: 24px 18px;
             }
             #reader-text {
-                font-size: 1.2rem;
-                line-height: 2.02;
+                font-size: 1.22rem;
+                line-height: 2.04;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Top Audio Mute / Unmute Button -->
+    <!-- Single Audio Mute / Unmute Button -->
     <div class="novel-audio-bar">
         <button type="button" id="novel-mute-btn" class="mute-btn" onclick="toggleNovelMute()">
             🔊 Sound On
@@ -268,25 +268,25 @@
     <audio id="novel-audio" src="n.mp3" loop preload="auto"></audio>
 
     <section id="kids-list-section">
-        <!-- 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Story Buttons -->
-        <div class="novel-panoramic-wrap" aria-label="Novel Panoramic Banner">
+        <!-- Panoramic Banner (i.jpg) -->
+        <div class="novel-panoramic-wrap" aria-label="Once Upon a Time Novel Banner">
             <img
                 src="i.jpg"
-                alt="ලස්සන කෙටි කතා Panoramic Banner"
+                alt="Once Upon a Time Banner"
                 class="novel-panoramic-img"
                 onerror="this.classList.add('broken')"
             >
             <div class="novel-panoramic-overlay">
-                <h1 class="novel-banner-title">🌈 ලස්සන කෙටි කතා 50</h1>
-                <p class="novel-banner-sub">පුංචි ඔයාලට කියවන්න පහසු, ලොකු අකුරෙන් ලියපු ආදර්ශවත් කතා 50ක්.</p>
+                <h1 class="novel-banner-title">Once Upon a Time • 🌈 කෙටි කතා 50</h1>
+                <p class="novel-banner-sub">එකෝමත් එක කාලෙක වුණු ලස්සන කතා, පුංචි ඔයාලට ආදරෙන් කියලා දෙන විදියට.</p>
             </div>
         </div>
 
-        <!-- 3. 50 Story Buttons -->
+        <!-- 50 Story Buttons -->
         <div id="story-grid" class="grid-50"></div>
     </section>
 
-    <!-- 4. Story Reader -->
+    <!-- Story Reader -->
     <section id="reader-section">
         <div class="reader-top-info">
             <span id="reader-num" class="story-tag">කතාව #1 / 50</span>
@@ -301,7 +301,6 @@
     </section>
 
     <script>
-        /* Audio Mute / Unmute Logic */
         const novelAudio = document.getElementById('novel-audio');
         const muteBtn = document.getElementById('novel-mute-btn');
         let novelMuted = false;
@@ -350,7 +349,6 @@
             }
         }, { once: true });
 
-        /* 50 Novel Topics */
         const topics = [
             "රන්වන් පොරොව", "කූඹියා සහ පරෙවියා", "ඉබ්බා සහ හාවා", "පිපාසිත කපුටා", "එකමුතුකමේ බලය",
             "සහයෝගයෙන් සිටි පුංචි කුරුල්ලෝ", "පිරිසිදු පාසල් මිදුල", "වෙලාවට වැඩ කළ සසා", "කරුණාවන්ත අලි පැටියා", "පොත් කියවන්න ආසා කළ මිනූ",
@@ -364,27 +362,26 @@
             "පුංචි අදහසකින් හැදුණු ලස්සන වැඩක්", "සෑම දිනකම අලුත් යමක් ඉගෙනගත් කතාව", "ආදරයෙන් සහ ගෞරවයෙන් සැලකීම", "පුංචි දරුවන්ගේ ලස්සන සිහිනය", "සැමවිටම සත්‍යය කතා කිරීමේ වටිනාකම"
         ];
 
-        /* 1000+ Words Continuous Story Generator Without Chapter Headings */
-        function createKidsStory1000Plus(topic) {
+        function tellKidsStory1000Plus(topic) {
             let story =
-                `පුංචි යාළුවනේ, අද අපි කියවන්න යන්නේ "${topic}" ගැන ලස්සන කතාවක්. ` +
-                `හිරු එළිය ලස්සනට වැටුණු හැම උදෑසනකම, සිනාසෙන මුහුණු සහ සතුටු හඬවල් පිරුණු පුංචි ගමක මේ කතාව සිදු වුණා. ` +
-                `එහි හිටිය පුංචි ළමයි සහ යාළුවෝ හැමෝම එකිනෙකාට හරිම ආදරෙන් සහ කරුණාවෙන් හිටියා. ` +
-                `කවුරුත් තරහා වෙන්නේ නැතුව, හොඳ වචන කතා කරමින්, තමන්ගේ වැඩ පිළිවෙළට කරන්න පුරුදු වෙලා හිටියා. ` +
-                `"${topic}" කියන මේ සිදුවීම එයාලගේ ජීවිතවලට අලුත් සතුටක් සහ ලොකු පාඩමක් එකතු කළා.`;
+                `එකෝමත් එක කාලෙක, හිරු එළිය ලස්සනට වැටෙන, කුරුල්ලෝ සින්දු කියන සුන්දර පුංචි ගමක "${topic}" ගැන හරිම ලස්සන කතාවක් සිදු වුණා. ` +
+                `පුංචි ඔයාලා ළඟින් වාඩි වෙලා හොඳින් අහගෙන ඉන්නකෝ, මම මේ කතාව ඔයාලට ආදරෙන් කියලා දෙන්නම්. ` +
+                `ඒ ගමේ හිටිය පුංචි ළමයි සහ යාළුවෝ හැමෝම හරිම සමගියෙන්, ආදරෙන් හිටියා. ` +
+                `කවුරුත් ඉක්මනින් තරහා ගන්නේ නැහැ; හොඳ වචන කතා කරනවා, අමාරු වෙලාවට යාළුවන්ට උදව් කරනවා. ` +
+                `ඉතින් දවසක් "${topic}" හා සම්බන්ධ පුංචි සිදුවීමක් ආවම හැමෝටම හරිම අලුත් අත්දැකීමක් ලැබුණා.`;
 
-            const flowSentences = [
-                `දවසක් "${topic}" හා සම්බන්ධ පුංචි අවස්ථාවක් ආවා. මුලින්ම ටිකක් අමුතු දෙයක් වගේ පෙනුණත්, පුංචි යාළුවෝ කලබල වුණේ නැහැ. එයාලා සන්සුන්ව එකතු වෙලා කතා කළා, හොඳින් සිතා බැලුවා, එකිනෙකාට උදව් කරගත්තා.`,
-                `අවංකව ඇත්ත කතා කරන එකයි, ඉවසීමෙන් වැඩ කරන එකයි කොච්චර ලස්සනද කියලා එයාලා හැමෝම තේරුම් ගත්තා. යාළුවෙකුට අමාරු වෙලාවකදී අත දෙන එක, බෙදාගෙන කන එක, පරිසරය පිරිසිදුව තියාගන්න එක හැමෝටම ලොකු සතුටක් ගෙනාවා.`,
-                `වැරැද්දක් වුණු තැනකදී සමාව ඉල්ලලා ඒක හදාගන්න එකත් හරිම වටිනා දෙයක්. "${topic}" කතාවෙන් අපිට කියලා දෙන්නේ පුංචි පුංචි හොඳ පුරුදු එකතු වුණාම ජීවිතය හරිම ලස්සන වෙනවා කියලයි.`,
-                `සවස් වෙද්දී කුරුල්ලෝ කූඩුවලට යනවා වගේ, පුංචි යාළුවෝත් හිනා වෙවී ගෙවල්වලට ගියේ හෙටත් අලුත් දෙයක් ඉගෙනගන්න බලාපොරොත්තුවෙන්. ඇත්තටම "${topic}" කියන්නේ හැමදාම මතක තියාගන්න වටිනා ලස්සන කතාවක්.`
+            const tellMoreLines = [
+                `ඔයාලා දන්නවද, මුලින්ම මේ දේ වුණාම ටිකක් අමුතු විදියට පෙනුණත්, කවුරුත් කලබල වුණේ නැහැ. එයාලා එකතු වෙලා හෙමින් සැරේ කතා කළා, හොඳින් හිතලා බැලුවා, එකිනෙකාට උදව් කරගත්තා. ඒකෙන් එයාලට තේරුණා එකමුතු වුණාම ඕනෑම දෙයක් ලේසියෙන් කරන්න පුළුවන් කියලා.`,
+                `තවත් ලස්සන දෙයක් තමයි ඇත්ත කතා කරන එකයි, වැරැද්දක් වුණාම සමාව ඉල්ලලා ඒක හදාගන්න එකයි. පුංචි ඔයාලත් හැමදාම ඇත්ත කතා කරනවා නම්, යාළුවන් එක්ක බෙදාගෙන කනවා නම්, ගස් වැල් සත්තුන්ට ආදරේ කරනවා නම් ඔයාලගේ හිතත් හැමදාම සතුටින් පිරිලා තියේවි.`,
+                `"${topic}" කතාවේ හැම තැනකදීම අපිට කියලා දෙන්නේ පුංචි හොඳ පුරුදු තමයි ලොකු සතුටක් ගේන්නේ කියලයි. අම්මා තාත්තා කියන හොඳ දේවල් අහගෙන, වෙලාවට වැඩ කරගෙන, සිනාසීගෙන ඉන්න ළමයින්ට හැමෝම ගොඩක් ආදරෙයි.`,
+                `ඔන්න ඔහොම සවස් වෙද්දී කුරුල්ලෝ කූඩුවලට ගියා වගේ, කතාවේ හිටිය පුංචි යාළුවෝත් හිනා වෙවී ගෙවල්වලට ගියේ හෙටත් අලුත් හොඳ දෙයක් ඉගෙනගන්න. එහෙනම් පුංචි යාළුවනේ, "${topic}" කියන මේ ලස්සන කතාව හැමදාම මතක තියාගන්නකෝ!`
             ];
 
             const countWords = (txt) => txt.trim().split(/\s+/).filter(Boolean).length;
-            let step = 0;
+            let idx = 0;
             while (countWords(story) < 1050) {
-                story += `\n\n` + flowSentences[step % flowSentences.length];
-                step++;
+                story += `\n\n` + tellMoreLines[idx % tellMoreLines.length];
+                idx++;
             }
 
             return {
@@ -396,7 +393,7 @@
         const stories = topics.map((t, i) => ({
             index: i,
             title: `${i + 1}. ${t}`,
-            ...createKidsStory1000Plus(t)
+            ...tellKidsStory1000Plus(t)
         }));
 
         const grid = document.getElementById('story-grid');
