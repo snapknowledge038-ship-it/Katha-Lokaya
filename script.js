@@ -197,51 +197,62 @@ function build50HorrorStories() {
 }
 
 function initStoryPage(type) {
-    const grid = document.getElementById('story-grid');
-    const readerSec = document.getElementById('reader-section');
-    const readerTitle = document.getElementById('reader-title');
-    const readerText = document.getElementById('reader-text');
-    const backBtn = document.getElementById('btn-back-list');
+    const render = () => {
+        const grid = document.getElementById('story-grid');
+        const readerSec = document.getElementById('reader-section');
+        const readerTitle = document.getElementById('reader-title');
+        const readerText = document.getElementById('reader-text');
+        const backBtn = document.getElementById('btn-back-list');
 
-    let stories = [];
-    let btnClass = 'btn-item-kids';
-    let themeClass = 'kids-theme';
+        let stories = [];
+        let btnClass = 'btn-item-kids';
+        let themeClass = 'kids-theme';
 
-    if (type === 'kids') {
-        stories = build50KidsStories();
-        btnClass = 'btn-item-kids';
-        themeClass = 'kids-theme';
-    } else if (type === 'detective') {
-        stories = build50DetectiveStories();
-        btnClass = 'btn-item-detective';
-        themeClass = 'detective-theme';
-    } else if (type === 'horror') {
-        stories = build50HorrorStories();
-        btnClass = 'btn-item-horror';
-        themeClass = 'horror-theme';
-    }
+        if (type === 'kids') {
+            stories = build50KidsStories();
+            btnClass = 'btn-item-kids';
+            themeClass = 'kids-theme';
+        } else if (type === 'detective') {
+            stories = build50DetectiveStories();
+            btnClass = 'btn-item-detective';
+            themeClass = 'detective-theme';
+        } else if (type === 'horror') {
+            stories = build50HorrorStories();
+            btnClass = 'btn-item-horror';
+            themeClass = 'horror-theme';
+        }
 
-    if (grid) {
-        grid.innerHTML = '';
-        stories.forEach((story) => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = `story-btn ${btnClass}`;
-            btn.textContent = story.title;
-            btn.addEventListener('click', () => {
-                readerSec.className = `active ${themeClass}`;
-                readerTitle.textContent = story.title;
-                readerText.textContent = story.text;
-                readerSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (grid) {
+            grid.innerHTML = '';
+            stories.forEach((story) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `story-btn ${btnClass}`;
+                btn.textContent = story.title;
+                btn.innerText = story.title;
+                btn.addEventListener('click', () => {
+                    if (readerSec && readerTitle && readerText) {
+                        readerSec.className = `active ${themeClass}`;
+                        readerTitle.textContent = story.title;
+                        readerText.textContent = story.text;
+                        readerSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+                grid.appendChild(btn);
             });
-            grid.appendChild(btn);
-        });
-    }
+        }
 
-    if (backBtn && readerSec) {
-        backBtn.addEventListener('click', () => {
-            readerSec.className = '';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        if (backBtn && readerSec) {
+            backBtn.addEventListener('click', () => {
+                readerSec.className = '';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', render, { once: true });
+    } else {
+        render();
     }
 }
