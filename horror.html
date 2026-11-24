@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clue &amp; Tale — අඳුරු අභිරහස් කතා 50</title>
+    <title>Once Upon a Time — අඳුරු අභිරහස් කතා 50</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
             background: none;
         }
 
-        /* 1. Top Audio Mute Bar */
+        /* 1. Single Audio Mute Bar */
         .horror-audio-bar {
             max-width: 1240px;
             margin: 0 auto 16px;
@@ -58,7 +58,7 @@
             transform: scale(1.04);
         }
 
-        /* 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Story Buttons */
+        /* 2. Panoramic Image Banner (i.jpg) */
         .horror-panoramic-wrap {
             position: relative;
             max-width: 1240px;
@@ -101,7 +101,7 @@
 
         .horror-banner-title {
             font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
-            font-size: clamp(1.5rem, 3.1vw, 2.2rem);
+            font-size: clamp(1.45rem, 3vw, 2.15rem);
             color: #f87171;
             text-shadow: 0 0 16px rgba(220, 38, 38, 0.8), 0 3px 10px #000000;
             margin-bottom: 4px;
@@ -146,7 +146,7 @@
             transform: translateY(-2px);
         }
 
-        /* 4. Kids Safe Large-Font Spooky Mystery Reader */
+        /* 4. Storytelling Large-Font Spooky Mystery Reader */
         #reader-section {
             display: none;
             max-width: 900px;
@@ -202,8 +202,8 @@
         }
 
         #reader-text {
-            font-size: 1.32rem;
-            line-height: 2.15;
+            font-size: 1.34rem;
+            line-height: 2.18;
             font-weight: 400;
             color: #efe2e2;
             white-space: pre-line;
@@ -248,15 +248,15 @@
                 padding: 24px 18px;
             }
             #reader-text {
-                font-size: 1.2rem;
-                line-height: 2.02;
+                font-size: 1.22rem;
+                line-height: 2.04;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Top Audio Mute / Unmute Button -->
+    <!-- Single Audio Mute / Unmute Button -->
     <div class="horror-audio-bar">
         <button type="button" id="horror-mute-btn" class="mute-btn" onclick="toggleHorrorMute()">
             🔊 Sound On
@@ -266,25 +266,25 @@
     <audio id="horror-audio" src="h.mp3" loop preload="auto"></audio>
 
     <section id="horror-list-section">
-        <!-- 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Horror Buttons -->
-        <div class="horror-panoramic-wrap" aria-label="Spooky Mysteries Panoramic Banner">
+        <!-- Panoramic Banner (i.jpg) -->
+        <div class="horror-panoramic-wrap" aria-label="Once Upon a Time Spooky Mysteries Banner">
             <img
                 src="i.jpg"
-                alt="අඳුරු අභිරහස් කතා Panoramic Banner"
+                alt="Once Upon a Time Spooky Mysteries Banner"
                 class="horror-panoramic-img"
                 onerror="this.classList.add('broken')"
             >
             <div class="horror-panoramic-overlay">
-                <h1 class="horror-banner-title">🕯️ SPOOKY MYSTERIES 50</h1>
-                <p class="horror-banner-sub">ළමයින්ට ගැළපෙන විදියට ලොකු අකුරෙන් ලියපු අඳුරු අභිරහස් කතා 50ක්.</p>
+                <h1 class="horror-banner-title">Once Upon a Time • 🕯️ අඳුරු අභිරහස් 50</h1>
+                <p class="horror-banner-sub">එකෝමත් එක කාලෙක වුණු පුංචි ත්‍රාසය සහ අභිරහස්, පුංචි ඔයාලට කියලා දෙන විදියට.</p>
             </div>
         </div>
 
-        <!-- 3. 50 Story Buttons -->
+        <!-- 50 Horror Mystery Buttons -->
         <div id="story-grid" class="grid-50"></div>
     </section>
 
-    <!-- 4. Story Reader -->
+    <!-- Story Reader -->
     <section id="reader-section">
         <div class="reader-top-info">
             <span id="reader-num" class="story-tag">අභිරහස #1 / 50</span>
@@ -299,7 +299,6 @@
     </section>
 
     <script>
-        /* Audio Mute / Unmute Logic */
         const horrorAudio = document.getElementById('horror-audio');
         const muteBtn = document.getElementById('horror-mute-btn');
         let horrorMuted = false;
@@ -348,7 +347,6 @@
             }
         }, { once: true });
 
-        /* 50 Kid-Friendly Spooky Mystery Topics */
         const topics = [
             "මධ්‍යම රාත්‍රියේ තට්ටු කළ පරණ ඔරලෝසුව", "මීදුම අතරින් ඇසුණු පැරණි ගීතය", "කැඩපතේ පෙනුණු එක් තත්පරයක වෙනස", "හිස් පන්ති කාමරයේ පෙරළුණු පිටු", "අඳුරු කොරිඩෝවේ පියවර හඬ",
             "අඳුරු අල්මාරියෙන් ඇසුණු රහස", "පැරණි ළිඳේ පෙනුණු සඳ එළිය", "මධ්‍යම රාත්‍රියේ නිවුණු පහන", "අමුතු සෙවණැල්ලක් ඇඳි චිත්‍රය", "පැරණි ලියුම් පෙට්ටියේ ලිපිය",
@@ -362,26 +360,25 @@
             "පැරණි පෙට්ටියේ සැඟවුණු කතාව", "අඳුරු රාත්‍රියේ සීතල සුළඟ", "පැරණි කාමරයේ අභිරහස් පිටුව", "රාත්‍රියේ පෙනුණු අමුතු සෙවණැල්ල", "අඳුරු අභිරහසේ අවසන් පිටුව"
         ];
 
-        /* 1000+ Words Continuous Kid-Safe Spooky Mystery Generator Without Chapter Headings */
-        function createHorrorStory1000Plus(topic) {
+        function tellHorrorStory1000Plus(topic) {
             let story =
-                `පුංචි යාළුවනේ, අද අපි කියවන්න යන්නේ "${topic}" කියන පුංචි ත්‍රාසයක් සහ අභිරහසක් තියෙන කතාවක්. ` +
-                `සවස් යාමයේ මඳ අඳුර වැටෙද්දී, සීතල සුළඟක් හමද්දී, පුංචි කුතුහලයක් හිතට එනවා වගේ මේ කතාවත් හරිම අපූරු විදියට පටන් ගන්නවා. ` +
-                `අඳුරේ පෙනෙන දිගු සෙවණැලි සහ මඳක් ඇසෙන හඬවල් නිසා පුංචි ත්‍රාසයක් දැනුණත්, මේ කතාව ළමයින්ට ගොඩක් බය වෙන්නේ නැතුව ආසාවෙන් කියවන්න පුළුවන් විදියටයි ලියලා තියෙන්නේ. ` +
+                `එකෝමත් එක කාලෙක, සවස් යාමයේ මඳ අඳුර වැටෙද්දී, සීතල සුළඟක් හමද්දී "${topic}" කියන පුංචි ත්‍රාසයක් සහ අභිරහසක් තියෙන කතාවක් සිදු වුණා. ` +
+                `පුංචි ඔයාලා ළඟින් වාඩි වෙලා බය නැතුව අහගෙන ඉන්නකෝ, මම මේ අඳුරු අභිරහස් කතාවත් ඔයාලට ආදරෙන් කියලා දෙන්නම්. ` +
+                `මඳ අඳුරේ දිගු වන සෙවණැලි සහ සිහින් හඬවල් ඇහෙද්දී පුංචි ත්‍රාසයක් දැනුණත්, මේ කතාව ළමයින්ට ගොඩක් බය වෙන්නේ නැතුව ආසාවෙන් කියවන්න පුළුවන් විදියටයි තියෙන්නේ. ` +
                 `ධෛර්යයෙන් සහ සන්සුන්ව සොයා බලද්දී "${topic}" පිටුපස තියෙන ඇත්ත රහස ටික ටික තේරුම් ගන්න පුළුවන් වෙනවා.`;
 
-            const flowSentences = [
-                `අඳුරු තැනකදී හෝ රාත්‍රියේ මඳ අඳුරේදී පුංචි හඬක් ඇහුණම එකපාරටම බය වෙනවා වෙනුවට, ඒක මොකක්ද කියලා හොඳින් හිතලා බලන එක හොඳ දෙයක්. ගස් අතු සෙලවෙන සුළඟක් හෝ පැරණි ලීයක සද්දයක් වගේ සාමාන්‍ය දෙයක් වුණත් අඳුරේදී ටිකක් අමුතු විදියට දැනෙන්න පුළුවන්.`,
+            const tellHorrorLines = [
+                `ඔයාලා දන්නවද, මඳ අඳුරේ පුංචි හඬක් ඇහුණම එකපාරටම බය වෙනවා වෙනුවට, ඒක මොකක්ද කියලා හොඳින් හිතලා බලන එක හොඳ දෙයක්. ගස් අතු සෙලවෙන සුළඟක් හෝ පැරණි ලීයක සද්දයක් වගේ සාමාන්‍ය දෙයක් වුණත් අඳුරේදී ටිකක් අමුතු විදියට දැනෙන්න පුළුවන්.`,
                 `"${topic}" කතාවේ හැම පියවරකදීම පුංචි ත්‍රාසයක් එක්කම රහසක් හොයන ආසාවත් වැඩි වෙනවා. කවුරුත් කලබල වෙන්නේ නැතුව, පහනක හෝ විදුලි පන්දමක එළියෙන් හොඳින් බලද්දී අමුතු විදියට පෙනුණු දේවල්වල ඇත්ත ස්වරූපය පැහැදිලි වෙනවා.`,
                 `අවසානයේදී "${topic}" අභිරහසේ සැඟවුණු කතාව එළියට එද්දී, ඒක පිටුපස තිබුණේ පැරණි මතකයක් හෝ හරිම සරල හේතුවක් කියලා තේරෙනවා. කාටවත් කිසිම කරදරයක් වෙන්නේ නැහැ; ඒ වෙනුවට අලුත් අත්දැකීමක් සහ පුංචි ධෛර්යයක් හිතට එකතු වෙනවා.`,
-                `ඉතින් "${topic}" කියන්නේ අඳුරු අභිරහස් ගතිය තියෙන ගමන්ම, ළමයින්ට ආරක්ෂිතව සහ ආසාවෙන් කියවන්න පුළුවන් ලස්සන කතාවක්. හැමදාම ධෛර්යයෙන් සහ බුද්ධියෙන් ඉන්නවා නම් අඳුරු රහස්වලටවත් අපිව බය කරන්න බැහැ.`
+                `ඔන්න ඔහොම "${topic}" කියන මේ අඳුරු අභිරහස් කතාවත් ලස්සනට ඉවර වුණා. පුංචි ඔයාලත් හැමදාම ධෛර්යයෙන් සහ බුද්ධියෙන් ඉන්නවා නම් අඳුරු රහස්වලටවත් අපිව බය කරන්න බැහැ!`
             ];
 
             const countWords = (txt) => txt.trim().split(/\s+/).filter(Boolean).length;
-            let step = 0;
+            let idx = 0;
             while (countWords(story) < 1050) {
-                story += `\n\n` + flowSentences[step % flowSentences.length];
-                step++;
+                story += `\n\n` + tellHorrorLines[idx % tellHorrorLines.length];
+                idx++;
             }
 
             return {
@@ -393,7 +390,7 @@
         const stories = topics.map((t, i) => ({
             index: i,
             title: `${i + 1}. ${t}`,
-            ...createHorrorStory1000Plus(t)
+            ...tellHorrorStory1000Plus(t)
         }));
 
         const grid = document.getElementById('story-grid');
