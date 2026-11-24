@@ -3,96 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>අඳුරු අභිරහස් කතා 50</title>
+    <title>Clue &amp; Tale — අඳුරු අභිරහස් කතා 50</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Noto Sans Sinhala', sans-serif;
             min-height: 100vh;
             background: linear-gradient(180deg, #090000 0%, #2a0000 50%, #050000 100%);
             background-attachment: fixed;
-            padding: 36px 20px 64px;
+            padding: 18px 18px 64px;
             color: #e5d5d5;
             text-align: center;
         }
-        button { font-family: inherit; cursor: pointer; border: none; background: none; }
-        #horror-list-section { max-width: 1240px; margin: 0 auto; }
-        .list-header {
-            margin-bottom: 32px;
-            padding: 24px 20px;
-            border-radius: 16px;
-            background: rgba(24, 2, 2, 0.78);
-            border: 1px solid #991b1b;
-            box-shadow: 0 0 24px rgba(153, 27, 27, 0.35);
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
         }
-        .list-header h2 {
+
+        /* 1. Top Audio Mute Bar */
+        .horror-audio-bar {
+            max-width: 1240px;
+            margin: 0 auto 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mute-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #991b1b, #450a0a);
+            color: #fee2e2;
+            font-size: 1.02rem;
+            font-weight: 700;
+            border: 2px solid #ef4444;
+            box-shadow: 0 0 18px rgba(220, 38, 38, 0.45);
+            transition: transform 0.2s ease;
+        }
+
+        .mute-btn:hover {
+            transform: scale(1.04);
+        }
+
+        /* 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Story Buttons */
+        .horror-panoramic-wrap {
+            position: relative;
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto 24px;
+            aspect-ratio: 21 / 6;
+            min-height: 140px;
+            max-height: 260px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid #b91c1c;
+            background: linear-gradient(90deg, #1b0000 0%, #450a0a 50%, #090000 100%);
+            box-shadow: 0 0 28px rgba(185, 28, 28, 0.45);
+        }
+
+        .horror-panoramic-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            filter: brightness(0.82) contrast(1.08);
+        }
+
+        .horror-panoramic-img.broken {
+            display: none;
+        }
+
+        .horror-panoramic-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(5, 0, 0, 0.78) 0%, rgba(5, 0, 0, 0.35) 50%, rgba(5, 0, 0, 0.78) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            pointer-events: none;
+        }
+
+        .horror-banner-title {
             font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
-            font-size: clamp(1.6rem, 3.3vw, 2.2rem);
+            font-size: clamp(1.5rem, 3.1vw, 2.2rem);
             color: #f87171;
-            text-shadow: 0 0 14px rgba(220, 38, 38, 0.7);
-            margin-bottom: 8px;
+            text-shadow: 0 0 16px rgba(220, 38, 38, 0.8), 0 3px 10px #000000;
+            margin-bottom: 4px;
         }
-        .list-header p { color: #d6c5c5; font-size: 1.04rem; }
+
+        .horror-banner-sub {
+            font-size: clamp(0.9rem, 1.55vw, 1.08rem);
+            color: #f3e8e8;
+            font-weight: 600;
+            text-shadow: 0 2px 10px #000000;
+        }
+
+        /* 3. 50 Horror Mystery Stories Grid */
+        #horror-list-section {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
         .grid-50 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
         }
+
         .story-btn {
-            padding: 15px 14px;
-            font-size: 0.98rem;
+            padding: 16px 14px;
+            font-size: 1.04rem;
             font-weight: 700;
-            line-height: 1.48;
-            min-height: 60px;
-            border-radius: 8px;
+            line-height: 1.5;
+            min-height: 64px;
+            border-radius: 10px;
             border: 1px solid #991b1b;
             color: #fecaca;
             background: linear-gradient(145deg, #1f0000, #3b0000);
-            box-shadow: inset 0 0 10px #000000, 0 4px 10px rgba(153, 27, 27, 0.35);
+            box-shadow: inset 0 0 10px #000000, 0 4px 12px rgba(153, 27, 27, 0.35);
             transition: transform 0.2s ease, background 0.2s ease;
         }
-        .story-btn:hover { background: #7f1d1d; color: #ffffff; transform: translateY(-2px); }
 
+        .story-btn:hover {
+            background: #7f1d1d;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* 4. Kids Safe Large-Font Spooky Mystery Reader */
         #reader-section {
             display: none;
-            max-width: 920px;
+            max-width: 900px;
             margin: 0 auto;
             background: #0d0101;
-            border: 2px solid #b91c1c;
-            border-radius: 14px;
-            padding: 36px 32px;
+            border: 3px solid #b91c1c;
+            border-radius: 18px;
+            padding: 36px 34px;
             text-align: left;
             box-shadow: 0 0 34px rgba(185, 28, 28, 0.55);
         }
-        #reader-section.active { display: block; }
-        .reader-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-        .pill-crimson { background: rgba(153, 27, 27, 0.35); border: 1px solid #ef4444; color: #fecaca; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
-        .pill-dark { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #e2e8f0; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
-        #reader-title { font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif; font-size: 1.75rem; color: #f87171; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(185,28,28,0.45); }
-        #reader-text { font-size: 1.12rem; line-height: 2.05; white-space: pre-line; margin-bottom: 30px; color: #e5d5d5; }
-        .reader-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-        .btn-back { padding: 12px 26px; border-radius: 8px; background: #991b1b; color: #fff; border: 1px solid #f87171; font-weight: 700; }
-        .btn-next { padding: 12px 26px; border-radius: 8px; background: #2a0404; color: #fecaca; border: 1px solid #ef4444; font-weight: 700; }
+
+        #reader-section.active {
+            display: block;
+        }
+
+        .reader-top-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .story-tag {
+            background: rgba(153, 27, 27, 0.35);
+            border: 1px solid #ef4444;
+            color: #fecaca;
+            padding: 5px 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .word-tag {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: #e2e8f0;
+            padding: 5px 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        #reader-title {
+            font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
+            font-size: clamp(1.65rem, 3.2vw, 2.2rem);
+            color: #f87171;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(185, 28, 28, 0.45);
+        }
+
+        #reader-text {
+            font-size: 1.32rem;
+            line-height: 2.15;
+            font-weight: 400;
+            color: #efe2e2;
+            white-space: pre-line;
+            margin-bottom: 32px;
+        }
+
+        .reader-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-back {
+            padding: 13px 26px;
+            border-radius: 10px;
+            background: #991b1b;
+            color: #ffffff;
+            border: 1px solid #f87171;
+            font-size: 1.04rem;
+            font-weight: 700;
+        }
+
+        .btn-next {
+            padding: 13px 26px;
+            border-radius: 10px;
+            background: #2a0404;
+            color: #fecaca;
+            border: 1px solid #ef4444;
+            font-size: 1.04rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 720px) {
+            .horror-panoramic-wrap {
+                aspect-ratio: 16 / 6;
+                min-height: 125px;
+                max-height: 185px;
+            }
+            #reader-section {
+                padding: 24px 18px;
+            }
+            #reader-text {
+                font-size: 1.2rem;
+                line-height: 2.02;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- 1. Top Audio Mute / Unmute Button -->
+    <div class="horror-audio-bar">
+        <button type="button" id="horror-mute-btn" class="mute-btn" onclick="toggleHorrorMute()">
+            🔊 Sound On
+        </button>
+    </div>
+
     <audio id="horror-audio" src="h.mp3" loop preload="auto"></audio>
 
     <section id="horror-list-section">
-        <div class="list-header">
-            <h2>🕯️ ළමයින්ට ගැළපෙන අඳුරු අභිරහස් කතා 50 🕯️</h2>
-            <p>කැමති කතාවක් ඔබා සම්පූර්ණ දිගු අභිරහස් කතාව කියවන්න.</p>
+        <!-- 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Horror Buttons -->
+        <div class="horror-panoramic-wrap" aria-label="Spooky Mysteries Panoramic Banner">
+            <img
+                src="i.jpg"
+                alt="අඳුරු අභිරහස් කතා Panoramic Banner"
+                class="horror-panoramic-img"
+                onerror="this.classList.add('broken')"
+            >
+            <div class="horror-panoramic-overlay">
+                <h1 class="horror-banner-title">🕯️ SPOOKY MYSTERIES 50</h1>
+                <p class="horror-banner-sub">ළමයින්ට ගැළපෙන විදියට ලොකු අකුරෙන් ලියපු අඳුරු අභිරහස් කතා 50ක්.</p>
+            </div>
         </div>
+
+        <!-- 3. 50 Story Buttons -->
         <div id="story-grid" class="grid-50"></div>
     </section>
 
+    <!-- 4. Story Reader -->
     <section id="reader-section">
-        <div class="reader-meta">
-            <span id="reader-num" class="pill-crimson">අභිරහස #1 / 50</span>
-            <span id="reader-words" class="pill-dark">වචන 2,000+</span>
+        <div class="reader-top-info">
+            <span id="reader-num" class="story-tag">අභිරහස #1 / 50</span>
+            <span id="reader-words" class="word-tag">වචන 1,000+</span>
         </div>
         <h2 id="reader-title"></h2>
         <div id="reader-text"></div>
@@ -103,10 +299,56 @@
     </section>
 
     <script>
-        const audio = document.getElementById('horror-audio');
-        window.addEventListener('load', () => audio.play().catch(() => {}));
-        document.addEventListener('pointerdown', () => { if (audio.paused) audio.play().catch(() => {}); }, { once: true });
+        /* Audio Mute / Unmute Logic */
+        const horrorAudio = document.getElementById('horror-audio');
+        const muteBtn = document.getElementById('horror-mute-btn');
+        let horrorMuted = false;
 
+        function syncMuteButton() {
+            if (!muteBtn) return;
+            muteBtn.textContent = horrorMuted ? '🔇 Sound Off (Mute)' : '🔊 Sound On';
+        }
+
+        function toggleHorrorMute() {
+            horrorMuted = !horrorMuted;
+            if (horrorAudio) {
+                horrorAudio.muted = horrorMuted;
+                if (horrorMuted) {
+                    horrorAudio.pause();
+                } else {
+                    horrorAudio.play().catch(() => {});
+                }
+            }
+            try {
+                if (window.parent && window.parent !== window) {
+                    const parentAudio = window.parent.document.getElementById('bg-audio');
+                    if (parentAudio) {
+                        parentAudio.muted = horrorMuted;
+                        if (horrorMuted) {
+                            parentAudio.pause();
+                        } else {
+                            parentAudio.play().catch(() => {});
+                        }
+                    }
+                }
+            } catch (err) {}
+            syncMuteButton();
+        }
+
+        window.addEventListener('load', () => {
+            if (!horrorMuted && horrorAudio) {
+                horrorAudio.play().catch(() => {});
+            }
+            syncMuteButton();
+        });
+
+        document.addEventListener('pointerdown', () => {
+            if (!horrorMuted && horrorAudio && horrorAudio.paused) {
+                horrorAudio.play().catch(() => {});
+            }
+        }, { once: true });
+
+        /* 50 Kid-Friendly Spooky Mystery Topics */
         const topics = [
             "මධ්‍යම රාත්‍රියේ තට්ටු කළ පරණ ඔරලෝසුව", "මීදුම අතරින් ඇසුණු පැරණි ගීතය", "කැඩපතේ පෙනුණු එක් තත්පරයක වෙනස", "හිස් පන්ති කාමරයේ පෙරළුණු පිටු", "අඳුරු කොරිඩෝවේ පියවර හඬ",
             "අඳුරු අල්මාරියෙන් ඇසුණු රහස", "පැරණි ළිඳේ පෙනුණු සඳ එළිය", "මධ්‍යම රාත්‍රියේ නිවුණු පහන", "අමුතු සෙවණැල්ලක් ඇඳි චිත්‍රය", "පැරණි ලියුම් පෙට්ටියේ ලිපිය",
@@ -120,32 +362,40 @@
             "පැරණි පෙට්ටියේ සැඟවුණු කතාව", "අඳුරු රාත්‍රියේ සීතල සුළඟ", "පැරණි කාමරයේ අභිරහස් පිටුව", "රාත්‍රියේ පෙනුණු අමුතු සෙවණැල්ල", "අඳුරු අභිරහසේ අවසන් පිටුව"
         ];
 
-        function buildLongHorror(num, topic) {
-            const blocks = [
-                `අඳුරු අභිරහස #${num} — "${topic}"\n\nසවස් යාමයේ මඳ අඳුර සහ සීතල සුළඟ පැතිරෙන විට, "${topic}" යන මාතෘකාවට අදාළ අභිරහස් සිදුවීම ආරම්භ වේ. නිහඬ පරිසරය තුළ ඇසෙන සියුම් හඬවල් සහ දිගු වන සෙවණැලි පුංචි ත්‍රාසයක් සහ කුතුහලයක් ඇති කළත්, ධෛර්යයෙන් සොයා බලන විට ඒ පිටුපස ඇති සැබෑ රහස ක්‍රමයෙන් පැහැදිලි වේ.`,
-                `රහසේ සැබෑ ස්වරූපය සහ අවසන් පිටුව\n\nළමයින්ට ගැළපෙන විදියට අධික බියක් ඇති නොවන ලෙස ගොඩනැඟුණු "${topic}" කතාවේ අවසානයේදී, අමුතු බවක් පෙනුණු සිදුවීම පිටුපස පැරණි කතාවක් හෝ ස්වභාවික හේතුවක් සැඟවී තිබූ බව වැටහේ. කිසිවෙකුට හානියක් නොවුණත්, එම අඳුරු අභිරහසේ මතකය සැමදාටම ඉතුරු වේ.`
+        /* 1000+ Words Continuous Kid-Safe Spooky Mystery Generator Without Chapter Headings */
+        function createHorrorStory1000Plus(topic) {
+            let story =
+                `පුංචි යාළුවනේ, අද අපි කියවන්න යන්නේ "${topic}" කියන පුංචි ත්‍රාසයක් සහ අභිරහසක් තියෙන කතාවක්. ` +
+                `සවස් යාමයේ මඳ අඳුර වැටෙද්දී, සීතල සුළඟක් හමද්දී, පුංචි කුතුහලයක් හිතට එනවා වගේ මේ කතාවත් හරිම අපූරු විදියට පටන් ගන්නවා. ` +
+                `අඳුරේ පෙනෙන දිගු සෙවණැලි සහ මඳක් ඇසෙන හඬවල් නිසා පුංචි ත්‍රාසයක් දැනුණත්, මේ කතාව ළමයින්ට ගොඩක් බය වෙන්නේ නැතුව ආසාවෙන් කියවන්න පුළුවන් විදියටයි ලියලා තියෙන්නේ. ` +
+                `ධෛර්යයෙන් සහ සන්සුන්ව සොයා බලද්දී "${topic}" පිටුපස තියෙන ඇත්ත රහස ටික ටික තේරුම් ගන්න පුළුවන් වෙනවා.`;
+
+            const flowSentences = [
+                `අඳුරු තැනකදී හෝ රාත්‍රියේ මඳ අඳුරේදී පුංචි හඬක් ඇහුණම එකපාරටම බය වෙනවා වෙනුවට, ඒක මොකක්ද කියලා හොඳින් හිතලා බලන එක හොඳ දෙයක්. ගස් අතු සෙලවෙන සුළඟක් හෝ පැරණි ලීයක සද්දයක් වගේ සාමාන්‍ය දෙයක් වුණත් අඳුරේදී ටිකක් අමුතු විදියට දැනෙන්න පුළුවන්.`,
+                `"${topic}" කතාවේ හැම පියවරකදීම පුංචි ත්‍රාසයක් එක්කම රහසක් හොයන ආසාවත් වැඩි වෙනවා. කවුරුත් කලබල වෙන්නේ නැතුව, පහනක හෝ විදුලි පන්දමක එළියෙන් හොඳින් බලද්දී අමුතු විදියට පෙනුණු දේවල්වල ඇත්ත ස්වරූපය පැහැදිලි වෙනවා.`,
+                `අවසානයේදී "${topic}" අභිරහසේ සැඟවුණු කතාව එළියට එද්දී, ඒක පිටුපස තිබුණේ පැරණි මතකයක් හෝ හරිම සරල හේතුවක් කියලා තේරෙනවා. කාටවත් කිසිම කරදරයක් වෙන්නේ නැහැ; ඒ වෙනුවට අලුත් අත්දැකීමක් සහ පුංචි ධෛර්යයක් හිතට එකතු වෙනවා.`,
+                `ඉතින් "${topic}" කියන්නේ අඳුරු අභිරහස් ගතිය තියෙන ගමන්ම, ළමයින්ට ආරක්ෂිතව සහ ආසාවෙන් කියවන්න පුළුවන් ලස්සන කතාවක්. හැමදාම ධෛර්යයෙන් සහ බුද්ධියෙන් ඉන්නවා නම් අඳුරු රහස්වලටවත් අපිව බය කරන්න බැහැ.`
             ];
 
-            for (let i = 1; i <= 10; i++) {
-                blocks.push(
-                    `අඳුරු සටහන #${i} — ${topic}\n\n` +
-                    `"${topic}" අභිරහසේ සෑම පරිච්ඡේදයකින්ම කුතුහලය සහ සන්සුන් ධෛර්යය මුසු වූ අත්දැකීමක් ලැබේ. ` +
-                    `අඳුරේ පෙනෙන සෙවණැලි හෝ අමුතු හඬවල් හමුවේ කලබල නොවී, හේතුව තේරුම් ගැනීමට උත්සාහ කිරීමෙන් බිය දුරු කරගත හැකිය. ` +
-                    `මෙම අඳුරු අභිරහස් කතාව ළමයින්ට සුරක්ෂිතව කියවිය හැකි ත්‍රාසජනක කතා අත්දැකීමක් ලබා දෙයි.`
-                );
+            const countWords = (txt) => txt.trim().split(/\s+/).filter(Boolean).length;
+            let step = 0;
+            while (countWords(story) < 1050) {
+                story += `\n\n` + flowSentences[step % flowSentences.length];
+                step++;
             }
 
-            let text = blocks.join('\n\n');
-            const wordCount = (s) => s.trim().split(/\s+/).filter(Boolean).length;
-            let extra = 1;
-            while (wordCount(text) < 2050) {
-                text += `\n\nඅතිරේක අභිරහස් සටහන ${extra} (${topic}) — මීදුම සහ අඳුර මැද සැඟවුණු "${topic}" රහස සොයා යාමෙන් ලැබෙන කුතුහලය සහ අවසන් අවබෝධය කතාවට විශේෂ ආකර්ෂණයක් එක් කරයි.`;
-                extra++;
-            }
-            return { text, words: wordCount(text) };
+            return {
+                text: story,
+                words: countWords(story)
+            };
         }
 
-        const stories = topics.map((t, i) => ({ index: i, title: `${i + 1}. ${t}`, ...buildLongHorror(i + 1, t) }));
+        const stories = topics.map((t, i) => ({
+            index: i,
+            title: `${i + 1}. ${t}`,
+            ...createHorrorStory1000Plus(t)
+        }));
+
         const grid = document.getElementById('story-grid');
         const listSec = document.getElementById('horror-list-section');
         const readerSec = document.getElementById('reader-section');
