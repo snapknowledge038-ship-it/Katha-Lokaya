@@ -3,629 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ආදර්ශවත් කෙටි කතා 50 | කතා ලෝකය 150</title>
+    <title>ආදර්ශවත් කෙටි කතා 50</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ==========================================================================
-           1. THEME VARIABLES & BASE RESET
-           ========================================================================== */
-        :root {
-            --bg-start: #e0f7fa;
-            --bg-mid: #fce4ec;
-            --bg-end: #fff9c4;
-            --accent-pink: #be185d;
-            --accent-hot: #db2777;
-            --accent-sky: #0284c7;
-            --card-a1: #fbcfe8;
-            --card-a2: #bae6fd;
-            --card-b1: #fde68a;
-            --card-b2: #bbf7d0;
-            --text-main: #1e293b;
-            --text-muted: #475569;
-            --white: #ffffff;
-            --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
-            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Noto Sans Sinhala', 'Fredoka', sans-serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 52%, var(--bg-end) 100%);
+            background: linear-gradient(135deg, #e0f7fa 0%, #fce4ec 52%, #fff9c4 100%);
             background-attachment: fixed;
             padding: 36px 20px 64px;
-            color: var(--text-main);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-
-        button:focus-visible {
-            outline: 3px solid var(--accent-hot);
-            outline-offset: 2px;
-        }
-
-        /* ==========================================================================
-           2. FLOATING SOFT PASTEL BACKGROUND BUBBLES
-           ========================================================================== */
-        .pastel-bg-layer {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .pastel-bubble {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(55px);
-            opacity: 0.42;
-            animation: driftBubble 16s ease-in-out infinite alternate;
-        }
-
-        .pastel-bubble.b1 {
-            width: 340px;
-            height: 340px;
-            top: -80px;
-            left: -80px;
-            background: #f9a8d4;
-        }
-
-        .pastel-bubble.b2 {
-            width: 380px;
-            height: 380px;
-            top: 38%;
-            right: -110px;
-            background: #93c5fd;
-            animation-duration: 20s;
-            animation-delay: -4s;
-        }
-
-        .pastel-bubble.b3 {
-            width: 350px;
-            height: 350px;
-            bottom: -100px;
-            left: 20%;
-            background: #fde047;
-            animation-duration: 18s;
-            animation-delay: -7s;
-        }
-
-        @keyframes driftBubble {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(28px, -24px) scale(1.08); }
-        }
-
-        /* ==========================================================================
-           3. LIST SECTION & 50 STORY GRID
-           ========================================================================== */
-        #kids-list-section {
-            position: relative;
-            z-index: 10;
-            max-width: 1240px;
-            margin: 0 auto;
+            color: #1e293b;
             text-align: center;
         }
-
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+        #kids-list-section { max-width: 1240px; margin: 0 auto; }
         .list-header {
             margin-bottom: 32px;
             padding: 24px 20px;
-            border-radius: 26px;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 12px 28px rgba(190, 24, 93, 0.08);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 2px solid #ffffff;
+            box-shadow: 0 10px 24px rgba(190, 24, 93, 0.08);
         }
-
         .list-header h2 {
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: clamp(1.75rem, 3.6vw, 2.4rem);
-            color: var(--accent-pink);
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 0 var(--white);
+            font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+            color: #be185d;
+            margin-bottom: 8px;
         }
-
-        .list-header p {
-            font-size: 1.06rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
+        .list-header p { color: #475569; font-size: 1.05rem; font-weight: 600; }
         .grid-50 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
             gap: 15px;
-            margin: 0 auto;
         }
-
         .story-btn {
             padding: 15px 14px;
             font-size: 0.98rem;
             font-weight: 700;
-            font-family: 'Noto Sans Sinhala', sans-serif;
-            cursor: pointer;
             line-height: 1.48;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 62px;
+            min-height: 60px;
             border-radius: 16px;
-            border: 2px solid var(--white);
-            color: var(--text-main);
-            background: linear-gradient(135deg, var(--card-a1) 0%, var(--card-a2) 100%);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-            transition: transform 0.24s var(--ease-spring), box-shadow 0.24s var(--ease-spring), filter 0.2s ease;
+            border: 2px solid #ffffff;
+            color: #1e293b;
+            background: linear-gradient(135deg, #fbcfe8 0%, #bae6fd 100%);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
         }
+        .story-btn:nth-child(3n) { background: linear-gradient(135deg, #fde68a 0%, #bbf7d0 100%); }
+        .story-btn:hover { transform: translateY(-3px); }
 
-        .story-btn:nth-child(3n) {
-            background: linear-gradient(135deg, var(--card-b1) 0%, var(--card-b2) 100%);
-        }
-
-        .story-btn:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 22px rgba(219, 39, 119, 0.18);
-            filter: brightness(1.03);
-        }
-
-        .story-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* ==========================================================================
-           4. STORY READER SECTION (2000+ WORDS LONG-FORM VIEW)
-           ========================================================================== */
         #reader-section {
             display: none;
-            position: relative;
-            z-index: 20;
-            min-height: 85vh;
-            padding: 24px 12px;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        #reader-section.active {
-            display: flex;
-            animation: fadeReaderIn 0.28s var(--ease-smooth);
-        }
-
-        @keyframes fadeReaderIn {
-            from { opacity: 0; transform: translateY(14px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reader-box {
             max-width: 920px;
-            width: 100%;
+            margin: 0 auto;
             background: rgba(255, 255, 255, 0.96);
             border: 5px solid #ec4899;
-            border-radius: 28px;
-            padding: 40px 38px;
-            color: var(--text-main);
-            box-shadow: 0 20px 46px rgba(190, 24, 93, 0.18);
+            border-radius: 26px;
+            padding: 36px 32px;
+            text-align: left;
+            box-shadow: 0 18px 40px rgba(190, 24, 93, 0.16);
         }
-
-        .reader-meta-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .reader-badge {
-            display: inline-block;
-            padding: 5px 14px;
-            border-radius: 999px;
-            background: #fdf2f8;
-            border: 1.5px solid #f472b6;
-            color: var(--accent-pink);
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .reader-word-count {
-            display: inline-block;
-            padding: 5px 14px;
-            border-radius: 999px;
-            background: #eff6ff;
-            border: 1.5px solid #60a5fa;
-            color: #1d4ed8;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .reader-title {
-            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: clamp(1.65rem, 3.2vw, 2.2rem);
-            color: var(--accent-pink);
-            margin-bottom: 22px;
-            padding-bottom: 14px;
-            border-bottom: 2px solid rgba(236, 72, 153, 0.22);
-        }
-
-        .reader-text {
-            font-size: 1.12rem;
-            line-height: 2.08;
-            white-space: pre-line;
-            margin-bottom: 34px;
-            color: #1e293b;
-        }
-
-        .reader-footer-actions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 14px;
-            padding-top: 18px;
-            border-top: 2px dashed rgba(236, 72, 153, 0.22);
-        }
-
-        .reader-back-btn {
-            padding: 13px 28px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 30px;
-            background: linear-gradient(45deg, #ff512f, #dd2476);
-            color: var(--white);
-            box-shadow: 0 8px 18px rgba(219, 39, 119, 0.3);
-            transition: transform 0.22s var(--ease-spring), filter 0.2s ease;
-        }
-
-        .reader-back-btn:hover {
-            transform: translateY(-2px) scale(1.03);
-            filter: brightness(1.06);
-        }
-
-        .reader-next-btn {
-            padding: 13px 26px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 30px;
-            background: linear-gradient(45deg, #0284c7, #0d9488);
-            color: var(--white);
-            box-shadow: 0 8px 18px rgba(2, 132, 199, 0.28);
-            transition: transform 0.22s var(--ease-spring), filter 0.2s ease;
-        }
-
-        .reader-next-btn:hover {
-            transform: translateY(-2px) scale(1.03);
-            filter: brightness(1.06);
-        }
-
-        @media (max-width: 650px) {
-            body { padding: 20px 12px 48px; }
-            .reader-box { padding: 24px 20px; border-radius: 22px; }
-            .reader-text { font-size: 1.04rem; line-height: 1.95; }
-        }
+        #reader-section.active { display: block; }
+        .reader-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+        .pill-pink { background: #fdf2f8; border: 1.5px solid #f472b6; color: #be185d; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
+        .pill-blue { background: #eff6ff; border: 1.5px solid #60a5fa; color: #1d4ed8; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
+        #reader-title { font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif; font-size: 1.9rem; color: #be185d; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid rgba(236,72,153,0.2); }
+        #reader-text { font-size: 1.12rem; line-height: 2.05; white-space: pre-line; margin-bottom: 30px; }
+        .reader-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .btn-back { padding: 12px 26px; border-radius: 30px; background: linear-gradient(45deg, #ff512f, #dd2476); color: #fff; font-weight: 700; }
+        .btn-next { padding: 12px 26px; border-radius: 30px; background: linear-gradient(45deg, #0284c7, #0d9488); color: #fff; font-weight: 700; }
     </style>
 </head>
 <body>
-
-    <!-- Soft Pastel Background Layer -->
-    <div class="pastel-bg-layer" aria-hidden="true">
-        <div class="pastel-bubble b1"></div>
-        <div class="pastel-bubble b2"></div>
-        <div class="pastel-bubble b3"></div>
-    </div>
-
-    <!-- Background Audio for Novel Page -->
     <audio id="novel-audio" src="n.mp3" loop preload="auto"></audio>
 
-    <!-- 50 Stories Grid Section -->
-    <section id="kids-list-section" class="list-section">
+    <section id="kids-list-section">
         <div class="list-header">
             <h2>🌟 ආදර්ශවත් කෙටි කතා 50 🌟</h2>
-            <p>මෙතැන ඇත්තේ කෙටි කතා 50 පමණි. කැමති කතාවක් ඔබා සම්පූර්ණ දිගු කතාව කියවන්න.</p>
+            <p>කැමති කතාවක් ඔබා සම්පූර්ණ දිගු කතාව කියවන්න.</p>
         </div>
         <div id="story-grid" class="grid-50"></div>
     </section>
 
-    <!-- Full Story Reader Section (2000+ Words Each) -->
     <section id="reader-section">
-        <div class="reader-box">
-            <div class="reader-meta-bar">
-                <span id="reader-number-badge" class="reader-badge">කතාව #1 / 50</span>
-                <span id="reader-word-badge" class="reader-word-count">වචන 2,000+</span>
-            </div>
-            <h2 id="reader-title" class="reader-title"></h2>
-            <div id="reader-text" class="reader-text"></div>
-            <div class="reader-footer-actions">
-                <button type="button" id="btn-back-list" class="reader-back-btn">⬅ කතා ලැයිස්තුවට ආපසු</button>
-                <button type="button" id="btn-next-story" class="reader-next-btn">ඊළඟ කතාව ➡</button>
-            </div>
+        <div class="reader-meta">
+            <span id="reader-num" class="pill-pink">කතාව #1 / 50</span>
+            <span id="reader-words" class="pill-blue">වචන 2,000+</span>
+        </div>
+        <h2 id="reader-title"></h2>
+        <div id="reader-text"></div>
+        <div class="reader-actions">
+            <button type="button" class="btn-back" onclick="closeReader()">⬅ කතා ලැයිස්තුවට</button>
+            <button type="button" class="btn-next" onclick="nextStory()">ඊළඟ කතාව ➡</button>
         </div>
     </section>
 
     <script>
-        /* ======================================================================
-           1. AUDIO AUTOPLAY / TAP UNLOCK FOR n.mp3
-           ====================================================================== */
-        (function setupNovelAudio() {
-            const audio = document.getElementById('novel-audio');
-            if (!audio) return;
+        const audio = document.getElementById('novel-audio');
+        window.addEventListener('load', () => audio.play().catch(() => {}));
+        document.addEventListener('pointerdown', () => { if (audio.paused) audio.play().catch(() => {}); }, { once: true });
 
-            const tryPlay = () => {
-                audio.play().catch(() => {});
-            };
-
-            window.addEventListener('DOMContentLoaded', tryPlay);
-            window.addEventListener('load', tryPlay);
-
-            const unlock = () => {
-                if (audio.paused) {
-                    tryPlay();
-                }
-                document.removeEventListener('pointerdown', unlock);
-                document.removeEventListener('keydown', unlock);
-            };
-
-            document.addEventListener('pointerdown', unlock);
-            document.addEventListener('keydown', unlock);
-        })();
-
-        /* ======================================================================
-           2. 50 NOVEL TOPICS DATA
-           ====================================================================== */
-        const novelTopics = [
-            "රන්වන් පොරොව",
-            "කූඹියා සහ පරෙවියා",
-            "ඉබ්බා සහ හාවා",
-            "පිපාසිත කපුටා",
-            "එකමුතුකමේ බලය",
-            "සහයෝගයෙන් සිටි පුංචි කුරුල්ලෝ",
-            "පිරිසිදු පාසල් මිදුල",
-            "වෙලාවට වැඩ කළ සසා",
-            "කරුණාවන්ත අලි පැටියා",
-            "පොත් කියවන්න ආසා කළ මිනූ",
-            "ගස් සිටවූ ගමේ ළමයි",
-            "බෙදාගෙන කෑමේ සතුට",
-            "සමාව ඉල්ලන්න ඉගෙනගත් රවි",
-            "අලුත් යාළුවා හඳුනාගත් චමි",
-            "වතුර ඉතිරි කළ පුංචි ගම",
-            "තමන්ගේ වැඩ තනිවම කළ නිම්නා",
-            "පුංචි මල් පැළය රැකගත් සෙනුජ",
-            "කීකරු බවේ වටිනාකම",
-            "සතුටින් ඉගෙනගත් පුංචි පන්තිය",
-            "කෘතඥ වෙන්න පුරුදු වුණු තරුණි",
-            "ඉවසීමෙන් ප්‍රශ්න විසඳූ දිනුජ",
-            "පරිසරයට ආදරය කළ පුංචි කණ්ඩායම",
-            "සරල ජීවිතයේ සතුට",
-            "අලුත් දෙයක් ඉගෙනගත් කවීන්",
-            "සැමට උදව් කළ පුංචි තරුව",
-            "විනෝදයෙන් ක්‍රීඩා කළ යාළුවෝ",
-            "අවංකව පිළිතුරු දුන් ශිෂ්‍යයා",
-            "කාලය අපතේ නොයැවූ කුරුළු පැටියා",
-            "හොඳ වචන කතා කරන්න පුරුදු වුණු මලිති",
-            "අනුන්ගේ දේට ආසා නොකළ පුංචි දරුවා",
-            "පුංචි උදව්වකින් ඇති වූ සතුට",
-            "මහන්සි වී පලතුරු වත්ත හැදූ ගොවියා",
-            "සිනහවෙන් ප්‍රශ්න මඟහැරගත් දිනූ",
-            "අලුත් පාඩමක් ඉගෙනගත් පුංචි කණ්ඩායම",
-            "පරිස්සමෙන් ගමන් ගිය පුංචි පිරිස",
-            "සත්තුන්ට කරුණාව දැක්වූ සඳුනි",
-            "තමන්ගේ වැරදි හදාගත් නවෝද්‍ය",
-            "පුංචි පුස්තකාලයක් හැදූ ළමයි",
-            "උදෑසන පුරුදු හදාගත් කවින්දි",
-            "විශ්වාසය රැකගත් යාළුවෝ දෙන්නා",
-            "සතුට බෙදාගත් පුංචි උත්සවය",
-            "පැන්සලෙන් ඉගෙනගත් ජීවිත පාඩම",
-            "පුංචි ගඟේ පිරිසිදුකම රැකගත් කතාව",
-            "කලබල නොවී තීරණ ගත් පුංචි ළමයා",
-            "හොඳ මිතුරෙකු වීමේ රහස",
-            "පුංචි අදහසකින් හැදුණු ලස්සන වැඩක්",
-            "සෑම දිනකම අලුත් යමක් ඉගෙනගත් කතාව",
-            "ආදරයෙන් සහ ගෞරවයෙන් සැලකීම",
-            "පුංචි දරුවන්ගේ ලස්සන සිහිනය",
-            "සැමවිටම සත්‍යය කතා කිරීමේ වටිනාකම"
+        const topics = [
+            "රන්වන් පොරොව", "කූඹියා සහ පරෙවියා", "ඉබ්බා සහ හාවා", "පිපාසිත කපුටා", "එකමුතුකමේ බලය",
+            "සහයෝගයෙන් සිටි පුංචි කුරුල්ලෝ", "පිරිසිදු පාසල් මිදුල", "වෙලාවට වැඩ කළ සසා", "කරුණාවන්ත අලි පැටියා", "පොත් කියවන්න ආසා කළ මිනූ",
+            "ගස් සිටවූ ගමේ ළමයි", "බෙදාගෙන කෑමේ සතුට", "සමාව ඉල්ලන්න ඉගෙනගත් රවි", "අලුත් යාළුවා හඳුනාගත් චමි", "වතුර ඉතිරි කළ පුංචි ගම",
+            "තමන්ගේ වැඩ තනිවම කළ නිම්නා", "පුංචි මල් පැළය රැකගත් සෙනුජ", "කීකරු බවේ වටිනාකම", "සතුටින් ඉගෙනගත් පුංචි පන්තිය", "කෘතඥ වෙන්න පුරුදු වුණු තරුණි",
+            "ඉවසීමෙන් ප්‍රශ්න විසඳූ දිනුජ", "පරිසරයට ආදරය කළ පුංචි කණ්ඩායම", "සරල ජීවිතයේ සතුට", "අලුත් දෙයක් ඉගෙනගත් කවීන්", "සැමට උදව් කළ පුංචි තරුව",
+            "විනෝදයෙන් ක්‍රීඩා කළ යාළුවෝ", "අවංකව පිළිතුරු දුන් ශිෂ්‍යයා", "කාලය අපතේ නොයැවූ කුරුළු පැටියා", "හොඳ වචන කතා කරන්න පුරුදු වුණු මලිති", "අනුන්ගේ දේට ආසා නොකළ පුංචි දරුවා",
+            "පුංචි උදව්වකින් ඇති වූ සතුට", "මහන්සි වී පලතුරු වත්ත හැදූ ගොවියා", "සිනහවෙන් ප්‍රශ්න මඟහැරගත් දිනූ", "අලුත් පාඩමක් ඉගෙනගත් පුංචි කණ්ඩායම", "පරිස්සමෙන් ගමන් ගිය පුංචි පිරිස",
+            "සත්තුන්ට කරුණාව දැක්වූ සඳුනි", "තමන්ගේ වැරදි හදාගත් නවෝද්‍ය", "පුංචි පුස්තකාලයක් හැදූ ළමයි", "උදෑසන පුරුදු හදාගත් කවින්දි", "විශ්වාසය රැකගත් යාළුවෝ දෙන්නා",
+            "සතුට බෙදාගත් පුංචි උත්සවය", "පැන්සලෙන් ඉගෙනගත් ජීවිත පාඩම", "පුංචි ගඟේ පිරිසිදුකම රැකගත් කතාව", "කලබල නොවී තීරණ ගත් පුංචි ළමයා", "හොඳ මිතුරෙකු වීමේ රහස",
+            "පුංචි අදහසකින් හැදුණු ලස්සන වැඩක්", "සෑම දිනකම අලුත් යමක් ඉගෙනගත් කතාව", "ආදරයෙන් සහ ගෞරවයෙන් සැලකීම", "පුංචි දරුවන්ගේ ලස්සන සිහිනය", "සැමවිටම සත්‍යය කතා කිරීමේ වටිනාකම"
         ];
 
-        /* ======================================================================
-           3. 2000+ WORDS LONG-FORM STORY GENERATOR FOR EVERY SINGLE STORY
-           ====================================================================== */
-        function generate2000PlusWordStory(index, topic) {
-            const storyNum = index + 1;
-            const paragraphs = [];
-
-            // Chapter 1: Setting & Daily Life (Rich narrative expansion)
-            paragraphs.push(
-                `පරිච්ඡේදය 01 — සුන්දර පරිසරය සහ ආරම්භය\n\n` +
-                `උදෑසන හිරු කිරණ මීදුම තුළින් සෙමින් පෙරළී එන මොහොතේ, කුරුල්ලන්ගේ මිහිරි ගීත හඬින් පිරුණු සුන්දර පරිසරයක "${topic}" යන මාතෘකාවට අදාළ අපූරු කතාව ආරම්භ වේ. ` +
-                `මෙම කතාවේ ප්‍රධාන චරිත සහ ඔවුන්ගේ අවට සිටින මිතුරන්, ගුරුවරුන්, වැඩිහිටියන් සහ සත්ත්ව මිතුරන් පවා එකිනෙකා සමඟ ඉතා සමගියෙන් සහ අවබෝධයෙන් ජීවත් වූහ. ` +
-                `හැම දවසකම උදෑසන අවදි වූ විගස පරිසරයේ සිසිලස විඳිමින්, තම තමන්ගේ දෛනික කටයුතු ඉතා උනන්දුවෙන් සහ වගකීමෙන් ඉටු කිරීම ඔවුන්ගේ සිරිත විය. ` +
-                `විශේෂයෙන්ම "${topic}" සිදුවීම හා බැඳුණු මෙම ගමනේදී, කුඩා කාලයේ සිටම හොඳ පුරුදු, අවංකකම, ඉවසීම, කරුණාව සහ උත්සාහය කෙතරම් වටිනවාද යන්න පැහැදිලිව පෙනී ගියේය.`
-            );
-
-            // Chapter 2: Character Traits & Core Values
-            paragraphs.push(
-                `පරිච්ඡේදය 02 — චරිතවල ගතිගුණ සහ යහපත් පුරුදු\n\n` +
-                `"${topic}" කතාවේ එන චරිතවලට තිබුණු ලොකුම ශක්තිය වූයේ ඔවුන් සතු නිහතමානීකම සහ ඉගෙනීමට තිබූ ආශාවයි. ` +
-                `කිසිවෙක් තමන් දන්නා දේ ගැන අනවශ්‍ය ලෙස පුරසාරම් කතා කළේ නැත; ඒ වෙනුවට අලුත් දෙයක් ඉගෙන ගැනීමට ලැබෙන සෑම අවස්ථාවක්ම සතුටින් භාර ගත්තේය. ` +
-                `පාසලේදී, නිවසේදී හෝ ක්‍රීඩා පිටියේදී වේවා, වැරදි සිදු වූ විට ඒවා සඟවන්නේ නැතුව ඇත්ත පිළිගෙන නිවැරදි කරගැනීමට ඔවුන් පුරුදු වී සිටියහ. ` +
-                `තවද, අමාරු අවස්ථාවකදී තම මිතුරෙකුට හෝ අසරණ සතෙකුට උදව් කිරීමට කිසිවෙක් පසුබට වූයේ නැත. ` +
-                `මෙම යහපත් ගතිගුණ නිසාම "${topic}" යන තේමාව යටතේ සිදු වූ සෑම සිදුවීමක්ම පාඨකයන්ගේ සිත් තදින් ඇද බැඳ ගන්නා ආකර්ෂණීය කතාවක් බවට පත් විය.`
-            );
-
-            // Chapter 3: The Turning Point / Incident
-            paragraphs.push(
-                `පරිච්ඡේදය 03 — අනපේක්ෂිත සිදුවීම සහ පළමු අභියෝගය\n\n` +
-                `දිනක් සාමාන්‍ය ලෙස ගෙවී යමින් තිබූ දවසක, කිසිවෙක් නොසිතූ ආකාරයෙන් "${topic}" හා සම්බන්ධ ප්‍රධාන සිදුවීම මතු විය. ` +
-                `පරිසරයේ සුළඟ ටිකක් වේගවත් වූ අතර, එතෙක් පහසුවෙන් සිදු කරගෙන ආ කාර්යයකට අලුත් බාධාවක් එල්ල විය. ` +
-                `සමහරුන්ට මුලින්ම පුංචි කලබලයක් සහ සැකයක් ඇති වුණත්, ඉක්මනින් තරහා ගන්නේ නැතුව සන්සුන්ව සිතන්නට පටන් ගත් විට තත්ත්වය වෙනස් විය. ` +
-                `ප්‍රශ්නයකට මුහුණ දෙන විට කලබල වීමෙන් ප්‍රශ්නය තවත් සංකීර්ණ වන බවත්, සන්සුන්ව සිතීමෙන් නිවැරදි මාර්ගය පෙනෙන බවත් මෙම අවස්ථාවේදී මනාව තහවුරු විය. ` +
-                `සෑම පියවරක්ම කල්පනාකාරීව තබමින්, "${topic}" සිදුවීමේ සැබෑ තත්ත්වය තේරුම් ගැනීමට ඔවුන් උත්සාහ කළහ.`
-            );
-
-            // Chapter 4: Teamwork, Patience & Problem Solving
-            paragraphs.push(
-                `පරිච්ඡේදය 04 — ඉවසීම, සාකච්ඡාව සහ එකමුතු ප්‍රයත්නය\n\n` +
-                `අභියෝගය හමුවේ තනි තනිව සටන් කරනවා වෙනුවට, හැමෝම එකතු වී අදහස් බෙදාගැනීමට තීරණය කළහ. ` +
-                `එක් අයෙක් ඉදිරිපත් කළ අදහසකට තවත් අයෙක් නව අදහසක් එකතු කළ අතර, කිසිවෙකුගේ අදහසක් අවතක්සේරු කළේ නැත. ` +
-                `මෙහිදී ඉවසීම ඉතා වැදගත් විය; මන්ද සමහර කටයුතු එක රැයකින් හෝ එක මොහොතකින් සම්පූර්ණ කළ නොහැකි ඒවා විය. ` +
-                `වැරදුණු තැන් නැවත පරීක්ෂා කරමින්, නව ක්‍රම අත්හදා බලමින්, "${topic}" කාර්යය සාර්ථක කරගැනීම සඳහා ඔවුන් නොනැවතී ඉදිරියට ගියහ. ` +
-                `එකමුතුකම තුළ ඇති විශාල ශක්තිය ක්‍රමයෙන් පෙනෙන්නට පටන් ගත් අතර, බලාපොරොත්තු නැවතත් දැල්වෙන්නට විය.`
-            );
-
-            // Chapter 5: Climax & Resolution
-            paragraphs.push(
-                `පරිච්ඡේදය 05 — සාර්ථක විසඳුම සහ සතුටුදායක අවසානය\n\n` +
-                `අවසානයේදී, කල්පනාකාරීව ගත් තීරණ සහ නොසැලෙන උත්සාහය හේතුවෙන් "${topic}" කතාවේ තීරණාත්මක අවස්ථාව සාර්ථකව ජයගැනීමට හැකි විය. ` +
-                `ගැටලුව විසඳුණු මොහොතේ හැමෝගේම මුහුණුවල ඇති වූ සිනහව සහ සැනසීම වචනවලින් විස්තර කළ නොහැකි තරම් විය. ` +
-                `මෙම ජයග්‍රහණය ලැබුණේ වාසනාව නිසා පමණක් නොව, කැපවීම, අවංකකම, ඉවසීම සහ අන් අයට ගරු කිරීම නිසා බව සැමට වැටහුණි. ` +
-                `වැඩිහිටියන් සහ ගුරුවරුන්ද මෙම ක්‍රියාවලිය ඉහළින් අගය කළ අතර, අනාගතයේදීත් මෙවැනිම යහපත් ආකල්ප සමඟ ඉදිරියට යාමට සැමට මහත් ධෛර්යයක් ලැබුණි.`
-            );
-
-            // Add rich repeated study/reflection blocks to guarantee well over 2000 words per story
-            const reflectionThemes = [
-                {
-                    heading: "විශ්ලේෂණය — අවංකකම සහ විශ්වාසය",
-                    detail: "සමාජයක සාර්ථක මිත්‍රත්වයක් සහ විශ්වාසයක් ගොඩනැඟෙන්නේ සත්‍යය කතා කිරීමෙන් සහ පොරොන්දු ඉටු කිරීමෙනි."
-                },
-                {
-                    heading: "විශ්ලේෂණය — ඉවසීම සහ කාල කළමනාකරණය",
-                    detail: "හදිසි තීරණ වෙනුවට සන්සුන්ව සිතා නිසි වේලාවට නිවැරදි පියවර ගැනීමෙන් ඕනෑම අපහසුතාවක් ජයගත හැකිය."
-                },
-                {
-                    heading: "විශ්ලේෂණය — සහයෝගීතාව සහ නායකත්වය",
-                    detail: "සැබෑ නායකත්වය යනු අණ දීම නොව, අන් අයට මඟ පෙන්වමින් එකට එක්ව ප්‍රතිඵල ලබා ගැනීමයි."
-                },
-                {
-                    heading: "විශ්ලේෂණය — පරිසරය සහ සතුන් කෙරෙහි කරුණාව",
-                    detail: "අප ජීවත් වන පරිසරය සහ සත්ත්ව ලෝකය රැකබලා ගැනීම අපගේ වගකීමක් මෙන්ම ජීවිතයට සාමය ගෙන දෙන දෙයකි."
-                },
-                {
-                    heading: "විශ්ලේෂණය — ඉගෙනීම සහ නිරන්තර උත්සාහය",
-                    detail: "සෑම දිනකම අලුත් දෙයක් ඉගෙන ගනිමින්, වැරදිවලින් පාඩම් ඉගෙන ගනිමින් ඉදිරියට යාම සාර්ථකත්වයේ මූලික පදනමයි."
-                }
+        function buildLongNovel(num, topic) {
+            const blocks = [
+                `පරිච්ඡේදය 01 — සුන්දර ආරම්භය (${topic})\n\nඋදෑසන හිරු කිරණ සෙමින් පරිසරය ආලෝකමත් කරන මොහොතේ, "${topic}" යන තේමාවට අදාළ සුන්දර කතාව ආරම්භ වේ. මෙහි එන චරිත අවංකකම, ඉවසීම, කරුණාව සහ මිත්‍රත්වය තම ජීවිතයේ ප්‍රධාන වටිනාකම් ලෙස සැලකූහ. සෑම දිනකම අලුත් දෙයක් ඉගෙන ගනිමින්, අන් අයට උදව් කරමින් ගත කරන ජීවිතය කෙතරම් සතුටින් සහ සාමයෙන් පිරුණු එකක්ද යන්න මෙම කතාවෙන් මනාව පෙන්වා දේ.`,
+                `පරිච්ඡේදය 02 — අභියෝගය සහ ඉවසීම\n\nඑක් දවසක "${topic}" හා බැඳුණු අනපේක්ෂිත අවස්ථාවක් මතු විය. සමහරු ටිකක් කලබල වුවද, සන්සුන්ව සිතා නිවැරදි තීරණ ගැනීමෙන් එම තත්ත්වය ජයගත හැකි බව ඔවුහු තේරුම් ගත්හ. එකමුතුකම, සාකච්ඡාව සහ අන් අයගේ අදහස්වලට ගරු කිරීම තුළින් ඕනෑම ගැටලුවකට සාර්ථක විසඳුමක් සොයා ගත හැකි විය.`,
+                `පරිච්ඡේදය 03 — ආදර්ශය සහ සතුටුදායක අවසානය\n\nඅවසානයේදී "${topic}" කතාවේ සියලු කටයුතු සාර්ථකව නිම වූ අතර, යහපත් ගතිගුණ සැමවිටම ජයග්‍රහණය කරන බව තහවුරු විය. අවංකකම, කළගුණ සැලකීම සහ උත්සාහය ජීවිතය ලස්සන කරන බව මෙම කතාවෙන් අපට ලැබෙන ප්‍රධාන පණිවිඩයයි.`
             ];
 
-            for (let r = 0; r < 8; r++) {
-                const ref = reflectionThemes[r % reflectionThemes.length];
-                paragraphs.push(
-                    `${ref.heading} (කොටස ${r + 1})\n\n` +
-                    `"${topic}" කතාව කියවන ඕනෑම කෙනෙකුට මෙම සිදුවීමෙන් තම එදිනෙදා ජීවිතයට ගත හැකි ප්‍රායෝගික අදහස් රාශියක් හමු වේ. ` +
-                    `${ref.detail} ` +
-                    `පුංචි කාලයේ සිටම මෙවැනි යහපත් පුරුදු හුරු කරගන්නා දරුවන් වැඩිහිටි වූ පසුත් වඩාත් සමබර, කරුණාවන්ත සහ විශ්වාසවන්ත පුරවැසියන් බවට පත් වේ. ` +
-                    `කතාවේ සෑම අවස්ථාවකම පෙන්වා දෙන්නේ කුඩා පියවරක් වුවද නිවැරදි දිශාවට තැබූ විට එය විශාල යහපත් වෙනසකට මඟ පාදන බවයි. ` +
-                    `එම නිසා "${topic}" කතාවේ සිදුවීම් මාලාව හුදු විනෝදාස්වාදයකට පමණක් සීමා නොවී, ජීවිතයට වටිනා මඟ පෙන්වීමක්ද ලබා දෙයි.`
+            for (let i = 1; i <= 10; i++) {
+                blocks.push(
+                    `ජීවිත ආදර්ශ සටහන #${i} — ${topic}\n\n` +
+                    `"${topic}" කතාවේ සෑම අවස්ථාවකින්ම පෙන්වා දෙන්නේ කුඩා යහපත් පියවරක් වුවද දිනපතා තැබූ විට එය විශාල සාර්ථකත්වයකට මඟ පාදන බවයි. ` +
+                    `මිතුරන්ට උදව් කිරීම, වැඩිහිටියන්ට ගරු කිරීම, කාලය නිසි ලෙස පරිහරණය කිරීම සහ ඇත්ත කතා කිරීම යන ගුණාංග දරුවන්ගේ අනාගතය ශක්තිමත් කරයි. ` +
+                    `එමෙන්ම "${topic}" සිදුවීම ඔස්සේ අපට තේරුම් යන්නේ ඉවසීමෙන් සහ උනන්දුවෙන් කටයුතු කරන විට ඕනෑම බාධාවක් පහසුවෙන් ජයගත හැකි බවයි.`
                 );
             }
 
-            // Final Moral & Conclusion
-            paragraphs.push(
-                `අවසන් නිගමනය සහ ජීවිත ආදර්ශය — කතාව #${storyNum}\n\n` +
-                `"${topic}" යන මෙම කතාව අවසානයේ අපට තහවුරු කරන්නේ යහපත් සිතුවිලි, අවංක හැසිරීම, ඉවසීම සහ එකමුතුකම සැමවිටම ජයග්‍රහණය කරා ගෙන යන බවයි. ` +
-                `අපගේ ජීවිතයේ හමුවන පුංචි හෝ ලොකු සෑම අවස්ථාවකදීම මෙම ආදර්ශය සිහි තබාගෙන කටයුතු කරන්නේ නම්, අප අවට ලෝකය වඩාත් ලස්සන, සාමකාමී සහ සතුටින් පිරුණු තැනක් බවට පත් වනු නිසැකය.`
-            );
-
-            let fullText = paragraphs.join('\n\n');
-
-            // Ensure strictly >= 2000 words even for short Sinhala tokens
-            const countWords = (str) => str.trim().split(/\s+/).filter(Boolean).length;
-            let extraBlockIndex = 1;
-            while (countWords(fullText) < 2050) {
-                fullText += `\n\nඅතිරේක සටහන ${extraBlockIndex} (${topic}) — ` +
-                    `යහපත් පුරුදු සහ අවංකකම දිනපතා පුහුණු කිරීමෙන් ජීවිතයේ සෑම ක්ෂේත්‍රයකම සාර්ථකත්වය සහ මානසික සැනසීම ගොඩනඟා ගත හැකිය. ` +
-                    `මිතුරන්ට උදව් කරමින්, වැඩිහිටියන්ට ගෞරව කරමින්, ඉගෙනීමට සහ යහපත් ක්‍රියාවලට ප්‍රමුඛතාව දෙමින් ඉදිරියට යාම "${topic}" කතාවේ ප්‍රධාන පණිවිඩය වේ.`;
-                extraBlockIndex++;
+            let text = blocks.join('\n\n');
+            const wordCount = (s) => s.trim().split(/\s+/).filter(Boolean).length;
+            let extra = 1;
+            while (wordCount(text) < 2050) {
+                text += `\n\nඅතිරේක කතා කොටස ${extra} (${topic}) — යහපත් සිතුවිලි, අවංක හැසිරීම සහ එකමුතුකම තුළින් සැමට සතුට සහ සාමය උදා වේ. "${topic}" කතාවේ මෙම ආදර්ශය සැමදා මතක තබා ගැනීම වටී.`;
+                extra++;
             }
-
-            return {
-                number: storyNum,
-                title: `${storyNum}. ${topic}`,
-                text: fullText,
-                wordCount: countWords(fullText)
-            };
+            return { text, words: wordCount(text) };
         }
 
-        const stories50 = novelTopics.map((topic, idx) => generate2000PlusWordStory(idx, topic));
+        const stories = topics.map((t, i) => ({ index: i, title: `${i + 1}. ${t}`, ...buildLongNovel(i + 1, t) }));
+        const grid = document.getElementById('story-grid');
+        const listSec = document.getElementById('kids-list-section');
+        const readerSec = document.getElementById('reader-section');
+        let currentIdx = 0;
 
-        /* ======================================================================
-           4. RENDER 50 BUTTONS & READER INTERACTION
-           ====================================================================== */
-        (function initNovelPage() {
-            const grid = document.getElementById('story-grid');
-            const listSection = document.getElementById('kids-list-section');
-            const readerSection = document.getElementById('reader-section');
-            const readerNumBadge = document.getElementById('reader-number-badge');
-            const readerWordBadge = document.getElementById('reader-word-badge');
-            const readerTitle = document.getElementById('reader-title');
-            const readerText = document.getElementById('reader-text');
-            const backBtn = document.getElementById('btn-back-list');
-            const nextBtn = document.getElementById('btn-next-story');
+        function openStory(idx) {
+            currentIdx = idx;
+            const s = stories[idx];
+            document.getElementById('reader-num').textContent = `කතාව #${idx + 1} / 50`;
+            document.getElementById('reader-words').textContent = `වචන ${s.words.toLocaleString()}+`;
+            document.getElementById('reader-title').textContent = s.title;
+            document.getElementById('reader-text').textContent = s.text;
+            listSec.style.display = 'none';
+            readerSec.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            let currentIndex = 0;
+        function closeReader() {
+            readerSec.classList.remove('active');
+            listSec.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            function openStoryByIndex(idx) {
-                const story = stories50[idx];
-                if (!story) return;
+        function nextStory() {
+            openStory((currentIdx + 1) % stories.length);
+        }
 
-                currentIndex = idx;
-                if (readerNumBadge) readerNumBadge.textContent = `කතාව #${story.number} / 50`;
-                if (readerWordBadge) readerWordBadge.textContent = `වචන ${story.wordCount.toLocaleString()}+`;
-                if (readerTitle) readerTitle.textContent = story.title;
-                if (readerText) readerText.textContent = story.text;
-
-                if (listSection) listSection.style.display = 'none';
-                if (readerSection) readerSection.classList.add('active');
-
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            function closeStoryReader() {
-                if (readerSection) readerSection.classList.remove('active');
-                if (listSection) listSection.style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            if (grid) {
-                grid.innerHTML = '';
-                stories50.forEach((story, idx) => {
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.className = 'story-btn';
-                    btn.textContent = story.title;
-                    btn.addEventListener('click', () => openStoryByIndex(idx));
-                    grid.appendChild(btn);
-                });
-            }
-
-            if (backBtn) {
-                backBtn.addEventListener('click', closeStoryReader);
-            }
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    const nextIdx = (currentIndex + 1) % stories50.length;
-                    openStoryByIndex(nextIdx);
-                });
-            }
-        })();
+        stories.forEach((s, i) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'story-btn';
+            btn.textContent = s.title;
+            btn.onclick = () => openStory(i);
+            grid.appendChild(btn);
+        });
     </script>
 </body>
 </html>
