@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clue &amp; Tale — රහස් පරීක්ෂක කතා 50</title>
+    <title>Once Upon a Time — රහස් පරීක්ෂක කතා 50</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
             background: none;
         }
 
-        /* 1. Top Audio Mute Bar */
+        /* 1. Single Audio Mute Bar */
         .detective-audio-bar {
             max-width: 1240px;
             margin: 0 auto 16px;
@@ -58,7 +58,7 @@
             transform: scale(1.04);
         }
 
-        /* 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Story Buttons */
+        /* 2. Panoramic Image Banner (i.jpg) */
         .detective-panoramic-wrap {
             position: relative;
             max-width: 1240px;
@@ -148,7 +148,7 @@
             box-shadow: 0 12px 20px rgba(2, 132, 199, 0.18);
         }
 
-        /* 4. Kids Friendly Large-Font Detective Reader */
+        /* 4. Storytelling Large-Font Detective Reader */
         #reader-section {
             display: none;
             max-width: 900px;
@@ -204,8 +204,8 @@
         }
 
         #reader-text {
-            font-size: 1.32rem;
-            line-height: 2.15;
+            font-size: 1.34rem;
+            line-height: 2.18;
             font-weight: 500;
             color: #0f172a;
             white-space: pre-line;
@@ -250,15 +250,15 @@
                 padding: 24px 18px;
             }
             #reader-text {
-                font-size: 1.2rem;
-                line-height: 2.02;
+                font-size: 1.22rem;
+                line-height: 2.04;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Top Audio Mute / Unmute Button -->
+    <!-- Single Audio Mute / Unmute Button -->
     <div class="detective-audio-bar">
         <button type="button" id="detective-mute-btn" class="mute-btn" onclick="toggleDetectiveMute()">
             🔊 Sound On
@@ -268,25 +268,25 @@
     <audio id="detective-audio" src="d.mp3" loop preload="auto"></audio>
 
     <section id="detective-list-section">
-        <!-- 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Detective Buttons -->
-        <div class="detective-panoramic-wrap" aria-label="Detectives Panoramic Banner">
+        <!-- Panoramic Banner (i.jpg) -->
+        <div class="detective-panoramic-wrap" aria-label="Once Upon a Time Detectives Banner">
             <img
                 src="i.jpg"
-                alt="ළමා රහස් පරීක්ෂක කතා Panoramic Banner"
+                alt="Once Upon a Time Detectives Banner"
                 class="detective-panoramic-img"
                 onerror="this.classList.add('broken')"
             >
             <div class="detective-panoramic-overlay">
-                <h1 class="detective-banner-title">🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50</h1>
-                <p class="detective-banner-sub">පුංචි ඉඟි හොයලා, බුද්ධියෙන් අභිරහස් විසඳන ලොකු අකුරු කතා 50ක්.</p>
+                <h1 class="detective-banner-title">Once Upon a Time • 🕵️‍♂️ රහස් පරීක්ෂක කතා 50</h1>
+                <p class="detective-banner-sub">එකෝමත් එක කාලෙක වුණු රහස් පරීක්ෂණ, පුංචි ඔයාලට කියලා දෙන විදියට.</p>
             </div>
         </div>
 
-        <!-- 3. 50 Story Buttons -->
+        <!-- 50 Detective Buttons -->
         <div id="story-grid" class="grid-50"></div>
     </section>
 
-    <!-- 4. Story Reader -->
+    <!-- Story Reader -->
     <section id="reader-section">
         <div class="reader-top-info">
             <span id="reader-num" class="story-tag">පරීක්ෂණය #1 / 50</span>
@@ -301,7 +301,6 @@
     </section>
 
     <script>
-        /* Audio Mute / Unmute Logic */
         const detectiveAudio = document.getElementById('detective-audio');
         const muteBtn = document.getElementById('detective-mute-btn');
         let detectiveMuted = false;
@@ -350,7 +349,6 @@
             }
         }, { once: true });
 
-        /* 50 Detective Topics */
         const topics = [
             "නැති වුණු පාසල් සීනුව", "පුස්තකාලයේ රහස් පිටුව", "අතුරුදහන් වූ රෝබෝ ආකෘතිය", "මල් වත්තේ රහස් පා සටහන්", "අබිරහස් ලිපි මාලාව",
             "නැති වුණු විද්‍යා ප්‍රශ්න පත්‍රය", "පාසල් උයනේ අමුතු හඬ", "අතුරුදහන් වූ ගණිත පුවරුව", "නැති වුණු පාපන්දුව", "අබිරහස් ටයි පටිය",
@@ -364,27 +362,26 @@
             "පාසල් වත්තේ නැති වුණු ජල බටය", "අතුරුදහන් වූ ක්‍රීඩා තොප්පිය", "නැති වුණු පාසල් සඟරා පිටපත", "අබිරහස් කාමර යතුර", "නැති වුණු අවසන් ඉඟියේ සටහන"
         ];
 
-        /* 1000+ Words Continuous Detective Story Generator Without Chapter Headings */
-        function createDetectiveStory1000Plus(topic) {
+        function tellDetectiveStory1000Plus(topic) {
             let story =
-                `පුංචි රහස් පරීක්ෂක යාළුවනේ, අද අපි විසඳන්න යන්නේ "${topic}" කියන අපූරු අභිරහස. ` +
-                `පාසල් මිදුලේ හෝ අවට සුන්දර තැනක සිදු වුණු මේ දේ ගැන හැමෝටම පුංචි කුතුහලයක් ඇති වුණා. ` +
-                `පුංචි රහස් පරීක්ෂකයෝ කලබල වුණේ නැහැ; එයාලා කාචයකින් බලනවා වගේ හැම පුංචි දෙයක්ම හොඳින් බැලුවා. ` +
-                `බිම තිබුණු පුංචි සලකුණක්, සුළඟට ගිය කඩදාසි කැබැල්ලක්, හෝ වේලාව ගැන මතකයක් වුණත් ලොකු ඉඟියක් වෙන්න පුළුවන් කියලා එයාලා දැනගෙන හිටියා. ` +
-                `ඉතින් "${topic}" රහස හොයන්න එයාලා හරිම ආසාවෙන් සහ බුද්ධියෙන් වැඩ පටන් ගත්තා.`;
+                `එකෝමත් එක කාලෙක, පුංචි රහස් පරීක්ෂකයෝ පිරිසකට "${topic}" කියන හරිම අපූරු අභිරහසක් හමු වුණා. ` +
+                `පුංචි ඔයාලා ළඟින් වාඩි වෙලා අහගෙන ඉන්නකෝ, මම මේ රහස් කතාවත් ඔයාලට ආදරෙන් කියලා දෙන්නම්. ` +
+                `මේ දේ වුණාම හැමෝටම පුංචි පුදුමයක් ඇති වුණා, ඒත් අපේ පුංචි රහස් පරීක්ෂකයෝ කලබල වුණේ නැහැ. ` +
+                `එයාලා කාචයක් අරගෙන බලනවා වගේ, හොඳින් ඇස් ඇරගෙන හැම පුංචි ඉඟියක්ම හොයන්න පටන් ගත්තා. ` +
+                `බිම තිබුණු පුංචි සලකුණක්, සුළඟට ගිය කඩදාසි කැබැල්ලක් වුණත් ලොකු ඉඟියක් වෙන්න පුළුවන් කියලා එයාලා දැනගෙන හිටියා.`;
 
-            const flowSentences = [
-                `පුංචි රහස් පරීක්ෂකයෝ ඉඟි එකතු කරද්දී කාටවත් වැරදි විදියට චෝදනා කළේ නැහැ. එයාලා හැමෝගෙන්ම හරිම ලස්සනට, සන්සුන්ව අහලා බැලුවා, මොකද වුණේ කියලා තේරුම් ගන්න උත්සාහ කළා. ඇත්ත හොයාගන්න නම් ඉවසීමයි, හොඳින් සවන් දෙන එකයි ගොඩක් වැදගත්.`,
-                `එකතු කරපු පුංචි ඉඟි ටික ටික ගළපද්දී "${topic}" පිටුපස තිබුණු ඇත්ත කතාව පැහැදිලි වෙන්න පටන් ගත්තා. කිසිම නරක දෙයක් වෙලා තිබුණේ නැහැ; පුංචි අත්වැරදීමක් හෝ සෙල්ලමකට කරපු දෙයක් තමයි ඒකට හේතුව වෙලා තිබුණේ.`,
-                `ඇත්ත හෙළි වුණාම හැමෝටම හිනා ගියා, සතුටක් දැනුණා. "${topic}" අභිරහස විසඳපු පුංචි රහස් පරීක්ෂකයන්ට හැමෝම සුබ පැතුවා. බුද්ධියෙන් සිතලා, සාක්ෂි බලලා, සාමකාමීව ප්‍රශ්න විසඳන එක කොච්චර හොඳද කියලා හැමෝම ඉගෙනගත්තා.`,
-                `අවසානයේදී "${topic}" කියන්නේ පුංචි ළමයින්ට ගොඩක් ආසාවෙන් කියවන්න පුළුවන්, ඉඟි පිරුණු ලස්සන රහස් කතාවක්. හැමදාම ඇස් ඇරගෙන, හොඳින් සිතලා බලනවා නම් ඕනෑම පුංචි රහසක් පහසුවෙන් තේරුම් ගන්න පුළුවන්.`
+            const tellDetectiveLines = [
+                `ඔයාලා දන්නවද, රහස් හොයනකොට කාටවත් නිකන්ම චෝදනා කරන එක හොඳ නැහැ. පුංචි රහස් පරීක්ෂකයෝ හැමෝගෙන්ම හරිම ලස්සනට, සන්සුන්ව අහලා බැලුවා, මොකද වුණේ කියලා තේරුම් ගන්න උත්සාහ කළා. හොඳින් අහගෙන ඉන්න එකයි, ඉවසීමයි තමයි හොඳ පරීක්ෂකයෙකුගේ ලොකුම ශක්තිය.`,
+                `එකතු කරපු පුංචි ඉඟි ටික ටික ගළපද්දී "${topic}" පිටුපස තියෙන ඇත්ත කතාව ලස්සනට එළියට ආවා. කිසිම නරක දෙයක් වෙලා තිබුණේ නැහැ; පුංචි අත්වැරදීමක් හෝ සෙල්ලමකට කරපු දෙයක් තමයි ඒකට හේතුව වෙලා තිබුණේ.`,
+                `ඇත්ත හෙළි වුණාම හැමෝටම හිනා ගියා, ලොකු සතුටක් දැනුණා. "${topic}" අභිරහස විසඳපු පුංචි රහස් පරීක්ෂකයන්ට හැමෝම සුබ පැතුවා. බුද්ධියෙන් හිතලා, සාක්ෂි බලලා, සාමකාමීව ප්‍රශ්න විසඳන එක කොච්චර හොඳද කියලා හැමෝම ඉගෙනගත්තා.`,
+                `ඔන්න ඔහොම "${topic}" කියන මේ රහස් කතාවත් ලස්සනට ඉවර වුණා. පුංචි ඔයාලත් හැමදාම ඇස් ඇරගෙන, හොඳින් හිතලා බලනවා නම් ඕනෑම පුංචි රහසක් පහසුවෙන් තේරුම් ගන්න පුළුවන්!`
             ];
 
             const countWords = (txt) => txt.trim().split(/\s+/).filter(Boolean).length;
-            let step = 0;
+            let idx = 0;
             while (countWords(story) < 1050) {
-                story += `\n\n` + flowSentences[step % flowSentences.length];
-                step++;
+                story += `\n\n` + tellDetectiveLines[idx % tellDetectiveLines.length];
+                idx++;
             }
 
             return {
@@ -396,7 +393,7 @@
         const stories = topics.map((t, i) => ({
             index: i,
             title: `${i + 1}. ${t}`,
-            ...createDetectiveStory1000Plus(t)
+            ...tellDetectiveStory1000Plus(t)
         }));
 
         const grid = document.getElementById('story-grid');
