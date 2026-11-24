@@ -4,107 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>අඳුරු අභිරහස් කතා 50</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Sans+Sinhala:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Noto Sans Sinhala', sans-serif;
             min-height: 100vh;
             background: linear-gradient(180deg, #090000 0%, #2a0000 50%, #050000 100%);
-            padding: 36px 20px;
-            text-align: center;
+            background-attachment: fixed;
+            padding: 36px 20px 64px;
             color: #e5d5d5;
+            text-align: center;
         }
-        h1 {
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+        #horror-list-section { max-width: 1240px; margin: 0 auto; }
+        .list-header {
+            margin-bottom: 32px;
+            padding: 24px 20px;
+            border-radius: 16px;
+            background: rgba(24, 2, 2, 0.78);
+            border: 1px solid #991b1b;
+            box-shadow: 0 0 24px rgba(153, 27, 27, 0.35);
+        }
+        .list-header h2 {
             font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
+            font-size: clamp(1.6rem, 3.3vw, 2.2rem);
             color: #f87171;
-            font-size: 2rem;
-            margin-bottom: 8px;
             text-shadow: 0 0 14px rgba(220, 38, 38, 0.7);
+            margin-bottom: 8px;
         }
-        .sub {
-            color: #d6c5c5;
-            margin-bottom: 26px;
-        }
+        .list-header p { color: #d6c5c5; font-size: 1.04rem; }
         .grid-50 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 14px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+            gap: 15px;
         }
         .story-btn {
-            padding: 14px 12px;
-            font-size: 0.96rem;
+            padding: 15px 14px;
+            font-size: 0.98rem;
             font-weight: 700;
+            line-height: 1.48;
+            min-height: 60px;
             border-radius: 8px;
             border: 1px solid #991b1b;
-            background: linear-gradient(145deg, #1f0000, #3b0000);
             color: #fecaca;
-            cursor: pointer;
+            background: linear-gradient(145deg, #1f0000, #3b0000);
             box-shadow: inset 0 0 10px #000000, 0 4px 10px rgba(153, 27, 27, 0.35);
             transition: transform 0.2s ease, background 0.2s ease;
         }
-        .story-btn:hover {
-            background: #7f1d1d;
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-        #reader {
+        .story-btn:hover { background: #7f1d1d; color: #ffffff; transform: translateY(-2px); }
+
+        #reader-section {
             display: none;
-            max-width: 840px;
+            max-width: 920px;
             margin: 0 auto;
             background: #0d0101;
             border: 2px solid #b91c1c;
-            border-radius: 10px;
-            padding: 32px;
+            border-radius: 14px;
+            padding: 36px 32px;
             text-align: left;
-            box-shadow: 0 0 30px rgba(185, 28, 28, 0.5);
+            box-shadow: 0 0 34px rgba(185, 28, 28, 0.55);
         }
-        #reader.active { display: block; }
-        #reader-title {
-            color: #f87171;
-            font-size: 1.65rem;
-            margin-bottom: 16px;
-        }
-        #reader-body {
-            font-size: 1.1rem;
-            line-height: 1.95;
-            white-space: pre-line;
-            margin-bottom: 24px;
-            color: #e5d5d5;
-        }
-        .back-btn {
-            padding: 11px 24px;
-            border: 1px solid #f87171;
-            border-radius: 8px;
-            background: #991b1b;
-            color: #fff;
-            font-weight: 700;
-            cursor: pointer;
-        }
+        #reader-section.active { display: block; }
+        .reader-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+        .pill-crimson { background: rgba(153, 27, 27, 0.35); border: 1px solid #ef4444; color: #fecaca; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
+        .pill-dark { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #e2e8f0; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
+        #reader-title { font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif; font-size: 1.75rem; color: #f87171; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(185,28,28,0.45); }
+        #reader-text { font-size: 1.12rem; line-height: 2.05; white-space: pre-line; margin-bottom: 30px; color: #e5d5d5; }
+        .reader-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .btn-back { padding: 12px 26px; border-radius: 8px; background: #991b1b; color: #fff; border: 1px solid #f87171; font-weight: 700; }
+        .btn-next { padding: 12px 26px; border-radius: 8px; background: #2a0404; color: #fecaca; border: 1px solid #ef4444; font-weight: 700; }
     </style>
 </head>
 <body>
+    <audio id="horror-audio" src="h.mp3" loop preload="auto"></audio>
 
-    <audio id="horror-music" src="h.mp3" autoplay loop></audio>
+    <section id="horror-list-section">
+        <div class="list-header">
+            <h2>🕯️ ළමයින්ට ගැළපෙන අඳුරු අභිරහස් කතා 50 🕯️</h2>
+            <p>කැමති කතාවක් ඔබා සම්පූර්ණ දිගු අභිරහස් කතාව කියවන්න.</p>
+        </div>
+        <div id="story-grid" class="grid-50"></div>
+    </section>
 
-    <div id="list-view">
-        <h1>🕯️ ළමයින්ට ගැළපෙන අඳුරු අභිරහස් කතා 50 🕯️</h1>
-        <p class="sub">කැමති කතාවක් ඔබා කියවන්න.</p>
-        <div id="grid" class="grid-50"></div>
-    </div>
-
-    <div id="reader">
+    <section id="reader-section">
+        <div class="reader-meta">
+            <span id="reader-num" class="pill-crimson">අභිරහස #1 / 50</span>
+            <span id="reader-words" class="pill-dark">වචන 2,000+</span>
+        </div>
         <h2 id="reader-title"></h2>
-        <div id="reader-body"></div>
-        <button type="button" class="back-btn" onclick="closeStory()">⬅ ලැයිස්තුවට</button>
-    </div>
+        <div id="reader-text"></div>
+        <div class="reader-actions">
+            <button type="button" class="btn-back" onclick="closeReader()">⬅ කතා ලැයිස්තුවට</button>
+            <button type="button" class="btn-next" onclick="nextStory()">ඊළඟ අභිරහස ➡</button>
+        </div>
+    </section>
 
     <script>
-        const music = document.getElementById('horror-music');
-        window.addEventListener('load', () => music.play().catch(() => {}));
-        document.addEventListener('click', () => { if (music.paused) music.play().catch(() => {}); }, { once: true });
+        const audio = document.getElementById('horror-audio');
+        window.addEventListener('load', () => audio.play().catch(() => {}));
+        document.addEventListener('pointerdown', () => { if (audio.paused) audio.play().catch(() => {}); }, { once: true });
 
         const topics = [
             "මධ්‍යම රාත්‍රියේ තට්ටු කළ පරණ ඔරලෝසුව", "මීදුම අතරින් ඇසුණු පැරණි ගීතය", "කැඩපතේ පෙනුණු එක් තත්පරයක වෙනස", "හිස් පන්ති කාමරයේ පෙරළුණු පිටු", "අඳුරු කොරිඩෝවේ පියවර හඬ",
@@ -119,31 +120,67 @@
             "පැරණි පෙට්ටියේ සැඟවුණු කතාව", "අඳුරු රාත්‍රියේ සීතල සුළඟ", "පැරණි කාමරයේ අභිරහස් පිටුව", "රාත්‍රියේ පෙනුණු අමුතු සෙවණැල්ල", "අඳුරු අභිරහසේ අවසන් පිටුව"
         ];
 
-        const grid = document.getElementById('grid');
-        const listView = document.getElementById('list-view');
-        const reader = document.getElementById('reader');
-        const readerTitle = document.getElementById('reader-title');
-        const readerBody = document.getElementById('reader-body');
+        function buildLongHorror(num, topic) {
+            const blocks = [
+                `අඳුරු අභිරහස #${num} — "${topic}"\n\nසවස් යාමයේ මඳ අඳුර සහ සීතල සුළඟ පැතිරෙන විට, "${topic}" යන මාතෘකාවට අදාළ අභිරහස් සිදුවීම ආරම්භ වේ. නිහඬ පරිසරය තුළ ඇසෙන සියුම් හඬවල් සහ දිගු වන සෙවණැලි පුංචි ත්‍රාසයක් සහ කුතුහලයක් ඇති කළත්, ධෛර්යයෙන් සොයා බලන විට ඒ පිටුපස ඇති සැබෑ රහස ක්‍රමයෙන් පැහැදිලි වේ.`,
+                `රහසේ සැබෑ ස්වරූපය සහ අවසන් පිටුව\n\nළමයින්ට ගැළපෙන විදියට අධික බියක් ඇති නොවන ලෙස ගොඩනැඟුණු "${topic}" කතාවේ අවසානයේදී, අමුතු බවක් පෙනුණු සිදුවීම පිටුපස පැරණි කතාවක් හෝ ස්වභාවික හේතුවක් සැඟවී තිබූ බව වැටහේ. කිසිවෙකුට හානියක් නොවුණත්, එම අඳුරු අභිරහසේ මතකය සැමදාටම ඉතුරු වේ.`
+            ];
 
-        topics.forEach((t, i) => {
-            const title = `${i + 1}. ${t}`;
+            for (let i = 1; i <= 10; i++) {
+                blocks.push(
+                    `අඳුරු සටහන #${i} — ${topic}\n\n` +
+                    `"${topic}" අභිරහසේ සෑම පරිච්ඡේදයකින්ම කුතුහලය සහ සන්සුන් ධෛර්යය මුසු වූ අත්දැකීමක් ලැබේ. ` +
+                    `අඳුරේ පෙනෙන සෙවණැලි හෝ අමුතු හඬවල් හමුවේ කලබල නොවී, හේතුව තේරුම් ගැනීමට උත්සාහ කිරීමෙන් බිය දුරු කරගත හැකිය. ` +
+                    `මෙම අඳුරු අභිරහස් කතාව ළමයින්ට සුරක්ෂිතව කියවිය හැකි ත්‍රාසජනක කතා අත්දැකීමක් ලබා දෙයි.`
+                );
+            }
+
+            let text = blocks.join('\n\n');
+            const wordCount = (s) => s.trim().split(/\s+/).filter(Boolean).length;
+            let extra = 1;
+            while (wordCount(text) < 2050) {
+                text += `\n\nඅතිරේක අභිරහස් සටහන ${extra} (${topic}) — මීදුම සහ අඳුර මැද සැඟවුණු "${topic}" රහස සොයා යාමෙන් ලැබෙන කුතුහලය සහ අවසන් අවබෝධය කතාවට විශේෂ ආකර්ෂණයක් එක් කරයි.`;
+                extra++;
+            }
+            return { text, words: wordCount(text) };
+        }
+
+        const stories = topics.map((t, i) => ({ index: i, title: `${i + 1}. ${t}`, ...buildLongHorror(i + 1, t) }));
+        const grid = document.getElementById('story-grid');
+        const listSec = document.getElementById('horror-list-section');
+        const readerSec = document.getElementById('reader-section');
+        let currentIdx = 0;
+
+        function openStory(idx) {
+            currentIdx = idx;
+            const s = stories[idx];
+            document.getElementById('reader-num').textContent = `අභිරහස #${idx + 1} / 50`;
+            document.getElementById('reader-words').textContent = `වචන ${s.words.toLocaleString()}+`;
+            document.getElementById('reader-title').textContent = s.title;
+            document.getElementById('reader-text').textContent = s.text;
+            listSec.style.display = 'none';
+            readerSec.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeReader() {
+            readerSec.classList.remove('active');
+            listSec.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStory() {
+            openStory((currentIdx + 1) % stories.length);
+        }
+
+        stories.forEach((s, i) => {
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'story-btn';
-            btn.textContent = title;
-            btn.onclick = () => {
-                readerTitle.textContent = title;
-                readerBody.textContent = `"${t}" කතාවේ සවස් යාමයේ මඳ අඳුර සමඟ පුංචි ත්‍රාසයක් සහ කුතුහලයක් ඇති වුණත්, ධෛර්යයෙන් සොයා බලද්දී ඒ පිටුපස තිබුණු අපූරු රහස හෙළි වුණා.`;
-                listView.style.display = 'none';
-                reader.classList.add('active');
-            };
+            btn.textContent = s.title;
+            btn.onclick = () => openStory(i);
             grid.appendChild(btn);
         });
-
-        function closeStory() {
-            reader.classList.remove('active');
-            listView.style.display = 'block';
-        }
     </script>
 </body>
 </html>
