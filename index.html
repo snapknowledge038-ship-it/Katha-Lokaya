@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>කතා ලෝකය 150</title>
+    <title>Clue &amp; Tale</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Fredoka:wght@500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -34,14 +34,14 @@
             background: none;
         }
 
-        /* Top Audio Bar */
+        /* 1. Top Audio Bar */
         .top-audio-bar {
             position: sticky;
             top: 0;
             z-index: 150;
             width: 100%;
             padding: 9px 16px;
-            background: rgba(10, 5, 18, 0.92);
+            background: rgba(10, 5, 18, 0.94);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.14);
             display: flex;
@@ -95,22 +95,75 @@
             50% { height: 15px; }
         }
 
-        /* 3 Compact Hero Sections */
+        /* 2. Panoramic Banner (Below Audio Button, Above Story Sections/Buttons) */
+        .panoramic-banner-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 21 / 6;
+            min-height: 150px;
+            max-height: 290px;
+            overflow: hidden;
+            background: linear-gradient(90deg, #1e1b4b 0%, #4c1d95 35%, #0f766e 70%, #450a0a 100%);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .panoramic-banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .panoramic-banner-img.broken {
+            display: none;
+        }
+
+        .panoramic-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(6, 3, 15, 0.72) 0%, rgba(6, 3, 15, 0.28) 50%, rgba(6, 3, 15, 0.72) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 12px 20px;
+            pointer-events: none;
+        }
+
+        .brand-mark {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: clamp(1.7rem, 3.8vw, 2.7rem);
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 0 24px rgba(168, 85, 247, 0.45);
+        }
+
+        .brand-tagline {
+            font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+            color: #e2e8f0;
+            font-weight: 600;
+            margin-top: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+        }
+
+        /* 3. Story Sections & Buttons */
         .hero-wrapper {
-            min-height: calc(100vh - 52px);
             display: flex;
             flex-direction: column;
         }
 
         .hero-section {
-            flex: 1;
-            min-height: 33.34vh;
+            min-height: 220px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 36px 20px;
+            padding: 32px 20px;
             position: relative;
             overflow: hidden;
         }
@@ -120,9 +173,9 @@
             position: absolute;
             left: -12%;
             right: -12%;
-            bottom: -60px;
-            height: 120px;
-            filter: blur(36px);
+            bottom: -55px;
+            height: 110px;
+            filter: blur(34px);
             z-index: 2;
             pointer-events: none;
         }
@@ -141,16 +194,16 @@
             background: linear-gradient(180deg, rgba(161, 196, 253, 0.96), rgba(29, 78, 216, 0.96));
         }
 
-        #hero-kids h1 {
+        #hero-kids h2 {
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: 2.35rem;
+            font-size: 2.15rem;
             color: #be185d;
             text-shadow: 2px 2px 0px #ffffff;
             margin-bottom: 8px;
         }
 
         #hero-kids p {
-            font-size: 1.05rem;
+            font-size: 1.04rem;
             color: #1e293b;
             font-weight: 600;
             margin-bottom: 18px;
@@ -160,7 +213,7 @@
             background: linear-gradient(45deg, #ff512f, #dd2476);
             color: #ffffff;
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: 1.12rem;
+            font-size: 1.1rem;
             font-weight: 700;
             padding: 13px 32px;
             border: 3px solid #ffffff;
@@ -179,16 +232,16 @@
             background: linear-gradient(180deg, rgba(13, 148, 136, 0.96), rgba(45, 0, 0, 0.98));
         }
 
-        #hero-detective h1 {
+        #hero-detective h2 {
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: 2.35rem;
+            font-size: 2.15rem;
             color: #e0f2fe;
             text-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
             margin-bottom: 8px;
         }
 
         #hero-detective p {
-            font-size: 1.05rem;
+            font-size: 1.04rem;
             color: #f0f9ff;
             margin-bottom: 18px;
         }
@@ -197,7 +250,7 @@
             background: linear-gradient(45deg, #fbbf24, #f97316);
             color: #111827;
             font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: 1.12rem;
+            font-size: 1.1rem;
             font-weight: 700;
             padding: 13px 32px;
             border: 3px solid #fef3c7;
@@ -216,9 +269,9 @@
             display: none;
         }
 
-        #hero-horror h1 {
+        #hero-horror h2 {
             font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
-            font-size: 2.3rem;
+            font-size: 2.1rem;
             color: #ef4444;
             text-shadow: 0 0 18px rgba(239, 68, 68, 0.75);
             letter-spacing: 2px;
@@ -226,7 +279,7 @@
         }
 
         #hero-horror p {
-            font-size: 1.03rem;
+            font-size: 1.02rem;
             color: #e5d4d4;
             margin-bottom: 18px;
         }
@@ -235,7 +288,7 @@
             background: linear-gradient(180deg, #7f1d1d, #240000);
             color: #fee2e2;
             font-family: 'Cinzel Decorative', 'Noto Sans Sinhala', serif;
-            font-size: 1.1rem;
+            font-size: 1.08rem;
             font-weight: 700;
             padding: 13px 34px;
             border: 2px solid #ef4444;
@@ -246,7 +299,7 @@
 
         .btn-hero-horror:hover { transform: scale(1.04); }
 
-        /* Iframe Overlay */
+        /* 4. Iframe Overlay */
         #page-frame-container {
             display: none;
             position: fixed;
@@ -303,13 +356,19 @@
             background: #ffffff;
         }
 
-        @media (max-width: 650px) {
-            #hero-kids h1, #hero-detective h1, #hero-horror h1 { font-size: 1.82rem; }
+        @media (max-width: 720px) {
+            .panoramic-banner-wrap {
+                aspect-ratio: 16 / 6;
+                min-height: 130px;
+                max-height: 200px;
+            }
+            #hero-kids h2, #hero-detective h2, #hero-horror h2 { font-size: 1.75rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- 1. Top Audio Button Bar -->
     <div class="top-audio-bar">
         <button type="button" id="top-audio-btn" class="top-audio-btn" onclick="toggleAudio()">
             <span id="top-eq" class="eq-wave">
@@ -319,12 +378,28 @@
         </button>
     </div>
 
+    <!-- 2. Panoramic Banner Image (i.jpg) Below Audio Button & Above Buttons -->
+    <div class="panoramic-banner-wrap" aria-label="Clue and Tale Panoramic Banner">
+        <img
+            id="panoramic-img"
+            class="panoramic-banner-img"
+            src="i.jpg"
+            alt="Clue & Tale Panoramic Banner"
+            onerror="this.classList.add('broken')"
+        >
+        <div class="panoramic-overlay">
+            <h1 class="brand-mark">Clue &amp; Tale</h1>
+            <p class="brand-tagline">ආදර්ශ කතා • රහස් පරීක්ෂණ • අඳුරු අභිරහස්</p>
+        </div>
+    </div>
+
+    <!-- 3. Three Story Sections & Buttons -->
     <div class="hero-wrapper">
         <section id="hero-kids" class="hero-section">
             <div class="hero-content">
-                <h1>🌈 ලස්සන කෙටි කතා</h1>
+                <h2>🌈 ලස්සන කෙටි කතා</h2>
                 <p>පුංචි ළමයින්ට ආදර්ශවත්, සතුට ගෙන දෙන වර්ණවත් කෙටි කතා 50ක්.</p>
-                <button type="button" class="btn-hero-kids" onclick="openPage('novel.html', 'n.mp3', '🌈 ලස්සන කෙටි කතා 50')">
+                <button type="button" class="btn-hero-kids" onclick="openPage('novel.html', 'n.mp3', 'Clue & Tale • 🌈 ලස්සන කෙටි කතා 50')">
                     ✨ කෙටි කතා 50 බලන්න
                 </button>
             </div>
@@ -332,9 +407,9 @@
 
         <section id="hero-detective" class="hero-section">
             <div class="hero-content">
-                <h1>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා</h1>
+                <h2>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා</h2>
                 <p>පුංචි ඉඟි සහ බුද්ධිය එකතු කරගෙන අභිරහස් විසඳන ළමා රහස් පරීක්ෂක කතා 50ක්.</p>
-                <button type="button" class="btn-hero-detective" onclick="openPage('detectives.html', 'd.mp3', '🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">
+                <button type="button" class="btn-hero-detective" onclick="openPage('detectives.html', 'd.mp3', 'Clue & Tale • 🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">
                     🔎 රහස් කතා 50 බලන්න
                 </button>
             </div>
@@ -342,18 +417,19 @@
 
         <section id="hero-horror" class="hero-section">
             <div class="hero-content">
-                <h1>🕯️ SPOOKY MYSTERIES</h1>
+                <h2>🕯️ SPOOKY MYSTERIES</h2>
                 <p>ළමයින්ට ගැළපෙන විදියට අධික බිය අඩු කළ, අඳුරු අභිරහස් සහ පුංචි ත්‍රාසය පිරුණු කතා 50ක්.</p>
-                <button type="button" class="btn-hero-horror" onclick="openPage('horror.html', 'h.mp3', '🕯️ අඳුරු අභිරහස් කතා 50')">
+                <button type="button" class="btn-hero-horror" onclick="openPage('horror.html', 'h.mp3', 'Clue & Tale • 🕯️ අඳුරු අභිරහස් කතා 50')">
                     🌑 අභිරහස් කතා 50 බලන්න
                 </button>
             </div>
         </section>
     </div>
 
+    <!-- 4. Iframe Overlay -->
     <div id="page-frame-container">
         <div class="frame-topbar">
-            <span id="frame-title" class="frame-title">කතා ලෝකය 150</span>
+            <span id="frame-title" class="frame-title">Clue &amp; Tale</span>
             <div class="frame-controls">
                 <button type="button" id="frame-audio-btn" class="frame-btn sound-btn" onclick="toggleAudio()">🔊 Music</button>
                 <button type="button" class="frame-btn" onclick="closePage()">⬅ මුල් පිටුවට</button>
