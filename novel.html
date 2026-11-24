@@ -3,51 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novel - 50 Stories</title>
+    <title>ආදර්ශවත් කෙටි කතා 50</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Noto+Sans+Sinhala:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa 0%, #fce4ec 52%, #fff9c4 100%);
+            padding: 36px 20px;
+            text-align: center;
+            color: #1e293b;
+        }
+        h1 {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            color: #be185d;
+            font-size: 2.1rem;
+            margin-bottom: 8px;
+        }
+        .sub {
+            color: #475569;
+            margin-bottom: 26px;
+        }
+        .grid-50 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .story-btn {
+            padding: 14px 12px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            border-radius: 16px;
+            border: 2px solid #ffffff;
+            background: linear-gradient(135deg, #fbcfe8 0%, #bae6fd 100%);
+            color: #1e293b;
+            cursor: pointer;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
+        }
+        .story-btn:nth-child(3n) {
+            background: linear-gradient(135deg, #fde68a 0%, #bbf7d0 100%);
+        }
+        .story-btn:hover { transform: translateY(-3px); }
+        #reader {
+            display: none;
+            max-width: 840px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 4px solid #ec4899;
+            border-radius: 24px;
+            padding: 32px;
+            text-align: left;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+        }
+        #reader.active { display: block; }
+        #reader-title {
+            color: #be185d;
+            font-size: 1.7rem;
+            margin-bottom: 16px;
+        }
+        #reader-body {
+            font-size: 1.1rem;
+            line-height: 1.95;
+            white-space: pre-line;
+            margin-bottom: 24px;
+        }
+        .back-btn {
+            padding: 11px 24px;
+            border: none;
+            border-radius: 25px;
+            background: #db2777;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <section id="kids-list-section" class="list-section">
-        <div class="list-header">
-            <h2>🌟 ආදර්ශවත් කෙටි කතා 50 🌟</h2>
-            <p>මෙතැන ඇත්තේ කෙටි කතා 50 පමණි. කැමති කතාවක් ඔබා කියවන්න.</p>
-        </div>
-        <div id="story-grid" class="grid-50"></div>
-        <div class="bottom-nav-area">
-            <button type="button" id="btn-go-top" class="end-top-btn kids-top-btn">⬆ ඉහළට යන්න</button>
-        </div>
-    </section>
 
-    <section id="reader-section">
-        <div class="reader-box">
-            <h2 id="reader-title" class="reader-title"></h2>
-            <div id="reader-text" class="reader-text"></div>
-            <button type="button" id="btn-back-list" class="reader-back-btn">⬅ කතා ලැයිස්තුවට ආපසු</button>
-        </div>
-    </section>
+    <audio id="novel-music" src="n.mp3" autoplay loop></audio>
 
-    <script src="script.js"></script>
+    <div id="list-view">
+        <h1>🌟 ආදර්ශවත් කෙටි කතා 50 🌟</h1>
+        <p class="sub">කැමති කතාවක් ඔබා කියවන්න.</p>
+        <div id="grid" class="grid-50"></div>
+    </div>
+
+    <div id="reader">
+        <h2 id="reader-title"></h2>
+        <div id="reader-body"></div>
+        <button type="button" class="back-btn" onclick="closeStory()">⬅ ලැයිස්තුවට</button>
+    </div>
+
     <script>
-        initStoryPage('kids');
+        const music = document.getElementById('novel-music');
+        window.addEventListener('load', () => music.play().catch(() => {}));
+        document.addEventListener('click', () => { if (music.paused) music.play().catch(() => {}); }, { once: true });
 
-        // Notify parent index to play n.mp3 if opened inside iframe, or play directly if opened standalone
-        const standaloneAudio = new Audio('n.mp3');
-        standaloneAudio.loop = true;
+        const topics = [
+            "රන්වන් පොරොව", "කූඹියා සහ පරෙවියා", "ඉබ්බා සහ හාවා", "පිපාසිත කපුටා", "එකමුතුකමේ බලය",
+            "සහයෝගයෙන් සිටි පුංචි කුරුල්ලෝ", "පිරිසිදු පාසල් මිදුල", "වෙලාවට වැඩ කළ සසා", "කරුණාවන්ත අලි පැටියා", "පොත් කියවන්න ආසා කළ මිනූ",
+            "ගස් සිටවූ ගමේ ළමයි", "බෙදාගෙන කෑමේ සතුට", "සමාව ඉල්ලන්න ඉගෙනගත් රවි", "අලුත් යාළුවා හඳුනාගත් චමි", "වතුර ඉතිරි කළ පුංචි ගම",
+            "තමන්ගේ වැඩ තනිවම කළ නිම්නා", "පුංචි මල් පැළය රැකගත් සෙනුජ", "කීකරු බවේ වටිනාකම", "සතුටින් ඉගෙනගත් පුංචි පන්තිය", "කෘතඥ වෙන්න පුරුදු වුණු තරුණි",
+            "ඉවසීමෙන් ප්‍රශ්න විසඳූ දිනුජ", "පරිසරයට ආදරය කළ පුංචි කණ්ඩායම", "සරල ජීවිතයේ සතුට", "අලුත් දෙයක් ඉගෙනගත් කවීන්", "සැමට උදව් කළ පුංචි තරුව",
+            "විනෝදයෙන් ක්‍රීඩා කළ යාළුවෝ", "අවංකව පිළිතුරු දුන් ශිෂ්‍යයා", "කාලය අපතේ නොයැවූ කුරුළු පැටියා", "හොඳ වචන කතා කරන්න පුරුදු වුණු මලිති", "අනුන්ගේ දේට ආසා නොකළ පුංචි දරුවා",
+            "පුංචි උදව්වකින් ඇති වූ සතුට", "මහන්සි වී පලතුරු වත්ත හැදූ ගොවියා", "සිනහවෙන් ප්‍රශ්න මඟහැරගත් දිනූ", "අලුත් පාඩමක් ඉගෙනගත් පුංචි කණ්ඩායම", "පරිස්සමෙන් ගමන් ගිය පුංචි පිරිස",
+            "සත්තුන්ට කරුණාව දැක්වූ සඳුනි", "තමන්ගේ වැරදි හදාගත් නවෝද්‍ය", "පුංචි පුස්තකාලයක් හැදූ ළමයි", "උදෑසන පුරුදු හදාගත් කවින්දි", "විශ්වාසය රැකගත් යාළුවෝ දෙන්නා",
+            "සතුට බෙදාගත් පුංචි උත්සවය", "පැන්සලෙන් ඉගෙනගත් ජීවිත පාඩම", "පුංචි ගඟේ පිරිසිදුකම රැකගත් කතාව", "කලබල නොවී තීරණ ගත් පුංචි ළමයා", "හොඳ මිතුරෙකු වීමේ රහස",
+            "පුංචි අදහසකින් හැදුණු ලස්සන වැඩක්", "සෑම දිනකම අලුත් යමක් ඉගෙනගත් කතාව", "ආදරයෙන් සහ ගෞරවයෙන් සැලකීම", "පුංචි දරුවන්ගේ ලස්සන සිහිනය", "සැමවිටම සත්‍යය කතා කිරීමේ වටිනාකම"
+        ];
 
-        if (window.parent && window.parent !== window) {
-            window.parent.postMessage({ type: 'PLAY_AUDIO', key: 'novel' }, '*');
-        } else {
-            standaloneAudio.play().catch(() => {});
-        }
+        const grid = document.getElementById('grid');
+        const listView = document.getElementById('list-view');
+        const reader = document.getElementById('reader');
+        const readerTitle = document.getElementById('reader-title');
+        const readerBody = document.getElementById('reader-body');
 
-        document.getElementById('btn-go-top').addEventListener('click', () => {
-            if (window.parent && window.parent !== window) {
-                window.parent.postMessage({ type: 'GO_HOME' }, '*');
-            } else {
-                window.location.href = 'index.html';
-            }
+        topics.forEach((t, i) => {
+            const title = `${i + 1}. ${t}`;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'story-btn';
+            btn.textContent = title;
+            btn.onclick = () => {
+                readerTitle.textContent = title;
+                readerBody.textContent = `"${t}" කතාවෙන් අපට ලැබෙන වැදගත් පාඩම වන්නේ අවංකකම, ඉවසීම, මිත්‍රත්වය සහ යහපත් පුරුදු සැමවිටම ජීවිතයට සතුට සහ සාර්ථකත්වය ගෙන දෙන බවයි.`;
+                listView.style.display = 'none';
+                reader.classList.add('active');
+            };
+            grid.appendChild(btn);
         });
+
+        function closeStory() {
+            reader.classList.remove('active');
+            listView.style.display = 'block';
+        }
     </script>
 </body>
 </html>
