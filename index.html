@@ -195,7 +195,7 @@
         }
 
         /* ==========================================================================
-           4. TOP NAVIGATION BAR & AUDIO DOCK
+           4. TOP AUDIO BAR & NAVIGATION HEADER
            ========================================================================== */
         .site-header {
             position: sticky;
@@ -203,7 +203,7 @@
             z-index: 60;
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-            background: rgba(8, 5, 18, 0.72);
+            background: rgba(8, 5, 18, 0.8);
             border-bottom: 1px solid var(--border-subtle);
             transition: background 0.3s var(--ease-smooth);
         }
@@ -211,7 +211,81 @@
         .header-inner {
             max-width: 1320px;
             margin: 0 auto;
-            padding: 12px 24px;
+            padding: 10px 24px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Top-most Audio Bar */
+        .audio-top-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-widget {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.16), rgba(236, 72, 153, 0.16));
+            border: 1px solid var(--border-strong);
+            padding: 7px 16px;
+            border-radius: var(--radius-pill);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .eq-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 18px;
+            width: 24px;
+        }
+
+        .eq-bar {
+            flex: 1;
+            height: 5px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #38bdf8, #f472b6);
+            transition: height 0.2s ease;
+        }
+
+        .eq-bars.playing .eq-bar:nth-child(1) { animation: eqAnim 0.75s ease-in-out infinite; }
+        .eq-bars.playing .eq-bar:nth-child(2) { animation: eqAnim 0.55s ease-in-out infinite 0.15s; }
+        .eq-bars.playing .eq-bar:nth-child(3) { animation: eqAnim 0.85s ease-in-out infinite 0.28s; }
+        .eq-bars.playing .eq-bar:nth-child(4) { animation: eqAnim 0.65s ease-in-out infinite 0.1s; }
+
+        @keyframes eqAnim {
+            0%, 100% { height: 4px; }
+            50% { height: 18px; }
+        }
+
+        .audio-track-label {
+            font-size: 0.82rem;
+            color: #e2e8f0;
+            font-weight: 700;
+        }
+
+        .audio-toggle-btn {
+            padding: 6px 16px;
+            border-radius: var(--radius-pill);
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
+        }
+
+        .audio-toggle-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 16px rgba(236, 72, 153, 0.5);
+        }
+
+        /* Second Row: Brand & Category Pills */
+        .header-main-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -288,67 +362,6 @@
             color: #ffffff;
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-1px);
-        }
-
-        .audio-widget {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-subtle);
-            padding: 6px 12px;
-            border-radius: var(--radius-pill);
-        }
-
-        .eq-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 18px;
-            width: 24px;
-        }
-
-        .eq-bar {
-            flex: 1;
-            height: 5px;
-            border-radius: 999px;
-            background: linear-gradient(180deg, #38bdf8, #f472b6);
-            transition: height 0.2s ease;
-        }
-
-        .eq-bars.playing .eq-bar:nth-child(1) { animation: eqAnim 0.75s ease-in-out infinite; }
-        .eq-bars.playing .eq-bar:nth-child(2) { animation: eqAnim 0.55s ease-in-out infinite 0.15s; }
-        .eq-bars.playing .eq-bar:nth-child(3) { animation: eqAnim 0.85s ease-in-out infinite 0.28s; }
-        .eq-bars.playing .eq-bar:nth-child(4) { animation: eqAnim 0.65s ease-in-out infinite 0.1s; }
-
-        @keyframes eqAnim {
-            0%, 100% { height: 4px; }
-            50% { height: 18px; }
-        }
-
-        .audio-track-label {
-            font-size: 0.78rem;
-            color: #e2e8f0;
-            font-weight: 600;
-            max-width: 110px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .audio-toggle-btn {
-            padding: 5px 12px;
-            border-radius: var(--radius-pill);
-            background: linear-gradient(135deg, #6366f1, #ec4899);
-            color: #ffffff;
-            font-size: 0.78rem;
-            font-weight: 700;
-            transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
-        }
-
-        .audio-toggle-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 16px rgba(236, 72, 153, 0.5);
         }
 
         /* ==========================================================================
@@ -965,7 +978,7 @@
            ========================================================================== */
         @media (max-width: 720px) {
             .header-inner {
-                padding: 12px 16px;
+                padding: 10px 14px 12px;
             }
             .nav-pills {
                 width: 100%;
@@ -995,33 +1008,41 @@
         <div class="grid-overlay"></div>
     </div>
 
-    <!-- Top Navigation & Audio Controller -->
+    <!-- Top Header with Audio Bar at the Very Top -->
     <header class="site-header">
         <div class="header-inner">
-            <a href="#top" class="brand-logo" onclick="scrollToSection('top'); return false;">
-                <div class="brand-emblem">📚</div>
-                <div class="brand-text-group">
-                    <span class="brand-title">කතා ලෝකය 150</span>
-                    <span class="brand-subtitle">STORY WORLD PORTAL</span>
-                </div>
-            </a>
 
-            <nav class="nav-pills" aria-label="Story Categories">
-                <button type="button" class="nav-pill-btn" onclick="openRealm('novel.html', 'n.mp3', '🌈 ආදර්ශවත් කෙටි කතා 50')">🌈 Novels (50)</button>
-                <button type="button" class="nav-pill-btn" onclick="openRealm('detectives.html', 'd.mp3', '🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">🕵️‍♂️ Detectives (50)</button>
-                <button type="button" class="nav-pill-btn" onclick="openRealm('horror.html', 'h.mp3', '🕯️ අඳුරු අභිරහස් කතා 50')">🕯️ Horror (50)</button>
-            </nav>
-
-            <div class="audio-widget" title="Background Audio Status">
-                <div id="eq-visualizer" class="eq-bars">
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
-                    <span class="eq-bar"></span>
+            <!-- Top Row: Audio Controls Above Everything -->
+            <div class="audio-top-row">
+                <div class="audio-widget" title="Background Audio Status">
+                    <div id="eq-visualizer" class="eq-bars">
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                    </div>
+                    <span id="audio-track-label" class="audio-track-label">i.mp3</span>
+                    <button type="button" id="btn-audio-toggle" class="audio-toggle-btn" onclick="toggleMute()">🔊 Play</button>
                 </div>
-                <span id="audio-track-label" class="audio-track-label">i.mp3</span>
-                <button type="button" id="btn-audio-toggle" class="audio-toggle-btn" onclick="toggleMute()">🔊 Play</button>
             </div>
+
+            <!-- Second Row: Brand & Category Pills -->
+            <div class="header-main-row">
+                <a href="#top" class="brand-logo" onclick="scrollToSection('top'); return false;">
+                    <div class="brand-emblem">📚</div>
+                    <div class="brand-text-group">
+                        <span class="brand-title">කතා ලෝකය 150</span>
+                        <span class="brand-subtitle">STORY WORLD PORTAL</span>
+                    </div>
+                </a>
+
+                <nav class="nav-pills" aria-label="Story Categories">
+                    <button type="button" class="nav-pill-btn" onclick="openRealm('novel.html', 'n.mp3', '🌈 ආදර්ශවත් කෙටි කතා 50')">🌈 Novels (50)</button>
+                    <button type="button" class="nav-pill-btn" onclick="openRealm('detectives.html', 'd.mp3', '🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50')">🕵️‍♂️ Detectives (50)</button>
+                    <button type="button" class="nav-pill-btn" onclick="openRealm('horror.html', 'h.mp3', '🕯️ අඳුරු අභිරහස් කතා 50')">🕯️ Horror (50)</button>
+                </nav>
+            </div>
+
         </div>
     </header>
 
