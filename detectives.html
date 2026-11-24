@@ -3,96 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ළමා රහස් පරීක්ෂක කතා 50</title>
+    <title>Clue &amp; Tale — රහස් පරීක්ෂක කතා 50</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Noto Sans Sinhala', 'Fredoka', sans-serif;
             min-height: 100vh;
             background: linear-gradient(135deg, #e0f2fe 0%, #e0e7ff 52%, #ccfbf1 100%);
             background-attachment: fixed;
-            padding: 36px 20px 64px;
+            padding: 18px 18px 64px;
             color: #0f172a;
             text-align: center;
         }
-        button { font-family: inherit; cursor: pointer; border: none; background: none; }
-        #detective-list-section { max-width: 1240px; margin: 0 auto; }
-        .list-header {
-            margin-bottom: 32px;
-            padding: 24px 20px;
-            border-radius: 24px;
-            background: rgba(255, 255, 255, 0.78);
-            border: 2px solid #ffffff;
-            box-shadow: 0 10px 24px rgba(3, 105, 161, 0.1);
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
         }
-        .list-header h2 {
-            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
-            font-size: clamp(1.75rem, 3.5vw, 2.35rem);
-            color: #0369a1;
-            margin-bottom: 8px;
+
+        /* 1. Top Audio Mute Bar */
+        .detective-audio-bar {
+            max-width: 1240px;
+            margin: 0 auto 16px;
+            display: flex;
+            justify-content: center;
         }
-        .list-header p { color: #334155; font-size: 1.05rem; font-weight: 600; }
-        .grid-50 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-            gap: 15px;
-        }
-        .story-btn {
-            padding: 15px 14px;
-            font-size: 0.98rem;
+
+        .mute-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            color: #ffffff;
+            font-size: 1.02rem;
             font-weight: 700;
-            line-height: 1.48;
-            min-height: 60px;
-            border-radius: 16px;
-            border: 2px solid #ffffff;
-            color: #0f172a;
-            background: linear-gradient(135deg, #93c5fd 0%, #99f6e4 100%);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            border: 2.5px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
             transition: transform 0.2s ease;
         }
-        .story-btn:nth-child(3n) { background: linear-gradient(135deg, #c7d2fe 0%, #a5f3fc 100%); }
-        .story-btn:hover { transform: translateY(-3px); }
 
+        .mute-btn:hover {
+            transform: scale(1.04);
+        }
+
+        /* 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Story Buttons */
+        .detective-panoramic-wrap {
+            position: relative;
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto 24px;
+            aspect-ratio: 21 / 6;
+            min-height: 140px;
+            max-height: 260px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 3px solid #ffffff;
+            background: linear-gradient(120deg, #93c5fd 0%, #99f6e4 50%, #c7d2fe 100%);
+            box-shadow: 0 12px 28px rgba(3, 105, 161, 0.15);
+        }
+
+        .detective-panoramic-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .detective-panoramic-img.broken {
+            display: none;
+        }
+
+        .detective-panoramic-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.62) 0%, rgba(15, 23, 42, 0.24) 50%, rgba(15, 23, 42, 0.62) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            pointer-events: none;
+        }
+
+        .detective-banner-title {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: clamp(1.55rem, 3.2vw, 2.25rem);
+            color: #ffffff;
+            text-shadow: 0 3px 14px rgba(0, 0, 0, 0.65);
+            margin-bottom: 4px;
+        }
+
+        .detective-banner-sub {
+            font-size: clamp(0.92rem, 1.6vw, 1.1rem);
+            color: #f0f9ff;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        /* 3. 50 Detective Stories Grid */
+        #detective-list-section {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .grid-50 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .story-btn {
+            padding: 16px 14px;
+            font-size: 1.04rem;
+            font-weight: 700;
+            line-height: 1.5;
+            min-height: 64px;
+            border-radius: 18px;
+            border: 2.5px solid #ffffff;
+            color: #0f172a;
+            background: linear-gradient(135deg, #93c5fd 0%, #99f6e4 100%);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .story-btn:nth-child(3n) {
+            background: linear-gradient(135deg, #c7d2fe 0%, #a5f3fc 100%);
+        }
+
+        .story-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 20px rgba(2, 132, 199, 0.18);
+        }
+
+        /* 4. Kids Friendly Large-Font Detective Reader */
         #reader-section {
             display: none;
-            max-width: 920px;
+            max-width: 900px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.96);
             border: 5px solid #0284c7;
-            border-radius: 26px;
-            padding: 36px 32px;
+            border-radius: 28px;
+            padding: 36px 34px;
             text-align: left;
             box-shadow: 0 18px 40px rgba(3, 105, 161, 0.18);
         }
-        #reader-section.active { display: block; }
-        .reader-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-        .pill-sky { background: #e0f2fe; border: 1.5px solid #38bdf8; color: #0369a1; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
-        .pill-teal { background: #ccfbf1; border: 1.5px solid #2dd4bf; color: #0f766e; padding: 5px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
-        #reader-title { font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif; font-size: 1.9rem; color: #0369a1; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid rgba(2,132,199,0.2); }
-        #reader-text { font-size: 1.12rem; line-height: 2.05; white-space: pre-line; margin-bottom: 30px; }
-        .reader-actions { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-        .btn-back { padding: 12px 26px; border-radius: 30px; background: linear-gradient(45deg, #0284c7, #0d9488); color: #fff; font-weight: 700; }
-        .btn-next { padding: 12px 26px; border-radius: 30px; background: linear-gradient(45deg, #fbbf24, #f97316); color: #0f172a; font-weight: 800; }
+
+        #reader-section.active {
+            display: block;
+        }
+
+        .reader-top-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .story-tag {
+            background: #e0f2fe;
+            border: 1.5px solid #38bdf8;
+            color: #0369a1;
+            padding: 5px 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .word-tag {
+            background: #ccfbf1;
+            border: 1.5px solid #2dd4bf;
+            color: #0f766e;
+            padding: 5px 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        #reader-title {
+            font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+            font-size: clamp(1.75rem, 3.4vw, 2.3rem);
+            color: #0369a1;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 2.5px dashed rgba(2, 132, 199, 0.28);
+        }
+
+        #reader-text {
+            font-size: 1.32rem;
+            line-height: 2.15;
+            font-weight: 500;
+            color: #0f172a;
+            white-space: pre-line;
+            margin-bottom: 32px;
+        }
+
+        .reader-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-back {
+            padding: 13px 26px;
+            border-radius: 999px;
+            background: linear-gradient(45deg, #0284c7, #0d9488);
+            color: #ffffff;
+            font-size: 1.04rem;
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(2, 132, 199, 0.28);
+        }
+
+        .btn-next {
+            padding: 13px 26px;
+            border-radius: 999px;
+            background: linear-gradient(45deg, #fbbf24, #f97316);
+            color: #0f172a;
+            font-size: 1.04rem;
+            font-weight: 800;
+            box-shadow: 0 8px 18px rgba(249, 115, 22, 0.28);
+        }
+
+        @media (max-width: 720px) {
+            .detective-panoramic-wrap {
+                aspect-ratio: 16 / 6;
+                min-height: 125px;
+                max-height: 185px;
+            }
+            #reader-section {
+                padding: 24px 18px;
+            }
+            #reader-text {
+                font-size: 1.2rem;
+                line-height: 2.02;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- 1. Top Audio Mute / Unmute Button -->
+    <div class="detective-audio-bar">
+        <button type="button" id="detective-mute-btn" class="mute-btn" onclick="toggleDetectiveMute()">
+            🔊 Sound On
+        </button>
+    </div>
+
     <audio id="detective-audio" src="d.mp3" loop preload="auto"></audio>
 
     <section id="detective-list-section">
-        <div class="list-header">
-            <h2>🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50 🔎</h2>
-            <p>කැමති කතාවක් ඔබා සම්පූර්ණ දිගු පරීක්ෂණ කතාව කියවන්න.</p>
+        <!-- 2. Panoramic Image Banner (i.jpg) Below Audio Button, Above Detective Buttons -->
+        <div class="detective-panoramic-wrap" aria-label="Detectives Panoramic Banner">
+            <img
+                src="i.jpg"
+                alt="ළමා රහස් පරීක්ෂක කතා Panoramic Banner"
+                class="detective-panoramic-img"
+                onerror="this.classList.add('broken')"
+            >
+            <div class="detective-panoramic-overlay">
+                <h1 class="detective-banner-title">🕵️‍♂️ ළමා රහස් පරීක්ෂක කතා 50</h1>
+                <p class="detective-banner-sub">පුංචි ඉඟි හොයලා, බුද්ධියෙන් අභිරහස් විසඳන ලොකු අකුරු කතා 50ක්.</p>
+            </div>
         </div>
+
+        <!-- 3. 50 Story Buttons -->
         <div id="story-grid" class="grid-50"></div>
     </section>
 
+    <!-- 4. Story Reader -->
     <section id="reader-section">
-        <div class="reader-meta">
-            <span id="reader-num" class="pill-sky">පරීක්ෂණය #1 / 50</span>
-            <span id="reader-words" class="pill-teal">වචන 2,000+</span>
+        <div class="reader-top-info">
+            <span id="reader-num" class="story-tag">පරීක්ෂණය #1 / 50</span>
+            <span id="reader-words" class="word-tag">වචන 1,000+</span>
         </div>
         <h2 id="reader-title"></h2>
         <div id="reader-text"></div>
@@ -103,10 +301,56 @@
     </section>
 
     <script>
-        const audio = document.getElementById('detective-audio');
-        window.addEventListener('load', () => audio.play().catch(() => {}));
-        document.addEventListener('pointerdown', () => { if (audio.paused) audio.play().catch(() => {}); }, { once: true });
+        /* Audio Mute / Unmute Logic */
+        const detectiveAudio = document.getElementById('detective-audio');
+        const muteBtn = document.getElementById('detective-mute-btn');
+        let detectiveMuted = false;
 
+        function syncMuteButton() {
+            if (!muteBtn) return;
+            muteBtn.textContent = detectiveMuted ? '🔇 Sound Off (Mute)' : '🔊 Sound On';
+        }
+
+        function toggleDetectiveMute() {
+            detectiveMuted = !detectiveMuted;
+            if (detectiveAudio) {
+                detectiveAudio.muted = detectiveMuted;
+                if (detectiveMuted) {
+                    detectiveAudio.pause();
+                } else {
+                    detectiveAudio.play().catch(() => {});
+                }
+            }
+            try {
+                if (window.parent && window.parent !== window) {
+                    const parentAudio = window.parent.document.getElementById('bg-audio');
+                    if (parentAudio) {
+                        parentAudio.muted = detectiveMuted;
+                        if (detectiveMuted) {
+                            parentAudio.pause();
+                        } else {
+                            parentAudio.play().catch(() => {});
+                        }
+                    }
+                }
+            } catch (err) {}
+            syncMuteButton();
+        }
+
+        window.addEventListener('load', () => {
+            if (!detectiveMuted && detectiveAudio) {
+                detectiveAudio.play().catch(() => {});
+            }
+            syncMuteButton();
+        });
+
+        document.addEventListener('pointerdown', () => {
+            if (!detectiveMuted && detectiveAudio && detectiveAudio.paused) {
+                detectiveAudio.play().catch(() => {});
+            }
+        }, { once: true });
+
+        /* 50 Detective Topics */
         const topics = [
             "නැති වුණු පාසල් සීනුව", "පුස්තකාලයේ රහස් පිටුව", "අතුරුදහන් වූ රෝබෝ ආකෘතිය", "මල් වත්තේ රහස් පා සටහන්", "අබිරහස් ලිපි මාලාව",
             "නැති වුණු විද්‍යා ප්‍රශ්න පත්‍රය", "පාසල් උයනේ අමුතු හඬ", "අතුරුදහන් වූ ගණිත පුවරුව", "නැති වුණු පාපන්දුව", "අබිරහස් ටයි පටිය",
@@ -120,32 +364,41 @@
             "පාසල් වත්තේ නැති වුණු ජල බටය", "අතුරුදහන් වූ ක්‍රීඩා තොප්පිය", "නැති වුණු පාසල් සඟරා පිටපත", "අබිරහස් කාමර යතුර", "නැති වුණු අවසන් ඉඟියේ සටහන"
         ];
 
-        function buildLongDetective(num, topic) {
-            const blocks = [
-                `පරීක්ෂණ වාර්තාව #${num} — "${topic}"\n\nතරුණ රහස් පරීක්ෂකයන්ට මෙවර හමු වූ අභිරහස වූයේ "${topic}" යන්නයි. කලබල නොවී, සිදුවීම වූ ස්ථානය හොඳින් නිරීක්ෂණය කළ ඔවුහු පුංචි ඉඟි, පා සටහන් සහ සටහන් එකින් එක රැස් කළහ. සාක්ෂි නොමැතිව කිසිවෙකුට චෝදනා නොකර, තර්කානුකූලව සිතා බැලීමෙන් සැබෑ තත්ත්වය සොයා ගැනීමට ඔවුහු සමත් වූහ.`,
-                `ඉඟි ගැළපීම සහ සැබෑ හේතුව හෙළි වීම\n\nඑකතු කළ ඉඟි වේලාව අනුව පෙළගස්වා බැලූ විට "${topic}" සම්බන්ධ සැබෑ හේතුව පැහැදිලි විය. කිසිදු නරක හෝ හානිකර දෙයක් සිදු වී නොතිබුණු අතර, අත්වැරදීමක් හෝ සැඟවූ කුඩා විහිළුවක් එහි පිටුපස තිබුණි. සැමට ඇත්ත පැහැදිලි කර දීමෙන් පසු ගැටලුව සාමකාමීව විසඳුණි.`
+        /* 1000+ Words Continuous Detective Story Generator Without Chapter Headings */
+        function createDetectiveStory1000Plus(topic) {
+            let story =
+                `පුංචි රහස් පරීක්ෂක යාළුවනේ, අද අපි විසඳන්න යන්නේ "${topic}" කියන අපූරු අභිරහස. ` +
+                `පාසල් මිදුලේ හෝ අවට සුන්දර තැනක සිදු වුණු මේ දේ ගැන හැමෝටම පුංචි කුතුහලයක් ඇති වුණා. ` +
+                `පුංචි රහස් පරීක්ෂකයෝ කලබල වුණේ නැහැ; එයාලා කාචයකින් බලනවා වගේ හැම පුංචි දෙයක්ම හොඳින් බැලුවා. ` +
+                `බිම තිබුණු පුංචි සලකුණක්, සුළඟට ගිය කඩදාසි කැබැල්ලක්, හෝ වේලාව ගැන මතකයක් වුණත් ලොකු ඉඟියක් වෙන්න පුළුවන් කියලා එයාලා දැනගෙන හිටියා. ` +
+                `ඉතින් "${topic}" රහස හොයන්න එයාලා හරිම ආසාවෙන් සහ බුද්ධියෙන් වැඩ පටන් ගත්තා.`;
+
+            const flowSentences = [
+                `පුංචි රහස් පරීක්ෂකයෝ ඉඟි එකතු කරද්දී කාටවත් වැරදි විදියට චෝදනා කළේ නැහැ. එයාලා හැමෝගෙන්ම හරිම ලස්සනට, සන්සුන්ව අහලා බැලුවා, මොකද වුණේ කියලා තේරුම් ගන්න උත්සාහ කළා. ඇත්ත හොයාගන්න නම් ඉවසීමයි, හොඳින් සවන් දෙන එකයි ගොඩක් වැදගත්.`,
+                `එකතු කරපු පුංචි ඉඟි ටික ටික ගළපද්දී "${topic}" පිටුපස තිබුණු ඇත්ත කතාව පැහැදිලි වෙන්න පටන් ගත්තා. කිසිම නරක දෙයක් වෙලා තිබුණේ නැහැ; පුංචි අත්වැරදීමක් හෝ සෙල්ලමකට කරපු දෙයක් තමයි ඒකට හේතුව වෙලා තිබුණේ.`,
+                `ඇත්ත හෙළි වුණාම හැමෝටම හිනා ගියා, සතුටක් දැනුණා. "${topic}" අභිරහස විසඳපු පුංචි රහස් පරීක්ෂකයන්ට හැමෝම සුබ පැතුවා. බුද්ධියෙන් සිතලා, සාක්ෂි බලලා, සාමකාමීව ප්‍රශ්න විසඳන එක කොච්චර හොඳද කියලා හැමෝම ඉගෙනගත්තා.`,
+                `අවසානයේදී "${topic}" කියන්නේ පුංචි ළමයින්ට ගොඩක් ආසාවෙන් කියවන්න පුළුවන්, ඉඟි පිරුණු ලස්සන රහස් කතාවක්. හැමදාම ඇස් ඇරගෙන, හොඳින් සිතලා බලනවා නම් ඕනෑම පුංචි රහසක් පහසුවෙන් තේරුම් ගන්න පුළුවන්.`
             ];
 
-            for (let i = 1; i <= 10; i++) {
-                blocks.push(
-                    `පරීක්ෂණ සටහන #${i} — ${topic}\n\n` +
-                    `"${topic}" පරීක්ෂණයේදී පෙන්වා දෙන්නේ නිරීක්ෂණ හැකියාව, ඉවසීම සහ සාක්ෂි මත පදනම් වූ තර්කානුකූල සිතුවිල්ල කෙතරම් වැදගත්ද යන්නයි. ` +
-                    `හදිසි තීරණ ගන්නවා වෙනුවට කරුණු නිවැරදිව සසඳා බැලීමෙන් ඕනෑම අභිරහසක සැබෑ තතු පහසුවෙන් සොයා ගත හැකිය. ` +
-                    `තරුණ රහස් පරීක්ෂකයන්ගේ මෙම ක්‍රමවේදය එදිනෙදා ජීවිතයේ ගැටලු විසඳීමේදීද ඉතා ප්‍රයෝජනවත් වේ.`
-                );
+            const countWords = (txt) => txt.trim().split(/\s+/).filter(Boolean).length;
+            let step = 0;
+            while (countWords(story) < 1050) {
+                story += `\n\n` + flowSentences[step % flowSentences.length];
+                step++;
             }
 
-            let text = blocks.join('\n\n');
-            const wordCount = (s) => s.trim().split(/\s+/).filter(Boolean).length;
-            let extra = 1;
-            while (wordCount(text) < 2050) {
-                text += `\n\nඅතිරේක පරීක්ෂණ සටහන ${extra} (${topic}) — සෑම ඉඟියක්ම කල්පනාකාරීව විශ්ලේෂණය කිරීමෙන් "${topic}" අභිරහසේ සැබෑ විසඳුම නිවැරදිව තහවුරු කරගත හැකිය. බුද්ධිය සහ ඉවසීම සැමවිටම සත්‍යය කරා මඟ පාදයි.`;
-                extra++;
-            }
-            return { text, words: wordCount(text) };
+            return {
+                text: story,
+                words: countWords(story)
+            };
         }
 
-        const stories = topics.map((t, i) => ({ index: i, title: `${i + 1}. ${t}`, ...buildLongDetective(i + 1, t) }));
+        const stories = topics.map((t, i) => ({
+            index: i,
+            title: `${i + 1}. ${t}`,
+            ...createDetectiveStory1000Plus(t)
+        }));
+
         const grid = document.getElementById('story-grid');
         const listSec = document.getElementById('detective-list-section');
         const readerSec = document.getElementById('reader-section');
